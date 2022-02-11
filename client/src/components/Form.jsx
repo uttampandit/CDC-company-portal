@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 
 const Form = () => {
@@ -20,91 +19,73 @@ const Form = () => {
 
     console.log(companyData);
 
-    console.log({ companyData });
-
-    //Object destructuring.
     const { name, email, phoneNumber } = companyData;
 
-    const localUrl = "https://localhost:8000/";
+    const postURL = "http://localhost:8000/companies";
 
-    // const data = {
-
-    // }
-
-    axios.post(localUrl, { companyData })
-    .then(
-      (response) => {
-        console.log(response);
+    fetch(postURL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      (error) => {
-        console.log(error);
-      }
-    );
+      body: JSON.stringify({
+        name,
+        email,
+        phoneNumber,
+      }),
+    })
+      .then(() => console.log("Data successfully sent"))
+      .catch(() => console.log("Problem in sending data"));
 
-    // const res = await fetch("/", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     name,
-    //     email,
-    //     phoneNumber,
-    //   }),
-    // });
+  }
 
-    // const data = await res.json();
-
-    // if(data.status === 422 || !data) {
-    //   console.log("Invalid Registration")
-    // } else {
-    //   console.log("Registration Successful");
-    // }
-  };
-
-  return (
-    <div className="h-screen flex justify-center items-center w-full">
-      <form
-        method="POST"
-        onSubmit={handleSubmit}
-        className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center items-center"
-      >
-        <label className="w-full text-gray-700 text-sm font-bold mt-2">
-          Name
-        </label>
-        <input
-          name="name"
-          value={companyData.name}
-          onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
-
-        <label className="w-full text-gray-700 text-sm font-bold mt-2">
-          Email
-        </label>
-        <input
-          name="email"
-          value={companyData.email}
-          onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
-
-        <label className="w-full text-gray-700 text-sm font-bold mt-2">
-          Phone Number
-        </label>
-        <input
-          name="phoneNumber"
-          value={companyData.phoneNumber}
-          onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
-
-        <button
-          type="submit"
-          className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    return (
+      <div className="h-screen flex justify-center items-center w-full">
+        <form
+          method="POST"
+          onSubmit={handleSubmit}
+          className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center items-center"
         >
-          Submit
-        </button>
-      </form>
-    </div>
-  );
+          <label className="w-full text-gray-700 text-sm font-bold mt-2">
+            Name
+          </label>
+          <input
+            name="name"
+            value={companyData.name}
+            onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+
+          <label className="w-full text-gray-700 text-sm font-bold mt-2">
+            Email
+          </label>
+          <input
+            name="email"
+            value={companyData.email}
+            onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+
+          <label className="w-full text-gray-700 text-sm font-bold mt-2">
+            Phone Number
+          </label>
+          <input
+            name="phoneNumber"
+            value={companyData.phoneNumber}
+            onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+
+          <button
+            type="submit"
+            className="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    );
 };
 
 export default Form;

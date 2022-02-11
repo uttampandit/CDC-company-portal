@@ -18,27 +18,3 @@ app.use(errorHandler)
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
 });
-
-// const { MongoClient } = require('mongodb')
-
-// const uri =
-//   "mongodb+srv://admin-aadarsh:HJqIR1r4JtB3mnK9@cluster0.0vpa2.mongodb.net/sample_mflix?retryWrites=true&w=majority";
-
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// client.connect((err) => {
-//   const collection = client.db("sample_mflix").collection("comments");
-
-//   const query = { name: "Mercedes Tyler" };
-
-//   const comment = collection.findOne(query);
-
-//   if(err) {
-//       console.log(err)
-//   } else console.log(comment);
-
-//   client.close();
-// });
