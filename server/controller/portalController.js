@@ -8,6 +8,7 @@ const getCompanies = asyncHandler(async (req, res) => {
 
     console.log(companies);
     console.log(req.body)
+    console.log("Hello")
 
     res.status(200).json(companies)   
 })
