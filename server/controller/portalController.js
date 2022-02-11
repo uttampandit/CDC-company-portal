@@ -6,6 +6,9 @@ const getCompanies = asyncHandler(async (req, res) => {
 
     const companies = await Company.find()
 
+    console.log(companies);
+    console.log(req.body)
+
     res.status(200).json(companies)   
 })
 
@@ -20,8 +23,6 @@ const setCompanies = asyncHandler(async (req, res) => {
     const company = await Company.create({
         name, email, phoneNumber
     })
-
-
 
     res.status(200).json(company)   
 })

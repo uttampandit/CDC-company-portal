@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
-app.use('/', require('./routes/companyRoutes'))
+app.use('/companies', require('./routes/companyRoutes'))
 
 app.use(errorHandler)
 
