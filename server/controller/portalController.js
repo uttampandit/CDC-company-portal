@@ -4,22 +4,24 @@ const Company = require('../models/companyModel')
 
 const getCompanies = asyncHandler(async (req, res) => {
 
-    const companies = await Company.find({ name: req.body.name })
+    const companies = await Company.find()
 
     res.status(200).json(companies)   
 })
 
 const setCompanies = asyncHandler(async (req, res) => {
+
+    const { name, email, phoneNumber } = req.body
     
-    if(!req.body.name) {
-        res.status(400).json({ message: 'Please add companies'})
+    if(!name || !email || !phoneNumber) {
+        res.status(400).json({ message: 'Please add details correctly'})
     }
 
     const company = await Company.create({
-        name: req.body.name,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber
+        name, email, phoneNumber
     })
+
+
 
     res.status(200).json(company)   
 })

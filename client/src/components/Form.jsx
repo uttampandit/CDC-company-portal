@@ -18,15 +18,26 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(companyData);
+
+    //Object destructuring.
+    const { name, email, phoneNumber } = companyData;
+
     axios
-      .post("http://localhost:8000/companies/", companyData)
+      .post("https://localhost:8000/", {
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber
+      })
       .then((res) => console.log("Data sent successfully" + res.data))
-      .catch((err) => console.log("Error in submitting is " + err));
+      .catch((err) => console.log(err));
+
   };
 
   return (
     <div className="h-screen flex justify-center items-center w-full">
       <form
+        method="POST"
         onSubmit={handleSubmit}
         className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center items-center"
       >
