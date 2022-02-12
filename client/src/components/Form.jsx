@@ -17,8 +17,6 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(companyData);
-
     const { name, email, phoneNumber } = companyData;
 
     const postURL = "http://localhost:8000/companies";
