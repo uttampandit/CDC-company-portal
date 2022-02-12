@@ -1,41 +1,40 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require("express-async-handler");
 
-const Company = require('../models/companyModel')
+const Company = require("../models/companyModel");
 
 const getCompanies = asyncHandler(async (req, res) => {
-
-    const companies = await Company.find({ name: req.body.name })
-
-    res.status(200).json(companies)   
-})
+  const id = req.params.companyid;
+  const company = await Company.findById(id);
+  res.status(200).send(company);
+});
 
 const setCompanies = asyncHandler(async (req, res) => {
-    
-    if(!req.body.name) {
-        res.status(400).json({ message: 'Please add companies'})
-    }
+  if (!req.body.name) {
+    res.status(400).json({ message: "Please add companies" });
+  }
+  const INFO = {
+    name: req.body.name,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+  };
+  const company = await Company.create({
+    INFO,
+  });
 
-    const company = await Company.create({
-        name: req.body.name,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber
-    })
-
-    res.status(200).json(company)   
-})
+  res.status(200).json(company);
+});
 
 const updateCompanies = asyncHandler(async (req, res) => {
-    
-    res.status(200).json({ message: 'Get goals'})   
-})
+  res.status(200).json({ message: "Get goals" });
+});
 
 const deleteCompanies = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Delete goal ${req.params.id}`})  
-})
+  res.status(200).json({ message: `Delete goal ${req.params.id}` });
+});
 
 module.exports = {
-    getCompanies,
-    setCompanies,
-    updateCompanies,
-    deleteCompanies
-}
+  getCompanies,
+  setCompanies,
+  updateCompanies,
+  deleteCompanies,
+};
