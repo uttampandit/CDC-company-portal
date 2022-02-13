@@ -7,10 +7,7 @@ const Register = () => {
     name: "",
     category: "",
     website: "",
-  });
-
-  const [contactPersonnel, setContactPersonnel] = useState({
-    name: "",
+    pocName: "",
     designation: "",
     registeredEmail: "",
     mobileNumber: "",
@@ -24,6 +21,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(companyData);
+
+    alert("Register userflow is remaining")
+
   };
 
   return (
@@ -46,24 +48,30 @@ const Register = () => {
               Company Name
             </label>
             <input
+              name="name"
               value={companyData.name}
               onChange={handleChange}
+              type="text"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <label className="font-poppins w-full text-gray-700 text-sm font-bold ">
               Website
             </label>
             <input
+              name="website"
               value={companyData.website}
               onChange={handleChange}
+              type="url"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <label className="font-poppins w-full text-gray-700 text-sm font-bold ">
               Category
             </label>
             <input
+              name="category"
               value={companyData.category}
               onChange={handleChange}
+              type="text"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <span className="divide-y-2"></span>
@@ -71,31 +79,39 @@ const Register = () => {
               Name
             </label>
             <input
-              value={contactPersonnel.name}
+              name="pocName"
+              value={companyData.pocName}
               onChange={handleChange}
+              type="text"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <label className="font-poppins w-full text-gray-700 text-sm font-bold">
               Designation
             </label>
             <input
-              value={contactPersonnel.designation}
+              name="designation"
+              value={companyData.designation}
               onChange={handleChange}
+              type="text"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <label className="font-poppins w-full text-gray-700 text-sm font-bold">
               Registered Email
             </label>
             <input
-              value={contactPersonnel.registeredEmail}
+              name="registeredEmail"
+              value={companyData.registeredEmail}
               onChange={handleChange}
+              type="email"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <label className="font-poppins w-full text-gray-700 text-sm font-bold">
               Mobile Number
             </label>
             <input
-              value={contactPersonnel.mobileNumber}
+              name="mobileNumber"
+              value={companyData.mobileNumber}
+              type="tel"
               onChange={handleChange}
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
