@@ -1,9 +1,12 @@
-import Form from './components/Form';
+import Body from "./components/Body";
+import Form from "./components/Form";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="App">
-      <Form />
+    <div className="flex flex-col h-screen">
+    <Header />
+    <Body />
     </div>
   );
 }

@@ -4,7 +4,15 @@ module.exports = {
     "./public/index.html"
   ],
   theme: {
-    extend: {},
+      fontFamily: {
+        'poppins': ['Poppins'],
+      },
+
+    extend: {
+      colors: {
+        'portal-blue': '#302C5C'
+      }
+    },
   },
   plugins: [],
 }
