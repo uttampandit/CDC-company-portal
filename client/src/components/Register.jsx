@@ -61,7 +61,8 @@ const Register = () => {
               name="website"
               value={companyData.website}
               onChange={handleChange}
-              type="url"
+              type="text"
+              pattern="www.*"
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <label className="font-poppins w-full text-gray-700 text-sm font-bold ">
@@ -116,7 +117,7 @@ const Register = () => {
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button
-              type="submit"
+              onClick={handleSubmit}
               className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Register
