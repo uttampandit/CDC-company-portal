@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/ISM Logo.png";
 import AccountIcon from "../assets/Account_Icon";
+import axios from "axios";
 
 const Register = () => {
   const [companyData, setCompanyData] = useState({
@@ -19,13 +20,18 @@ const Register = () => {
     setCompanyData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log(companyData);
-
-    alert("Register userflow is remaining")
-
+    try {
+      const req = await axios.post("http://localhost:8000/companies/", {
+        companyData,
+      });
+      console.log(req);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (
