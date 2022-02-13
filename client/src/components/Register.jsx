@@ -24,8 +24,7 @@ const Register = () => {
 
     console.log(companyData);
 
-    alert("Register userflow is remaining")
-
+    alert("Register userflow is remaining");
   };
 
   return (
