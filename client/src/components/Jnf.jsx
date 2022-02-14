@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -21,6 +22,7 @@ const Jnf = () => {
     const value = e.target.value;
     setJnfData((prevState) => ({ ...prevState, [name]: value }));
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

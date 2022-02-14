@@ -26,6 +26,7 @@ const Inf = () => {
     setInfData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,7 +40,6 @@ const Inf = () => {
       console.log(e.message);
     }
   };
-
   return (
     <div className="flex flex-col w-full">
       <GeneralHeader heading="Internship Notification Form" />
@@ -80,6 +80,7 @@ const Inf = () => {
               batch)
             </option>
             <option>
+
               May-July 2022 Pre-final year students of ALL courses (2023 batch)
             </option>
             <option>
@@ -122,6 +123,7 @@ const Inf = () => {
           <label className="font-poppins w-full text-gray-700 text-sm font-bold mr-2">
             Provision for PPO
           </label>
+
           <input
             name="isPPO"
             type="checkbox"
