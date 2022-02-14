@@ -6,10 +6,15 @@ const {
   updateCompanies,
   deleteCompanies,
 } = require("../controller/portalController");
+const { jnfHandler, newJnf } = require("../controller/jnfController");
+const registerValidate = require("../middleWare/registerValidation");
 
-router.get("/", getCompanies);
-
-router.post("/", setCompanies);
+router.get("/:companyid", getCompanies);
+//jnf handling route
+router.get("/:id/:jnfid", jnfHandler);
+router.post("/:id/jnf", newJnf);
+//
+router.post("/", registerValidate, setCompanies);
 
 router.put("/:id", updateCompanies);
 

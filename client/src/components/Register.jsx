@@ -3,6 +3,9 @@ import Logo from "../assets/ISM Logo.png";
 import AccountIcon from "../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
+
 const Register = () => {
   const [companyData, setCompanyData] = useState({
     name: "",
@@ -22,15 +25,23 @@ const Register = () => {
     setCompanyData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => { 
+
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     console.log(companyData);
 
-    alert("Register userflow is remaining")
 
-
-
+    try {
+      const req = await axios.post("http://localhost:8000/companies/", {
+        companyData,
+      });
+      const id = req.data;
+      navigate(`/dashboard/${id}`);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (

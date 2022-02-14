@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
+import axios from "axios";
 
 const Inf = () => {
   const navigate = useNavigate();
-
+  const { companyid } = useParams();
   const [infData, setInfData] = useState({
     designation: "",
-    typeOfInternship: "",
-    description: "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022) batch",
+    typeOfInternship:
+      "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022 batch)",
+    description:
+      "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022) batch",
     modeOfInternship: "Virtual",
     placeOfPosting: "",
     stipendPerMonth: "",
@@ -18,19 +21,25 @@ const Inf = () => {
 
   const handleChange = (e) => {
     const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setInfData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
 
-      console.log(infData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      navigate("/dashboard");
-  }
-
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/${companyid}/inf`,
+        infData
+      );
+      navigate(`/dashboard/${companyid}`);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
   return (
     <div className="flex flex-col w-full">
       <GeneralHeader heading="Internship Notification Form" />
@@ -71,12 +80,12 @@ const Inf = () => {
               batch)
             </option>
             <option>
-              May-July 2022 Pre-final year students of ALL courses (2023
-              batch)
+
+              May-July 2022 Pre-final year students of ALL courses (2023 batch)
             </option>
             <option>
-              July-Dec 2022 M. Tech/ MBA-Business Analytics courses only
-              (2023 batch)
+              July-Dec 2022 M. Tech/ MBA-Business Analytics courses only (2023
+              batch)
             </option>
           </select>
           <label className="font-poppins w-full text-gray-700 text-sm font-bold">
@@ -114,7 +123,14 @@ const Inf = () => {
           <label className="font-poppins w-full text-gray-700 text-sm font-bold mr-2">
             Provision for PPO
           </label>
-          <input name="isPPO" type="checkbox" checked={infData.isPPO} onChange={handleChange} /> <br />
+
+          <input
+            name="isPPO"
+            type="checkbox"
+            checked={infData.isPPO}
+            onChange={handleChange}
+          />{" "}
+          <br />
           {infData.isPPO && (
             <div className="mt-2 mb-2">
               <label className="font-poppins w-full text-gray-700 text-sm font-bold">

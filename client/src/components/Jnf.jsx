@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
 
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 const Jnf = () => {
   const navigate = useNavigate();
-
+  const { companyid } = useParams();
   const [jnfData, setJnfData] = useState({
     designation: "",
     placeOfPosting: "",
@@ -20,12 +23,19 @@ const Jnf = () => {
     setJnfData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(jnfData);
-
-    navigate("/dashboard");
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/${companyid}/jnf`,
+        jnfData
+      );
+      navigate(`/dashboard/${companyid}`);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (
