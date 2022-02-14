@@ -1,19 +1,6 @@
 const mongoose = require("mongoose");
-const JNF = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  designation: {
-    type: String,
-    required: true,
-  },
-  ctc: {
-    type: Number,
-    required: true,
-  },
-});
-const INF = mongoose.Schema({});
+const JNF = require("./jnfModel");
+const INF = require("./infModel");
 const companySchema = mongoose.Schema(
   {
     INFO: {
@@ -44,7 +31,7 @@ const companySchema = mongoose.Schema(
       },
       mobileNumber: {
         type: String,
-        required: [true, "Please add a password"],
+        required: [true, "Please add a number"],
       },
     },
     JNF: {
@@ -52,7 +39,6 @@ const companySchema = mongoose.Schema(
     },
     INF: {
       type: [INF],
-      default: undefined,
     },
   },
   {

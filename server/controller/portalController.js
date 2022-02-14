@@ -13,11 +13,12 @@ const setCompanies = asyncHandler(async (req, res) => {
   const INFO = {
     ...reqBody,
   };
+  console.log(INFO);
   const company = await Company.create({
     INFO,
   });
-
-  res.status(200).json(company);
+  console.log("this ran");
+  res.status(200).json(company.id);
 });
 
 const updateCompanies = asyncHandler(async (req, res) => {

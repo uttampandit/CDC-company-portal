@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../assets/ISM Logo.png";
 import AccountIcon from "../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [companyData, setCompanyData] = useState({
@@ -22,15 +23,20 @@ const Register = () => {
     setCompanyData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log(companyData);
 
-    alert("Register userflow is remaining")
-
-
-
+    try {
+      const req = await axios.post("http://localhost:8000/companies/", {
+        companyData,
+      });
+      const id = req.data;
+      navigate(`/dashboard/${id}`);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (
@@ -122,7 +128,7 @@ const Register = () => {
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button
-              onClick={() => navigate("/dashboard")}
+              onClick={handleSubmit}
               className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Register

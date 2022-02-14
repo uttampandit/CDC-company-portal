@@ -7,7 +7,8 @@ const registerSchema = Joi.object({
   designation: Joi.string().required(),
   registeredEmail: Joi.string().email({
     minDomainSegments: 2,
-    tlds: { allow: ["ac.in", "net"] },
+    tlds: { allow: ["com", "net"] },
   }),
+  mobileNumber: Joi.number().required().min(10),
 });
 module.exports = registerSchema;

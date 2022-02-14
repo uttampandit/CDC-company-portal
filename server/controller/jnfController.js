@@ -22,8 +22,7 @@ const newJnf = asyncHandler(async (req, res, next) => {
   await company.save();
   res.send(
     JSON.stringify({
-      name: data.name,
-      number: data.number,
+      data,
     })
   );
 });
