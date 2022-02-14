@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-
 const Register = () => {
   const [companyData, setCompanyData] = useState({
     name: "",
@@ -25,13 +24,10 @@ const Register = () => {
     setCompanyData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     console.log(companyData);
-
 
     try {
       const req = await axios.post("http://localhost:8000/companies/", {
@@ -133,7 +129,7 @@ const Register = () => {
               className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button
-              onClick={() => navigate("/dashboard")}
+              onClick={handleSubmit}
               className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Register
