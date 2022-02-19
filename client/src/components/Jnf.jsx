@@ -23,10 +23,10 @@ const Jnf = () => {
     setJnfData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const req = axios.post(
+      const req = await axios.post(
         `http://localhost:8000/company/${companyid}/jnf`,{
         jnfData,}
       );
