@@ -23,7 +23,6 @@ const Jnf = () => {
     setJnfData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,11 +38,15 @@ const Jnf = () => {
   };
 
   return (
-    <div className="flex flex-col w-full">
-      <GeneralHeader heading="Job Notification Form" />
+    <div className="flex flex-col w-full bg-gradient-to-t from-blue-200">
+      <GeneralHeader />
 
-      <div className="w-full flex justify-center items-center">
-        <form className="w-1/2">
+      <div className="flex flex-col justify-center w-1/2 p-5">
+        <h1 className="font-poppins text-gray-700 text-1xl font-bold">
+          Job Notification Form
+        </h1>
+        <p className="divider font-extralight mb-5 mt-2"></p>
+        <form className="w-full">
           <label className="font-poppins w-full text-gray-700 text-sm font-bold">
             Designation
           </label>
@@ -94,7 +97,8 @@ const Jnf = () => {
             onChange={handleChange}
             className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
+          <div className="flex items-center mb-3">
+          <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
             Bond Details
           </label>
           <input
@@ -102,13 +106,15 @@ const Jnf = () => {
             value={jnfData.bondDetails}
             type="text"
             onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="font-poppins w-full mr-10 shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
+          </div>
+          
           <button
             onClick={handleSubmit}
-            className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="mt-4 font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Submit
+            Preview
           </button>
         </form>
       </div>

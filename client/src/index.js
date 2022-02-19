@@ -12,13 +12,11 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={<App />} />
         <Route path="register" element={<Register />} />
         <Route path="dashboard/:companyid" element={<DashBoard />} />
         <Route path="dashboard/:companyid/jnf" element={<Jnf />} />
         <Route path="dashboard/:companyid/inf" element={<Inf />} />
-
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

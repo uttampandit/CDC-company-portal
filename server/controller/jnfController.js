@@ -1,37 +1,42 @@
 const asyncHandler = require("express-async-handler");
-
 const Company = require("../models/companyModel");
 
 const jnfHandler = asyncHandler(async (req, res, next) => {
-  //can be used for front end purporse to display jnf info
-  const id = req.params.id;
-  const jnfid = req.params.jnfid;
-  const company = await Company.findById(id);
-  const jnf = company.JNF.find((indjnf) => jnfid === indjnf.id);
+  const companyId = req.params.companyId;
+  const jnfId = req.params.jnfId;
+
+  const company = await Company.findById(companyId);
+  const jnf = company.JNF.find((idJnf) => jnfId == idJnf.id)
+
   res.send(jnf);
+  console.log(jnf);
+
 });
 
 const newJnf = asyncHandler(async (req, res, next) => {
-  const id = req.params.id;
-  const company = await Company.findById(id);
+  const companyId = req.params.companyId;
+  const company = await Company.findById(companyId);
   // getting data from post request
   const data = req.body;
-
+  console.log(data);
   //simple pushing the jnf
   company.JNF.push(data);
   await company.save();
   res.send(
     JSON.stringify({
-      data,
+      data
     })
   );
 });
 
 const getalljnf = asyncHandler(async (req, res, next) => {
   //care should be taken for allowing only admins to access this
-  const alljnfs = await Company.find({});
 
-  res.send(JSON.stringify(alljnfs));
+  const companyId = req.params.companyId
+  const company = await Company.findById(companyId)
+
+
+  res.send(JSON.stringify(company));
 });
 
 module.exports = { jnfHandler, newJnf, getalljnf };
