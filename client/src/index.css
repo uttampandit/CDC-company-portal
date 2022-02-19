@@ -11,6 +11,45 @@
   animation: anim-small 2s ease forwards;
 }
 
+.blue-glassmorphism {
+  background: rgba(180, 198, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(165, 18, 250, 0.3);
+}
+
+.fadeInDown {
+  animation: fadeInDown 1s ease forwards;
+}
+
+.fadeInUp {
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInDown {
+  0% {
+     opacity: 0;
+     transform: translateY(-20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+} 
+
+@keyframes fadeInUp {
+  0% {
+     opacity: 0;
+     transform: translateY(20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+} 
+
 
 @keyframes anim-large {
   from { width: 0%;}

@@ -32,13 +32,16 @@ const Register = () => {
     console.log(companyData);
 
     try {
-      const req = await axios.post("http://localhost:8000/company", {
+      const req = await axios.post("http://localhost:8000/company/create", {
         companyData,
       });
+      console.log(req);
       const id = req.data;
+      
+      console.log(id);
       navigate(`/dashboard/${id}`);
     } catch (e) {
-      console.log(e.message);
+      console.log(e);
     }
   };
 

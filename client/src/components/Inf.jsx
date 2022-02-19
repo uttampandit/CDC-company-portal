@@ -32,7 +32,7 @@ const Inf = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/${companyid}/inf`,
+        `http://localhost:8000/company/${companyid}/inf`,
         infData
       );
       navigate(`/dashboard/${companyid}`);

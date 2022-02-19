@@ -20,6 +20,7 @@ const setCompanies = asyncHandler(async (req, res) => {
   });
   console.log("Company Object created");
   res.status(200).json(company.id);
+  console.log(company.id);
 });
 
 const updateCompanies = asyncHandler(async (req, res) => {

@@ -28,7 +28,7 @@ const Jnf = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/${companyid}/jnf`,
+        `http://localhost:8000/company/${companyid}/jnf`,
         jnfData
       );
       navigate(`/dashboard/${companyid}`);

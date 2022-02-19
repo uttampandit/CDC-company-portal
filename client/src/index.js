@@ -8,6 +8,7 @@ import DashBoard from "./components/DashBoard";
 import Jnf from "./components/Jnf";
 import Inf from "./components/Inf";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

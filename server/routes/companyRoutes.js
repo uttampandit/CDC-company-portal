@@ -11,7 +11,7 @@ const { infHandler, newinf } = require("../controller/infController");
 const registerValidate = require("../middleWare/registerValidation");
 
 router.get("/:companyId", getCompanies);
-router.post("/company", setCompanies)
+router.post("/create", setCompanies);
 
 // //inf handling route
 router.get("/:companyId/inf/:infId", infHandler);
@@ -20,12 +20,6 @@ router.post("/:companyId/inf", newinf );
 // //jnf handling route
 router.get("/:companyId/jnf/:jnfId", jnfHandler);
 router.post("/:companyId/jnf", newJnf);  
-
-
-
-
-
-router.post("/", registerValidate, setCompanies);
 
 router.put("/:id", updateCompanies);
 
