@@ -82,7 +82,7 @@ export const DataProvider = ({ children }) => {
         handleJnfSubmit,
       }}
     >
-      {children}
+       {children}
     </DataContext.Provider>
   );
 };
