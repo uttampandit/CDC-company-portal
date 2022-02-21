@@ -36,10 +36,10 @@ const Register = () => {
         companyData,
       });
       console.log(req);
-      const id = req.data;
+      const companyId = req.data;
       
-      console.log(id);
-      navigate(`/dashboard/${id}`);
+      console.log("This is registered company Id" + companyId);
+      navigate(`/dashboard/${companyId}`);
     } catch (e) {
       console.log(e);
     }

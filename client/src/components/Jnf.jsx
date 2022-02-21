@@ -1,117 +1,59 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
 
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import GeneralInputField from "./GeneralInputField";
+import { DataContext } from "../context/DataContext";
 
 const Jnf = () => {
   const navigate = useNavigate();
-  const { companyid } = useParams();
-  const [jnfData, setJnfData] = useState({
-    designation: "",
-    placeOfPosting: "",
-    description: "",
-    ctcInLpa: "",
-    ctcBreakup: "",
-    bondDetails: "",
-  });
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setJnfData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await axios.post(
-        `http://localhost:8000/company/${companyid}/jnf`,
-        jnfData
-      );
-      navigate(`/dashboard/${companyid}`);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
+  const { jnfData, handleJnfChange, handleJnfSubmit} = useContext(DataContext);
 
   return (
-    <div className="flex flex-col w-full bg-gradient-to-t from-blue-200">
+    <div className="flex flex-col h-full w-full bg-gradient-to-t from-blue-200">
       <GeneralHeader />
-
-      <div className="flex flex-col justify-center w-1/2 p-5">
+      <div className="flex flex-col grow justify-center w-1/2 p-5">
         <h1 className="font-poppins text-gray-700 text-1xl font-bold">
           Job Notification Form
         </h1>
         <p className="divider font-extralight mb-5 mt-2"></p>
         <form className="w-full">
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Designation
-          </label>
-          <input
+          <GeneralInputField
+            label="Designation"
             name="designation"
             value={jnfData.designation}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleJnfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Place of posting
-          </label>
-          <input
+          <GeneralInputField
+            label="Place of posting"
             name="placeOfPosting"
             value={jnfData.placeOfPosting}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleJnfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Description
-          </label>
-          <input
+          <GeneralInputField
+            label="Description"
             name="description"
+            
             value={jnfData.description}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleJnfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            CTC in LPA
-          </label>
-          <input
-            name="ctcInLpa"
-            value={jnfData.ctcInLpa}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            CTC breakup
-          </label>
-          <input
+          <GeneralInputField label="CTC in LPA" name="ctcInLpa" value={jnfData.ctcInLpa} onChange={handleJnfChange} />
+          <GeneralInputField
+            label="CTC breakup"
             name="ctcBreakup"
             value={jnfData.ctcBreakup}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleJnfChange}
           />
-          <div className="flex items-center mb-3">
-          <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
-            Bond Details
-          </label>
-          <input
+          <GeneralInputField
+            label="Bond Details"
             name="bondDetails"
             value={jnfData.bondDetails}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins w-full mr-10 shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleJnfChange}
           />
-          </div>
-          
+
           <button
-            onClick={handleSubmit}
+            onClick={handleJnfSubmit}
             className="mt-4 font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Preview

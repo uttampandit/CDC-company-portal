@@ -7,18 +7,20 @@ import Register from "./components/Register";
 import DashBoard from "./components/DashBoard";
 import Jnf from "./components/Jnf";
 import Inf from "./components/Inf";
-
+import { DataProvider } from "./context/DataContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="register" element={<Register />} />
-        <Route path="dashboard/:companyid" element={<DashBoard />} />
-        <Route path="dashboard/:companyid/jnf" element={<Jnf />} />
-        <Route path="dashboard/:companyid/inf" element={<Inf />} />
-      </Routes>
+      <DataProvider>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="register" element={<Register />} />
+          <Route path="dashboard/:companyid" element={<DashBoard />} />
+          <Route path="dashboard/:companyid/jnf" element={<Jnf />} />
+          <Route path="dashboard/:companyid/inf" element={<Inf />} />
+        </Routes>
+      </DataProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

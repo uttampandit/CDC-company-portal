@@ -13,7 +13,7 @@ const JNF = mongoose.Schema({
     required: true,
   },
   ctcInLpa: {
-    type: Number,
+    type: String,
     required: true,
   },
   ctcBreakup: {

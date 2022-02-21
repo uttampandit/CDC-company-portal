@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import VisionMission from "./components/VisionMission";
 
 function App() {
-  //To use overflow-hidden parent must be relative.
 
   return (
     <div className="flex flex-col ">
