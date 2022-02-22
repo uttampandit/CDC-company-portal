@@ -35,7 +35,7 @@ export const DropDownMenu = () => {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-portal-blue text-white" : "text-gray-900"
+                      active ? "bg-blue-600/75 text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                     onClick={() => navigate("jnf")}
                   >
@@ -47,7 +47,7 @@ export const DropDownMenu = () => {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-portal-blue text-white" : "text-gray-900"
+                      active ? "bg-blue-600/75 text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                     onClick={() => navigate("inf")}
                   >
