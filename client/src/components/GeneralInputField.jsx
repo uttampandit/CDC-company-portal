@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GeneralInputField = ({name, label, value, onChange}) => {
+const GeneralInputField = ({label, name, value, onChange}) => {
   return (
     <div>
         <div className="flex items-center mb-7">

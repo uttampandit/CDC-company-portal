@@ -1,8 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
 
 const DashBoard = () => {
+
+  const { companyId } = useParams();
+  console.log(companyId);
 
   const navigate = useNavigate();
   return (

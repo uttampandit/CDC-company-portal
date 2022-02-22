@@ -7,20 +7,27 @@ import Register from "./components/Register";
 import DashBoard from "./components/DashBoard";
 import Jnf from "./components/Jnf";
 import Inf from "./components/Inf";
-import { DataProvider } from "./context/DataContext";
+import PreviewInf from "./components/PreviewInf";
+import PreviewJnf from "./components/PreviewJnf";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <DataProvider>
-        <Routes>
+      <Routes>
           <Route path="/" element={<App />} />
           <Route path="register" element={<Register />} />
-          <Route path="dashboard/:companyid" element={<DashBoard />} />
-          <Route path="dashboard/:companyid/jnf" element={<Jnf />} />
-          <Route path="dashboard/:companyid/inf" element={<Inf />} />
-        </Routes>
-      </DataProvider>
+          <Route path="dashboard/:companyId" element={<DashBoard />} />
+          <Route path="dashboard/:companyId/jnf" element={<Jnf />} />
+          <Route path="dashboard/:companyId/inf" element={<Inf />} />
+          <Route
+            path="dashboard/:companyId/preview/inf"
+            element={<PreviewInf />}
+          />
+          <Route
+            path="dashboard/:companyId/preview/jnf"
+            element={<PreviewJnf />}
+          />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

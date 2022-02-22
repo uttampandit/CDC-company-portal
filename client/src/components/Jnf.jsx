@@ -1,14 +1,42 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
-
 import GeneralInputField from "./GeneralInputField";
-import { DataContext } from "../context/DataContext";
+import axios from "axios";
 
 const Jnf = () => {
   const navigate = useNavigate();
 
-  const { jnfData, handleJnfChange, handleJnfSubmit} = useContext(DataContext);
+  const { companyId } = useParams();
+
+  const [jnfData, setJnfData] = useState({
+    designation: "",
+    placeOfPosting: "",
+    description: "",
+    ctcInLpa: "",
+    ctcBreakup: "",
+    bondDetails: "",
+  });
+
+  const handleJnfChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setJnfData((prevState) => ({ ...prevState, [name]: value }));
+  };
+  const handleJnfSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const req = await axios.post(
+        `http://localhost:8000/company/${companyId}/jnf`,
+        jnfData
+      );
+      console.log(req);
+      navigate(`/dashboard/${companyId}`);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   return (
     <div className="flex flex-col h-full w-full bg-gradient-to-t from-blue-200">
@@ -34,11 +62,15 @@ const Jnf = () => {
           <GeneralInputField
             label="Description"
             name="description"
-            
             value={jnfData.description}
             onChange={handleJnfChange}
           />
-          <GeneralInputField label="CTC in LPA" name="ctcInLpa" value={jnfData.ctcInLpa} onChange={handleJnfChange} />
+          <GeneralInputField
+            label="CTC in LPA"
+            name="ctcInLpa"
+            value={jnfData.ctcInLpa}
+            onChange={handleJnfChange}
+          />
           <GeneralInputField
             label="CTC breakup"
             name="ctcBreakup"
@@ -56,7 +88,7 @@ const Jnf = () => {
             onClick={handleJnfSubmit}
             className="mt-4 font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Preview
+            Submit
           </button>
         </form>
       </div>

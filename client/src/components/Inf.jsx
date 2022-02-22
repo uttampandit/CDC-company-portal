@@ -1,13 +1,46 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
 import GeneralInputField from "./GeneralInputField";
-import { DataContext } from "../context/DataContext";
 
 const Inf = () => {
   const navigate = useNavigate();
 
-  const { infData, handleInfChange, handleInfSubmit } = useContext(DataContext);
+  const { companyId } = useParams();
+
+  const [infData, setInfData] = useState({
+    designation: "",
+    typeOfInternship:
+      "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022 batch)",
+    description: "",
+    modeOfInternship: "Virtual",
+    placeOfPosting: "",
+    stipendPerMonth: "",
+    isPPO: false,
+    ctcIfPpo: "",
+  });
+
+  const handleInfChange = (e) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    setInfData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleInfSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const req = await axios.post(
+        `http://localhost:8000/company/${companyId}/inf`,
+        infData
+      );
+      navigate(`/dashboard/${companyId}`);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   return (
     <div className="flex flex-col w-full h-full bg-gradient-to-t from-blue-200">
@@ -107,7 +140,7 @@ const Inf = () => {
             onClick={handleInfSubmit}
             className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Preview
+            Submit
           </button>
         </form>
       </div>

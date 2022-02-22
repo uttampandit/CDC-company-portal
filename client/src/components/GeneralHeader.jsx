@@ -6,7 +6,7 @@ import Logo from "../assets/ISM Logo.png";
 const GeneralHeader = (props) => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col mb-10 justify-center">
+    <div className="flex w-full flex-col mb-10 justify-center">
       <div className="flex  w-full items-center">
         <img
           src={Logo}
