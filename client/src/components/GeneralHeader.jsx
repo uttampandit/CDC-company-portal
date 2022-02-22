@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Account_Icon from "../assets/Account_Icon";
 import Logo from "../assets/ISM Logo.png";
+import AccountDropDownMenu from "./AccountDropDownMenu";
 
 const GeneralHeader = (props) => {
   const navigate = useNavigate();
@@ -16,6 +18,9 @@ const GeneralHeader = (props) => {
         <h1 className="grow text-center md:font-medium   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
           Company Registration Portal
         </h1>
+        <div className="m-5">
+          <AccountDropDownMenu />
+        </div>
       </div>
     </div>
   );

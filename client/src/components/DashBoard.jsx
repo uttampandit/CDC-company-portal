@@ -14,34 +14,45 @@ const DashBoard = () => {
       </div>
 
       <div className="flex">
-        <div className="flex flex-col justify-start pr-4 items-center w-1/4 ">
-          <div className="flex flex-col w-full pt-3">
-            <h1 className="ml-5 font-poppins text-portal-blue font-bold">
-              Menu
-            </h1>
-            <p className="divider font-extralight ml-2 mb-5 w-full"></p>
-          </div>
-          <div className="flex flex-col  bg-white m-5 h-full rounded-lg">
-            <h1 className="font-poppins m-4 font-semibold text-1xl text-portal-blue">
-              Update Job Postings
-            </h1>
-            <h1 className="font-poppins m-4 font-semibold text-1xl text-portal-blue">
-              Update Intern Postings
-            </h1>
-          </div>
-        </div>
+       
 
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-3/4 ml-5">
           <div className="flex items-end">
             <h1 className="grow font-poppins text-portal-blue font-bold">
               Recent postings
             </h1>
-            <div className="flex mr-64  ">
+            <div className="flex mb-1">
               <DropDownMenu />
             </div>
           </div>
-          <p className="divider mr-48 font-extralight mb-5"></p>
-          <div className="flex flex-col justify-center items-center grow w-3/4 bg-white m-5 rounded-lg"></div>
+          <p className="divider font-extralight mb-2"></p>
+          <div className="flex flex-col justify-center items-center grow bg-white m-5 rounded-lg ">
+            <h1 className="p-5">Posting </h1>
+            <h1 className="p-5">Posting </h1>
+            <h1 className="p-5">Posting </h1>
+            <h1 className="p-5">Posting </h1>
+            <h1 className="p-5">Posting </h1>
+            <h1 className="p-5">Posting </h1>
+          </div>
+        </div>
+
+
+        <div className="flex flex-col justify-start p-4 items-start grow">
+        <h1 className="font-poppins text-portal-blue font-bold">
+              Notifications
+            </h1>
+          <p className="divider w-full font-extralight mb-2"></p>
+          <div className="flex flex-col bg-white p-2 mt-5 rounded-lg w-full">
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+            <h1 className="p-3">Notifications</h1>
+          </div>
+
         </div>
       </div>
     </div>

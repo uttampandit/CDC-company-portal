@@ -1,23 +1,15 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { useNavigate } from "react-router-dom";
+import Account_Icon from "../assets/Account_Icon";
 
-export const DropDownMenu = () => {
-
-  const navigate = useNavigate();
-
-
+const AccountDropDownMenu = () => {
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600/75 rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            Create
-            <ChevronDownIcon
-              className="w-5 h-5 ml-2 -mr-1 text-white"
-              aria-hidden="true"
-            />
+          <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white   rounded-md  hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            <Account_Icon />
           </Menu.Button>
         </div>
         <Transition
@@ -37,9 +29,8 @@ export const DropDownMenu = () => {
                     className={`${
                       active ? "bg-portal-blue text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                    onClick={() => navigate("jnf")}
                   >
-                    Job Posting
+                    Company Profile
                   </button>
                 )}
               </Menu.Item>
@@ -49,9 +40,19 @@ export const DropDownMenu = () => {
                     className={`${
                       active ? "bg-portal-blue text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                    onClick={() => navigate("inf")}
                   >
-                    Intern Posting
+                    Export Data
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-portal-blue text-white" : "text-gray-900"
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                  >
+                    Contact Us
                   </button>
                 )}
               </Menu.Item>
@@ -63,4 +64,4 @@ export const DropDownMenu = () => {
   );
 };
 
-export default DropDownMenu;
+export default AccountDropDownMenu;
