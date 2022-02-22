@@ -51,7 +51,7 @@ const Register = () => {
         <GeneralHeader />
         <div className="flex">
           <div className="flex flex-col grow justify-center ml-10">
-            <h1 className="font-poppins text-gray-700 text-1xl font-bold">
+            <h1 className="font-poppins text-portal-blue text-1xl font-bold">
               Register
             </h1>
             <form className="w-full">
