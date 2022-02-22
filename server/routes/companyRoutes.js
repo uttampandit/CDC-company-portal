@@ -5,16 +5,21 @@ const {
   setCompanies,
   updateCompanies,
   deleteCompanies,
-} = require("../controller/portalController");
+} = require("../controller/companyController");
 const { jnfHandler, newJnf } = require("../controller/jnfController");
+const { infHandler, newinf } = require("../controller/infController");
 const registerValidate = require("../middleWare/registerValidation");
 
-router.get("/:companyid", getCompanies);
-//jnf handling route
-router.get("/:id/:jnfid", jnfHandler);
-router.post("/:id/jnf", newJnf);
-//
-router.post("/", registerValidate, setCompanies);
+router.get("/:companyId", getCompanies);
+router.post("/create", setCompanies);
+
+// //inf handling route
+router.get("/:companyId/inf/:infId", infHandler);
+router.post("/:companyId/inf", newinf );  
+
+// //jnf handling route
+router.get("/:companyId/jnf/:jnfId", jnfHandler);
+router.post("/:companyId/jnf", newJnf);  
 
 router.put("/:id", updateCompanies);
 

@@ -27,7 +27,7 @@ const companySchema = mongoose.Schema(
       registeredEmail: {
         type: String,
         required: [true, "Please add an email"],
-        unique: true,
+        unique: false,
       },
       mobileNumber: {
         type: String,

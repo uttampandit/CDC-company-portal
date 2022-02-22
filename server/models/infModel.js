@@ -25,7 +25,7 @@ const INF = mongoose.Schema({
     required: true,
   },
   isPPO: {
-    type: String,
+    type: Boolean,
     required: true,
   },
   ctcIfPpo: {

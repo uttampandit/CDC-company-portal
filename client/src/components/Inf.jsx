@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import GeneralHeader from "./GeneralHeader";
 import axios from "axios";
+import React, { useContext, useState } from "react";
+import { useNavigate, useParams} from "react-router-dom";
+import GeneralHeader from "./GeneralHeader";
+import GeneralInputField from "./GeneralInputField";
 
 const Inf = () => {
   const navigate = useNavigate();
-  const { companyid } = useParams();
+
+  const { companyId } = useParams();
+
   const [infData, setInfData] = useState({
     designation: "",
     typeOfInternship:
       "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022 batch)",
-    description:
-      "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022) batch",
+    description: "",
     modeOfInternship: "Virtual",
     placeOfPosting: "",
     stipendPerMonth: "",
@@ -19,134 +21,123 @@ const Inf = () => {
     ctcIfPpo: "",
   });
 
-  const handleChange = (e) => {
+  const handleInfChange = (e) => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setInfData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-
-  const handleSubmit = async (e) => {
+  const handleInfSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        `http://localhost:8000/${companyid}/inf`,
+      const req = await axios.post(
+        `http://localhost:8000/company/${companyId}/inf`,
         infData
       );
-      navigate(`/dashboard/${companyid}`);
+      navigate(`/dashboard/${companyId}`);
     } catch (e) {
       console.log(e.message);
     }
   };
+
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full h-full bg-gradient-to-t from-blue-200">
       <GeneralHeader heading="Internship Notification Form" />
 
-      <div className="w-full flex justify-center items-center">
-        <form className="w-1/2">
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Designation
-          </label>
-          <input
+      <div className="flex flex-col grow justify-center w-1/2 p-5">
+        <h1 className="font-poppins text-gray-700 text-1xl font-bold">
+          Internship Notification Form
+        </h1>
+        <p className="divider font-extralight mb-5 mt-2"></p>
+        <form className="w-full">
+          <GeneralInputField
+            label="Designation"
             name="designation"
             value={infData.designation}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleInfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Description
-          </label>
-          <input
+          <div className="flex mb-7 items-center">
+            <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
+              Type of internship
+            </label>
+            <select
+              name="typeOfInternship"
+              value={infData.typeOfInternship}
+              onChange={handleInfChange}
+              className="ml-3 mr-10 mb-3 block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            >
+              <option>
+                Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022
+                batch)
+              </option>
+              <option>
+                May-July 2022 Pre-final year students of ALL courses (2023
+                batch)
+              </option>
+              <option>
+                July-Dec 2022 M. Tech/ MBA-Business Analytics courses only (2023
+                batch)
+              </option>
+            </select>
+          </div>
+          <GeneralInputField
+            label="Description"
             name="description"
             value={infData.description}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleInfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Type of internship
-          </label>
-          <select
-            name="typeOfInternship"
-            value={infData.typeOfInternship}
-            onChange={handleChange}
-            className="mb-3 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          >
-            <option>
-              Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022
-              batch)
-            </option>
-            <option>
-
-              May-July 2022 Pre-final year students of ALL courses (2023 batch)
-            </option>
-            <option>
-              July-Dec 2022 M. Tech/ MBA-Business Analytics courses only (2023
-              batch)
-            </option>
-          </select>
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Place of posting
-          </label>
-          <input
+          <div className="flex mb-7 items-center">
+            <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
+              Mode of Internship
+            </label>
+            <select
+              name="modeOfInternship"
+              value={infData.modeOfInternship}
+              onChange={handleInfChange}
+              className="ml-3 mr-10 mb-3 block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            >
+              <option>Virtual</option>
+              <option>In person</option>
+            </select>
+          </div>
+          <GeneralInputField
+            label="Place of posting"
             name="placeOfPosting"
             value={infData.placeOfPosting}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleInfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Mode of Internship
-          </label>
-          <select
-            name="modeOfInternship"
-            value={infData.modeOfInternship}
-            onChange={handleChange}
-            className="mb-3 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          >
-            <option>Virtual</option>
-            <option>In person</option>
-          </select>
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-            Stipend per month
-          </label>
-          <input
+          <GeneralInputField
+            label="Stipend per month"
             name="stipendPerMonth"
             value={infData.stipendPerMonth}
-            type="text"
-            onChange={handleChange}
-            className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={handleInfChange}
           />
-          <label className="font-poppins w-full text-gray-700 text-sm font-bold mr-2">
-            Provision for PPO
-          </label>
+          <div className="mb-7 ">
+            <label className="w-32 font-poppins text-gray-700 text-sm font-bold mr-2">
+              Provision for PPO
+            </label>
 
-          <input
-            name="isPPO"
-            type="checkbox"
-            checked={infData.isPPO}
-            onChange={handleChange}
-          />{" "}
-          <br />
+            <input
+              name="isPPO"
+              type="checkbox"
+              checked={infData.isPPO}
+              onChange={handleInfChange}
+              className="ml-2"
+            />
+          </div>
           {infData.isPPO && (
-            <div className="mt-2 mb-2">
-              <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-                CTC if PPO
-              </label>
-              <input
-                name="ctcIfPpo"
-                checked={infData.ctcIfPpo}
-                type="text"
-                onChange={handleChange}
-                className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+            <GeneralInputField
+              label="CTC if PPO"
+              name="ctcIfPpo"
+              value={infData.ctcIfPpo}
+              onChange={handleInfChange}
+            />
           )}
+
           <button
-            onClick={handleSubmit}
+            onClick={handleInfSubmit}
             className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Submit

@@ -17,10 +17,10 @@ const Header = () => {
 const Nav = () => {
   return (
     <div className="flex grow justify-end items-center p-5">
-        <h1 className="p-5 font-bold font-poppins">Home</h1>
-        <h1 className="p-5 font-bold font-poppins">About us</h1>
-        <h1 className="p-5 font-bold font-poppins">Placement Info</h1>
-        <h1 className="p-5 font-bold font-poppins">Contact us</h1>
+        <h1 className="p-5 text-portal-blue font-bold font-poppins">Home</h1>
+        <h1 className="p-5 text-portal-blue font-bold font-poppins">About us</h1>
+        <h1 className="p-5 text-portal-blue font-bold font-poppins">Placement Info</h1>
+        <h1 className="p-5 text-portal-blue font-bold font-poppins">Contact us</h1>
       </div>
   )
 }

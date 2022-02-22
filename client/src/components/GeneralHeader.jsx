@@ -6,20 +6,17 @@ import Logo from "../assets/ISM Logo.png";
 const GeneralHeader = (props) => {
   const navigate = useNavigate();
   return (
-    <div className="flex w-full items-center">
-      <span onClick={() => navigate("/")}>
+    <div className="flex w-full flex-col mb-10 justify-center">
+      <div className="flex  w-full items-center">
         <img
           src={Logo}
           alt="Logo IIT ISM"
-          alt="ism logo"
           className="h-20 w-20 m-5"
+          onClick={() => navigate("/")}
         />
-      </span>
-      <h1 className="grow text-center p-5 font-bold font-poppins text-5xl text-portal-blue">
-        {props.heading}
-      </h1>
-      <div className="m-5">
-        <AccountIcon />
+        <h1 className="grow text-center md:font-medium   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
+          Company Registration Portal
+        </h1>
       </div>
     </div>
   );

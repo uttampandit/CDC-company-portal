@@ -1,5 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed:wght@300;400;500;700&family=Bellefair&family=Poppins:wght@300;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed:wght@300;400;500;700&family=Bellefair&family=Poppins:wght@300;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.heritage-animation {
+  animation: anim-large 2s ease forwards;
+}
+
+.career-animation {
+  animation: anim-small 2s ease forwards;
+}
+
+.blue-glassmorphism {
+  background: rgba(180, 198, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(165, 18, 250, 0.3);
+}
+
+.fadeInDown {
+  animation: fadeInDown 1s ease forwards;
+}
+
+.fadeInUp {
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInDown {
+  0% {
+     opacity: 0;
+     transform: translateY(-20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+} 
+
+@keyframes fadeInUp {
+  0% {
+     opacity: 0;
+     transform: translateY(20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+} 
+
+
+@keyframes anim-large {
+  from { width: 0%;}
+  to { width: 60%;}
+}
+
+@keyframes anim-small {
+  from { width: 0%;}
+  to { width: 50%;}
+}
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* To show the lines on right 
+  and left sides of the text */
+  .divider::after,
+  .divider::before {
+    content: "";
+    border: 0.5px solid rgb(255, 255, 255);
+    flex: 1;
+  }
+  
+  /* Space on left and right sides of text */
+  .divider:not(:empty)::before {
+    margin-right: 0.5em;
+  }
+  
+  .divider:not(:empty)::after {
+    margin-left: 0.5em;
+  }
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

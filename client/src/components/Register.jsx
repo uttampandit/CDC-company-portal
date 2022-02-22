@@ -4,6 +4,8 @@ import AccountIcon from "../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import GeneralHeader from "./GeneralHeader";
+import UndrawIdeas from "../assets/UndrawIdeas";
 
 const Register = () => {
   const [companyData, setCompanyData] = useState({
@@ -30,111 +32,137 @@ const Register = () => {
     console.log(companyData);
 
     try {
-      const req = await axios.post("http://localhost:8000/companies/", {
+      const req = await axios.post("http://localhost:8000/company/create", {
         companyData,
       });
-      const id = req.data;
-      navigate(`/dashboard/${id}`);
+      console.log(req);
+      const companyId = req.data;
+      
+      console.log("This is registered company Id" + companyId);
+      navigate(`/dashboard/${companyId}`);
     } catch (e) {
-      console.log(e.message);
+      console.log(e);
     }
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-t from-blue-200">
       <div className="flex flex-col">
-        <div className="w-full flex items-center">
-          <img src={Logo} alt="Logo IIT ISM" className="h-20 w-20 m-5" />
-          <div></div>
-          <h1 className="grow text-center p-5 font-bold font-poppins text-5xl text-portal-blue">
-            Register
-          </h1>
-          <div className="m-5">
-            <AccountIcon />
-          </div>
-        </div>
-
-        <div className="w-full flex justify-center">
-          <form className="w-1/2">
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-              Company Name
-            </label>
-            <input
-              name="name"
-              value={companyData.name}
-              onChange={handleChange}
-              type="text"
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold ">
-              Website
-            </label>
-            <input
-              name="website"
-              value={companyData.website}
-              onChange={handleChange}
-              type="text"
-              pattern="www.*"
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold ">
-              Category
-            </label>
-            <input
-              name="category"
-              value={companyData.category}
-              onChange={handleChange}
-              type="text"
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <span className="divide-y-2"></span>
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-              Name
-            </label>
-            <input
-              name="pocName"
-              value={companyData.pocName}
-              onChange={handleChange}
-              type="text"
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-              Designation
-            </label>
-            <input
-              name="designation"
-              value={companyData.designation}
-              onChange={handleChange}
-              type="text"
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-              Registered Email
-            </label>
-            <input
-              name="registeredEmail"
-              value={companyData.registeredEmail}
-              onChange={handleChange}
-              type="email"
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <label className="font-poppins w-full text-gray-700 text-sm font-bold">
-              Mobile Number
-            </label>
-            <input
-              name="mobileNumber"
-              value={companyData.mobileNumber}
-              type="tel"
-              onChange={handleChange}
-              className="font-poppins mb-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-            <button
-              onClick={handleSubmit}
-              className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
+        <GeneralHeader />
+        <div className="flex">
+          <div className="flex flex-col grow justify-center ml-10">
+            <h1 className="font-poppins text-gray-700 text-1xl font-bold">
               Register
-            </button>
-          </form>
+            </h1>
+            <form className="w-full">
+              <p className="divider font-extralight mb-5">Company Details</p>
+              <div className="flex item-center pr-4">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-medium">
+                  Company Name
+                </label>
+                <input
+                  name="name"
+                  value={companyData.name}
+                  onChange={handleChange}
+                  type="text"
+                  className="w-full text-sm font-poppins shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+
+              <br />
+              <div className="flex items-center pr-4 ">
+                <label className="flex font-poppins w-32 text-gray-700 text-sm font-medium">
+                  Website
+                </label>
+
+                <input
+                  name="website"
+                  value={companyData.website}
+                  onChange={handleChange}
+                  type="text"
+                  pattern="www.*"
+                  className="w-full text-sm font-poppins shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+
+              <br />
+              <div className="flex items-center pr-4">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-medium ">
+                  Category
+                </label>
+                <input
+                  name="category"
+                  value={companyData.category}
+                  onChange={handleChange}
+                  type="text"
+                  className="font-poppins text-sm w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <br />
+              <p className="divider font-extralight mb-2 mt-2">
+                Personnel Details
+              </p>
+              <div className="flex items-center pr-4">
+                <label className="flex font-poppins w-32 text-gray-700 text-sm font-medium ">
+                  Name
+                </label>
+                <input
+                  name="pocName"
+                  value={companyData.pocName}
+                  onChange={handleChange}
+                  type="text"
+                  className="mt-2 mb-5 text-sm font-poppins w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="flex items-center pr-4 mb-5">
+                <label className="flex font-poppins w-32 text-gray-700 text-sm font-medium">
+                  Designation
+                </label>
+                <input
+                  name="designation"
+                  value={companyData.designation}
+                  onChange={handleChange}
+                  type="text"
+                  className="font-poppins text-sm shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="flex items-center pr-4 mb-5">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-medium">
+                  Registered Email
+                </label>
+                <input
+                  name="registeredEmail"
+                  value={companyData.registeredEmail}
+                  onChange={handleChange}
+                  type="email"
+                  className="font-poppins text-sm w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="flex items-center pr-4 mb-3">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-medium">
+                  Mobile Number
+                </label>
+                <input
+                  name="mobileNumber"
+                  value={companyData.mobileNumber}
+                  type="tel"
+                  onChange={handleChange}
+                  className="font-poppins text-sm shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="flex w-full justify-center">
+                <button
+                  onClick={handleSubmit}
+                  className="font-poppins mt-5 mb-5 w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="flex grow items-center justify-center">
+            <UndrawIdeas />
+          </div>
         </div>
       </div>
     </div>
