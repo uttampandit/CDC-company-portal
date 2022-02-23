@@ -19,15 +19,19 @@ const newinf = asyncHandler(async (req, res, next) => {
   // getting data from post request
   const data = req.body;
   console.log(data);
+  console.log(company);
   //simple pushing the inf
   company.INF.push(data);
-  const result = await company.save();
-  console.log(result);
-  res.send(
-    JSON.stringify({
-      data,
-    })
-  );
+  try {
+    const result = await company.save();
+    res.send(
+      JSON.stringify({
+        data,
+      })
+    );
+  } catch (e) {
+    console.log(e.message);
+  }
 });
 
 const getallinf = asyncHandler(async (req, res, next) => {

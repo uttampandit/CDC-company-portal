@@ -19,7 +19,7 @@ const InfForm = (props) => {
   };
 
   const handleInfSubmit = async (e) => {
-    handleinfdata(e, infData);
+    await handleinfdata(e, infData);
   };
 
   return (
