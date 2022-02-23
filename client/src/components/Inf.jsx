@@ -9,6 +9,7 @@ import InfForm from "./ResusableComponents/InfForm";
 const Inf = () => {
   const navigate = useNavigate();
   const { companyId } = useParams();
+  console.log(companyId);
   const infData = {
     designation: "",
     typeOfInternship:
@@ -28,6 +29,7 @@ const Inf = () => {
         `http://localhost:8000/company/${companyId}/inf`,
         infData
       );
+
       navigate(`/dashboard/${companyId}`);
     } catch (e) {
       console.log(e.message);
