@@ -4,7 +4,6 @@ const {
   getCompanies,
   setCompanies,
   updateCompanies,
-  deleteCompanies,
 } = require("../controller/companyController");
 const { jnfHandler, newJnf } = require("../controller/jnfController");
 const { infHandler, newinf } = require("../controller/infController");
@@ -15,14 +14,12 @@ router.post("/create", setCompanies);
 
 // //inf handling route
 router.get("/:companyId/inf/:infId", infHandler);
-router.post("/:companyId/inf", newinf );  
+router.post("/:companyId/inf", newinf);
 
 // //jnf handling route
 router.get("/:companyId/jnf/:jnfId", jnfHandler);
-router.post("/:companyId/jnf", newJnf);  
+router.post("/:companyId/jnf", newJnf);
 
-router.put("/:id", updateCompanies);
-
-router.delete("/:id", deleteCompanies);
+router.put("/:companyId", updateCompanies);
 
 module.exports = router;

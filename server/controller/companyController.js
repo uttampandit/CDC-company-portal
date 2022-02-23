@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Company = require("../models/companyModel");
 
 const getCompanies = asyncHandler(async (req, res) => {
-  const id = req.params.companyId
+  const id = req.params.companyId;
   const company = await Company.findById(id);
   res.status(200).send(company);
   console.log(company);
@@ -24,16 +24,18 @@ const setCompanies = asyncHandler(async (req, res) => {
 });
 
 const updateCompanies = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Get Companies" });
-});
+  const updatedInfo = req.body.companyData;
+  const companyId = req.params.companyId;
+  const company = await Company.findById(companyId);
 
-const deleteCompanies = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Delete company ${req.params.id}` });
+  company.INFO = updatedInfo;
+
+  const result = await company.save();
+  res.send(JSON.stringify(result));
 });
 
 module.exports = {
   getCompanies,
   setCompanies,
   updateCompanies,
-  deleteCompanies,
 };
