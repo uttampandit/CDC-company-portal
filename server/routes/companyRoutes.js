@@ -6,7 +6,11 @@ const {
   updateCompanies,
 } = require("../controller/companyController");
 const { jnfHandler, newJnf } = require("../controller/jnfController");
-const { infHandler, newinf } = require("../controller/infController");
+const {
+  infHandler,
+  newinf,
+  updateinf,
+} = require("../controller/infController");
 const registerValidate = require("../middleWare/registerValidation");
 
 router.get("/:companyId", getCompanies);
@@ -15,6 +19,7 @@ router.post("/create", setCompanies);
 // //inf handling route
 router.get("/:companyId/inf/:infId", infHandler);
 router.post("/:companyId/inf", newinf);
+router.post("/:companyId/:infId/update", updateinf);
 
 // //jnf handling route
 router.get("/:companyId/jnf/:jnfId", jnfHandler);

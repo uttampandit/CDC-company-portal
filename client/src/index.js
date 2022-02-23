@@ -9,7 +9,7 @@ import Jnf from "./components/Jnf";
 import Inf from "./components/Inf";
 import PreviewInf from "./components/PreviewInf";
 import PreviewJnf from "./components/PreviewJnf";
-
+import InfUpdate from "./components/InfUpdate";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -31,8 +31,8 @@ ReactDOM.render(
           element={<PreviewJnf />}
         />
         <Route
-          path="dashboard/:companyId/updateInf"
-          element={<Inf actionLabel={`Update`} />}
+          path="dashboard/:companyId/:infId/update"
+          element={<InfUpdate />}
         />
         <Route
           path="dashboard/:companyId/updateCompany"

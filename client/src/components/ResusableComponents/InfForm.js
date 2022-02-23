@@ -1,23 +1,25 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
 import GeneralInputField from "./GeneralInputField";
 
 const InfForm = (props) => {
   const { infdata, handleinfdata, actionLabel } = props;
-
+  //   console.log(infdata);
   const [infData, setInfData] = useState({
-    infdata,
+    ...infdata,
   });
-
+  useEffect(() => {
+    setInfData(infdata);
+  }, [infdata]);
   const handleInfChange = (e) => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setInfData((prevState) => ({ ...prevState, [name]: value }));
   };
-
+  console.log(infData);
   const handleInfSubmit = async (e) => {
     await handleinfdata(e, infData);
   };
