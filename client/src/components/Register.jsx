@@ -4,7 +4,7 @@ import AccountIcon from "../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import GeneralHeader from "./GeneralComponents/GeneralHeader";
+import GeneralHeader from "./ResusableComponents/GeneralHeader";
 import UndrawIdeas from "../assets/UndrawIdeas";
 
 const Register = ({ actionLabel }) => {

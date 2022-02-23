@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import GeneralHeader from "./GeneralComponents/GeneralHeader";
-import GeneralInputField from "./GeneralComponents/GeneralInputField";
+import GeneralHeader from "./ResusableComponents/GeneralHeader";
+import GeneralInputField from "./ResusableComponents/GeneralInputField";
 
 const Inf = ({ actionLabel }) => {
   const navigate = useNavigate();
