@@ -21,10 +21,11 @@ const newinf = asyncHandler(async (req, res, next) => {
   console.log(data);
   //simple pushing the inf
   company.INF.push(data);
-  await company.save();
+  const result = await company.save();
+  console.log(result);
   res.send(
     JSON.stringify({
-      data
+      data,
     })
   );
 });
@@ -36,8 +37,7 @@ const getallinf = asyncHandler(async (req, res, next) => {
 
   console.log(companyId ? companyId : "Nothing");
 
-  const allinfs = await Company.findById(companyId)
-
+  const allinfs = await Company.findById(companyId);
 
   res.send(JSON.stringify(allinfs));
 });

@@ -37,7 +37,7 @@ const Register = ({ actionLabel }) => {
       });
       console.log(req);
       const companyId = req.data;
-      
+
       console.log("This is registered company Id" + companyId);
       navigate(`/dashboard/${companyId}`);
     } catch (e) {
