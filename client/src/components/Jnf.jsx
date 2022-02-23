@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import GeneralHeader from "./GeneralHeader";
-import GeneralInputField from "./GeneralInputField";
+import GeneralHeader from "./GeneralComponents/GeneralHeader";
+import GeneralInputField from "./GeneralComponents/GeneralInputField";
 import axios from "axios";
 
 const Jnf = () => {

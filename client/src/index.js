@@ -15,10 +15,10 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<App />} />
-          <Route path="register" element={<Register />} />
+          <Route path="register" element={<Register actionLabel={`Register`}/>} />
           <Route path="dashboard/:companyId" element={<DashBoard />} />
           <Route path="dashboard/:companyId/jnf" element={<Jnf />} />
-          <Route path="dashboard/:companyId/inf" element={<Inf />} />
+          <Route path="dashboard/:companyId/inf" element={<Inf actionLabel={`Submit`}/>} />
           <Route
             path="dashboard/:companyId/preview/inf"
             element={<PreviewInf />}
@@ -26,6 +26,14 @@ ReactDOM.render(
           <Route
             path="dashboard/:companyId/preview/jnf"
             element={<PreviewJnf />}
+          />
+          <Route
+            path="dashboard/:companyId/updateInf"
+            element={<Inf actionLabel={`Update`} />}
+          />
+          <Route
+            path="dashboard/:companyId/updateCompany"
+            element={<Register actionLabel={`Update`} />}
           />
       </Routes>
     </BrowserRouter>

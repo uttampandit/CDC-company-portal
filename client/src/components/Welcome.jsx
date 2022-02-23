@@ -5,8 +5,8 @@ const Body = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col grow">
-      <div className="flex md:flex-row sm:flex-col justify-center">
-        <div className="flex p-12 w-1/3 flex-col justify-center items-center">
+      <div className="flex md:flex-row sm:flex-col justify-center m-10">
+        <div className="flex p-12 w-2/3 flex-col justify-center items-center bg-white/60 rounded-xl">
           <div className="flex justify-center items-center mb-10">
               <p className="fadeInDown flex font-semibold font-poppins text-center leading-snug text-6xl text-portal-blue tracking-wide">
                 Company Registration Portal

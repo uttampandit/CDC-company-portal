@@ -4,10 +4,10 @@ import AccountIcon from "../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import GeneralHeader from "./GeneralHeader";
+import GeneralHeader from "./GeneralComponents/GeneralHeader";
 import UndrawIdeas from "../assets/UndrawIdeas";
 
-const Register = () => {
+const Register = ({ actionLabel }) => {
   const [companyData, setCompanyData] = useState({
     name: "",
     category: "",
@@ -155,7 +155,7 @@ const Register = () => {
                   onClick={handleSubmit}
                   className="font-poppins mt-5 mb-5 w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                  Register
+                  {actionLabel}
                 </button>
               </div>
             </form>
