@@ -31,7 +31,7 @@ ReactDOM.render(
           element={<PreviewJnf />}
         />
         <Route
-          path="dashboard/:companyId/:infId/update"
+          path="dashboard/:companyId/updateinf/:infId"
           element={<InfUpdate />}
         />
         <Route
