@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Register from "./Register";
-import GeneralHeader from "./ResusableComponents/GeneralHeader";
-import GeneralInputField from "./ResusableComponents/GeneralInputField";
 import InfForm from "./ResusableComponents/InfForm";
 
 const Inf = () => {

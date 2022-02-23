@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const { any } = require("joi");
 
 const Company = require("../models/companyModel");
 
@@ -46,4 +47,16 @@ const getallinf = asyncHandler(async (req, res, next) => {
   res.send(JSON.stringify(allinfs));
 });
 
-module.exports = { infHandler, newinf, getallinf };
+const updateinf = asyncHandler(async (req, res, next) => {
+  const updatedInf = req.body;
+  const companyId = req.params.companyId;
+  const infId = req.params.infId;
+  const company = await Company.findById(companyId);
+
+  // console.log(company);
+  company.INF.pull({ _id: infId });
+  company.INF.push(updatedInf);
+  const result = await company.save();
+  res.send(JSON.stringify(result));
+});
+module.exports = { infHandler, newinf, getallinf, updateinf };
