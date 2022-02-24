@@ -14,11 +14,11 @@ const DashBoard = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(async () => {
-  //   const res = await axios.get(`http://localhost:8000/company/${companyId}`);
-  //   setCompanyData({ ...res.data });
-  //   setIsLoading(false);
-  // }, []);
+  useEffect(async () => {
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`);
+    setCompanyData({ ...res.data });
+    setIsLoading(false);
+  }, []);
 
   console.log(companyData.JNF);
 
@@ -88,15 +88,15 @@ const DashBoard = () => {
                     <div className="flex justify-center w-full">
                       <Tab as={Fragment}>
                         {({ selected }) => (
-                          <div className={`${
-                                selected
-                                  ? "bg-blue-500 text-white rounded-md"
-                                  : "bg-transparent text-portal-blue"}
-                                  p-2 mr-10`
-                              }>
-                            <button
-                              className= "font-poppins font-bold"
-                            >
+                          <div
+                            className={`${
+                              selected
+                                ? "bg-blue-500 text-white rounded-md"
+                                : "bg-transparent text-portal-blue"
+                            }
+                                  p-2 mr-10`}
+                          >
+                            <button className="font-poppins font-bold">
                               Job postings
                             </button>
                           </div>
@@ -104,15 +104,15 @@ const DashBoard = () => {
                       </Tab>
                       <Tab as={Fragment}>
                         {({ selected }) => (
-                          <div className={`${
-                                selected
-                                  ? "bg-blue-500 text-white rounded-md"
-                                  : "bg-transparent text-portal-blue"}
-                                  p-2 ml-10`
-                              }>
-                            <button
-                              className= "font-poppins font-bold"
-                            >
+                          <div
+                            className={`${
+                              selected
+                                ? "bg-blue-500 text-white rounded-md"
+                                : "bg-transparent text-portal-blue"
+                            }
+                                  p-2 ml-10`}
+                          >
+                            <button className="font-poppins font-bold">
                               Internship postings
                             </button>
                           </div>
@@ -127,34 +127,36 @@ const DashBoard = () => {
 
                 <p className="divider font-extralight mb-2 w-full "></p>
 
-                <Tab.Panels>
-                  <Tab.Panel>
-                    <div className="flex flex-col grow pr-5 pt-5 pb-5 rounded-lg ">
-                      <div className="overflow-y-auto flex flex-col w-full h-96">
-                        {isLoading ? (
-                          <h1>Loading</h1>
-                        ) : (
-                          companyData.JNF.map((posting) => (
-                            <Posting posting={posting} />
-                          ))
-                        )}
+                <div className="w-full">
+                  <Tab.Panels>
+                    <Tab.Panel>
+                      <div className="flex flex-col grow pr-5 pt-5 pb-5 rounded-lg ">
+                        <div className="overflow-y-auto flex flex-col w-full h-96">
+                          {isLoading ? (
+                            <h1>Loading</h1>
+                          ) : (
+                            companyData.JNF.map((posting) => (
+                              <Posting posting={posting} />
+                            ))
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </Tab.Panel>
-                  <Tab.Panel>
-                    <div className="flex flex-col grow pr-5 pt-5 pb-5 rounded-lg ">
-                      <div className="overflow-y-auto flex flex-col w-full h-96">
-                        {isLoading ? (
-                          <h1>Loading</h1>
-                        ) : (
-                          companyData.INF.map((posting) => (
-                            <Posting posting={posting} />
-                          ))
-                        )}
+                    </Tab.Panel>
+                    <Tab.Panel>
+                      <div className="flex flex-col grow pr-5 pt-5 pb-5 rounded-lg ">
+                        <div className="overflow-y-auto flex flex-col w-full h-96">
+                          {isLoading ? (
+                            <h1>Loading</h1>
+                          ) : (
+                            companyData.INF.map((posting) => (
+                              <Posting posting={posting} />
+                            ))
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </Tab.Panel>
-                </Tab.Panels>
+                    </Tab.Panel>
+                  </Tab.Panels>
+                </div>
               </Tab.Group>
             </div>
           </div>
