@@ -6,11 +6,10 @@ const jnfHandler = asyncHandler(async (req, res, next) => {
   const jnfId = req.params.jnfId;
 
   const company = await Company.findById(companyId);
-  const jnf = company.JNF.find((idJnf) => jnfId == idJnf.id)
+  const jnf = company.JNF.find((idJnf) => jnfId == idJnf.id);
 
   res.send(jnf);
   console.log(jnf);
-
 });
 
 const newJnf = asyncHandler(async (req, res, next) => {
@@ -24,7 +23,7 @@ const newJnf = asyncHandler(async (req, res, next) => {
   await company.save();
   res.send(
     JSON.stringify({
-      data
+      data,
     })
   );
 });
@@ -32,11 +31,24 @@ const newJnf = asyncHandler(async (req, res, next) => {
 const getalljnf = asyncHandler(async (req, res, next) => {
   //care should be taken for allowing only admins to access this
 
-  const companyId = req.params.companyId
-  const company = await Company.findById(companyId)
-
+  const companyId = req.params.companyId;
+  const company = await Company.findById(companyId);
 
   res.send(JSON.stringify(company));
 });
 
-module.exports = { jnfHandler, newJnf, getalljnf };
+const updatejnf = asyncHandler(async (req, res, next) => {
+  const updatedJnf = req.body;
+  const companyId = req.params.companyId;
+  const jnfId = req.params.jnfId;
+  console.log(jnfId, companyId);
+  const company = await Company.findById(companyId);
+
+  // console.log(company);
+  company.JNF.pull({ _id: jnfId });
+  company.JNF.push(updatedJnf);
+  const result = await company.save();
+  res.send(JSON.stringify(result));
+});
+
+module.exports = { jnfHandler, newJnf, getalljnf, updatejnf };

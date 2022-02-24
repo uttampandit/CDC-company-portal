@@ -5,7 +5,11 @@ const {
   setCompanies,
   updateCompanies,
 } = require("../controller/companyController");
-const { jnfHandler, newJnf } = require("../controller/jnfController");
+const {
+  jnfHandler,
+  newJnf,
+  updatejnf,
+} = require("../controller/jnfController");
 const {
   infHandler,
   newinf,
@@ -19,11 +23,12 @@ router.post("/create", setCompanies);
 // //inf handling route
 router.get("/:companyId/inf/:infId", infHandler);
 router.post("/:companyId/inf", newinf);
-router.post("/:companyId/:infId/update", updateinf);
+router.post("/:companyId/:infId/updateinf", updateinf);
 
 // //jnf handling route
 router.get("/:companyId/jnf/:jnfId", jnfHandler);
 router.post("/:companyId/jnf", newJnf);
+router.post("/:companyId/:jnfId/updatejnf", updatejnf);
 
 router.put("/:companyId", updateCompanies);
 

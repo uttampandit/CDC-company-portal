@@ -10,7 +10,7 @@ const JnfUpdate = () => {
   useEffect(async () => {
     try {
       const req = await axios.get(
-        `http://localhost:8000/company/${companyId}/inf/${infId}`
+        `http://localhost:8000/company/${companyId}/jnf/${jnfId}`
       );
       console.log(req.data);
       setjnfData({ ...req.data });
@@ -25,10 +25,10 @@ const JnfUpdate = () => {
     e.preventDefault();
     console.log(jnfData);
     try {
-      const res = axios.post(
-        `http://localhost:8000/company/${companyId}/${infId}/update`,
+      const res = await axios.post(
+        `http://localhost:8000/company/${companyId}/${jnfId}/updatejnf`,
         {
-          ...infData,
+          ...jnfData,
         }
       );
       navigate(`/dashboard/${companyId}`);

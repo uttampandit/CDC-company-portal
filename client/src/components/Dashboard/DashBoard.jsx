@@ -140,7 +140,7 @@ const DashBoard = () => {
                             <h1>Loading</h1>
                           ) : (
                             companyData.JNF.map((posting) => (
-                              <Posting posting={posting} />
+                              <Posting posting={posting} route={"updatejnf"} />
                             ))
                           )}
                         </div>
@@ -153,7 +153,7 @@ const DashBoard = () => {
                             <h1>Loading</h1>
                           ) : (
                             companyData.INF.map((posting) => (
-                              <Posting posting={posting} />
+                              <Posting posting={posting} route={"updateinf"} />
                             ))
                           )}
                         </div>

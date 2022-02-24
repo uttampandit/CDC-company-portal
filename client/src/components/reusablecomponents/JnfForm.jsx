@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import GeneralHeader from "./GeneralHeader";
 import GeneralInputField from "./GeneralInputField";
 
-const Jnf = (props) => {
+const JnfForm = (props) => {
   const { jnfdata, handlejnfdata, actionLabel } = props;
 
   const [jnfData, setJnfData] = useState({
-    jnfdata,
+    ...jnfdata,
   });
-
+  useEffect(() => {
+    setJnfData(jnfdata);
+  }, [jnfdata]);
   const handleJnfChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setJnfData((prevState) => ({ ...prevState, [name]: value }));
   };
+  console.log(jnfData);
   const handleJnfSubmit = async (e) => {
     await handlejnfdata(e, jnfData);
   };
@@ -79,4 +82,4 @@ const Jnf = (props) => {
   );
 };
 
-export default Jnf;
+export default JnfForm;
