@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import InfForm from "../ResusableComponents/InfForm";
+import InfForm from "../resusablecomponents/InfForm";
 
 const Inf = () => {
   const navigate = useNavigate();

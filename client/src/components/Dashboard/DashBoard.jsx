@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DropDownMenu from "../ResusableComponents/DropDownMenu";
-import GeneralHeader from "../ResusableComponents/GeneralHeader";
+import DropDownMenu from "../resusablecomponents/DropDownMenu";
+import GeneralHeader from "../resusablecomponents/GeneralHeader";
 import axios from "axios";
-import Posting from "../ResusableComponents/Posting";
-import Card from "../ResusableComponents/Card";
+import Posting from "../resusablecomponents/Posting";
+import Card from "../resusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
 
