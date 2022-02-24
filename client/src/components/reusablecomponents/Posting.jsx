@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import More_Icon from "../../assets/More_Icon";
 import { Dialog, Transition } from "@headlessui/react";
+import axios from "axios";
 
 const Posting = ({ posting, route }) => {
   const [open, setopen] = useState(false);
@@ -21,25 +22,6 @@ const Posting = ({ posting, route }) => {
       </div>
       {open && (
         <div className="flex pr-5 pl-5 justify-start items-start">
-<<<<<<< HEAD
-          <div className="flex justify-between">
-            <p className="grow font-poppins text-sm font-light">
-              {posting.description}
-            </p>
-            <p className="grow font-poppins text-sm font-light">
-              {posting.ctcInLpa}
-            </p>
-          </div>
-          <div className="flex">
-            <button
-              onClick={() => navigate(`updateinf/${posting._id}`)}
-              className="font-poppins rounded mt-5 mb-5 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 focus:outline-none focus:shadow-outline"
-            >
-              <PencilIcon className="w-4 h-4 text-white" aria-hidden="true" />
-            </button>
-            <DeleteButton />
-          </div>
-=======
           <p className="grow font-poppins text-sm font-light">
             {posting.description}
           </p>
@@ -50,10 +32,7 @@ const Posting = ({ posting, route }) => {
               onClick={() => navigate(`${route}/${posting._id}`)}
             />
           </button>
-          <button className="font-poppins mt-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            <TrashIcon className="w-4 h-4 text-white" aria-hidden="true" />
-          </button>
->>>>>>> 366795c3493e904ea3b5874510bb2f17e9df60ee
+          <DeleteButton />
         </div>
       )}
     </div>
@@ -69,6 +48,10 @@ const DeleteButton = () => {
   const openDialogState = () => {
     setIsOpen(true);
   };
+
+  const deletePosting = async () => {
+    await axios.delete("")
+  }
 
   return (
     <>
@@ -118,12 +101,12 @@ const DeleteButton = () => {
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg text-center font-medium leading-6 font-poppins text-gray-900"
                 >
                   Delete Posting
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-center text-gray-500 font-poppins">
                     Are you sure you want to delete this posting ?
                   </p>
                 </div>
@@ -131,9 +114,10 @@ const DeleteButton = () => {
                 <div className="mt-4">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    className="flex w-full font-poppins justify-center items-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-red-500 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={() => {
                       closeDialogState();
+
                     }}
                   >
                     Yes delete this posting.
