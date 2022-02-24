@@ -5,9 +5,9 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./components/screens/register/Register";
 import DashBoard from "./components/dashboard/DashBoard";
-import Jnf from "./components/forms/Jnf";
-import Inf from "./components/forms/Inf";
-import InfUpdate from "./components/forms/InfUpdate";
+import Jnf from "./components/forms/jnf/Jnf";
+import Inf from "./components/forms/inf/Inf";
+import InfUpdate from "./components/forms/inf/InfUpdate";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
