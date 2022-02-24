@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import Account_Icon from "../assets/Account_Icon";
+import Account_Icon from "../../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
 const AccountDropDownMenu = () => {

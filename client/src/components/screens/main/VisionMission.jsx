@@ -1,5 +1,5 @@
 import React from "react";
-import BorderDesign from "../assets/BorderDesign";
+import BorderDesign from "../../assets/BorderDesign";
 
 const VisionMission = () => {
   return (

@@ -1,6 +1,6 @@
-import Welcome from "./components/Welcome";
-import Header from "./components/Header";
-import VisionMission from "./components/VisionMission";
+import Welcome from "./components/screens/main/Welcome";
+import Header from "./components/screens/main/Header";
+import VisionMission from "./components/screens/main/VisionMission";
 
 function App() {
   return (

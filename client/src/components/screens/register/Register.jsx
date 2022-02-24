@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Logo from "../assets/ISM Logo.png";
-import AccountIcon from "../assets/Account_Icon";
+import AccountIcon from "../../../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import GeneralHeader from "./ResusableComponents/GeneralHeader";
-import UndrawIdeas from "../assets/UndrawIdeas";
+import GeneralHeader from "../../ResusableComponents/GeneralHeader";
+import UndrawIdeas from "../../../assets/UndrawIdeas";
 
 const Register = ({ actionLabel }) => {
   const [companyData, setCompanyData] = useState({

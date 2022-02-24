@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DropDownMenu from "./DropDownMenu";
-import GeneralHeader from "./ResusableComponents/GeneralHeader";
+import DropDownMenu from "../ResusableComponents/DropDownMenu";
+import GeneralHeader from "../ResusableComponents/GeneralHeader";
 import axios from "axios";
-import Posting from "./ResusableComponents/Posting";
-import Card from "./ResusableComponents/Card";
-import { UploadIcon } from "@heroicons/react/solid";
+import Posting from "../ResusableComponents/Posting";
+import Card from "../ResusableComponents/Card";
+import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
 
 const DashBoard = () => {
@@ -14,13 +14,15 @@ const DashBoard = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+
   useEffect(async () => {
     const res = await axios.get(`http://localhost:8000/company/${companyId}`);
     setCompanyData({ ...res.data });
     setIsLoading(false);
   }, []);
 
-  console.log(companyData.JNF);
+  const numberOfInfPostings = (isLoading ? " " : companyData.INF.length)
+  const numberOfJnfPostings = (isLoading ? " " : companyData.JNF.length)
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-200">
@@ -40,7 +42,7 @@ const DashBoard = () => {
                 <UploadIcon className="w-5 h-5 " aria-hidden="true" />
               </div>
               <div className="bg-blue-600/75 rounded-full m-2 hover:bg-blue-600 text-white inline-flex justify-center px-[4px] py-[4px] text-sm">
-                <UploadIcon className="w-5 h-5 " aria-hidden="true" />
+                <ShareIcon className="w-5 h-5 " aria-hidden="true" />
               </div>
               <div className="bg-blue-600/75 rounded-full m-2 hover:bg-blue-600 text-white inline-flex justify-center px-[4px] py-[4px] text-sm">
                 <UploadIcon className="w-5 h-5 " aria-hidden="true" />
@@ -48,8 +50,8 @@ const DashBoard = () => {
             </div>
           </div>
           <div className="w-2/3 flex">
-            <Card value="23" label="Job Postings" />
-            <Card value="23" label="Internship Postings" />
+            <Card value={`${numberOfJnfPostings}`} label="Job Postings" />
+            <Card value={`${numberOfInfPostings}`} label="Internship Postings" />
           </div>
         </div>
 
@@ -63,7 +65,7 @@ const DashBoard = () => {
               behaiviour="sliding"
               direction="up"
               scrollamount="2"
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col justify-center items-center h-full"
             >
               <p className="font-poppins p-2 text-blue-500 underline font-medium">
                 Placement procedure download
