@@ -49,10 +49,10 @@ const DashBoard = () => {
             </div>
           </div>
           <div className="w-2/3 flex">
-            <Card value={`${numberOfJnfPostings}`} label="Job Postings" />
+            <Card value={`${numberOfJnfPostings}`} label={`${numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"}` } />
             <Card
               value={`${numberOfInfPostings}`}
-              label="Internship Postings"
+              label={`${numberOfInfPostings > 1 ? "Internship Postings" : "Internship Posting"}` }
             />
           </div>
         </div>
@@ -140,7 +140,11 @@ const DashBoard = () => {
                             <h1>Loading</h1>
                           ) : (
                             companyData.JNF.map((posting) => (
+<<<<<<< HEAD
+                              <Posting key={posting._id} posting={posting} />
+=======
                               <Posting posting={posting} route={"updatejnf"} />
+>>>>>>> 366795c3493e904ea3b5874510bb2f17e9df60ee
                             ))
                           )}
                         </div>
@@ -153,7 +157,11 @@ const DashBoard = () => {
                             <h1>Loading</h1>
                           ) : (
                             companyData.INF.map((posting) => (
+<<<<<<< HEAD
+                              <Posting key={posting._id} posting={posting} />
+=======
                               <Posting posting={posting} route={"updateinf"} />
+>>>>>>> 366795c3493e904ea3b5874510bb2f17e9df60ee
                             ))
                           )}
                         </div>

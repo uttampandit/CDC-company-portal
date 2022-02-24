@@ -6,7 +6,6 @@ import GeneralInputField from "./GeneralInputField";
 
 const InfForm = (props) => {
   const { infdata, handleinfdata, actionLabel } = props;
-  //   console.log(infdata);
   const [infData, setInfData] = useState({
     ...infdata,
   });
