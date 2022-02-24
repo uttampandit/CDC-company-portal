@@ -51,4 +51,14 @@ const updatejnf = asyncHandler(async (req, res, next) => {
   res.send(JSON.stringify(result));
 });
 
-module.exports = { jnfHandler, newJnf, getalljnf, updatejnf };
+const deletejnf = asyncHandler(async (req, res, next) => {
+  const companyId = req.params.companyId;
+  const jnfId = req.params.jnfId;
+  const company = await Company.findById(companyId);
+  console.log("delete jnf");
+  company.JNF.pull({ _id: jnfId });
+  const result = await company.save();
+  res.send(JSON.stringify(result));
+});
+
+module.exports = { jnfHandler, newJnf, getalljnf, updatejnf, deletejnf };
