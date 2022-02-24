@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import GeneralHeader from "../../reusablecomponents/GeneralHeader";
-import UndrawIdeas from "../../../assets/UndrawIdeas";
 
 const Register = ({ actionLabel }) => {
   const [companyData, setCompanyData] = useState({
@@ -47,15 +46,15 @@ const Register = ({ actionLabel }) => {
     <div className="min-h-screen bg-gradient-to-t from-blue-200">
       <div className="flex flex-col">
         <GeneralHeader />
-        <div className="flex w-full justify-center pl-10 pr-10">
-          <div className="flex flex-col grow w-1/2 bg-white/60 p-5 rounded-md justify-center ml-10">
+        <div className="flex w-full justify-center pl-10 pr-10 mb-10">
+          <div className="flex flex-col w-2/3 bg-white/60 p-5 rounded-md justify-center ml-10">
             <h1 className="font-poppins text-portal-blue text-1xl font-bold">
               Register
             </h1>
             <form className="w-full">
               <p className="divider font-extralight mb-5">Company Details</p>
               <div className="flex item-center pr-4">
-                <label className="font-poppins w-32 text-gray-700 text-sm font-medium">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
                   Company Name
                 </label>
                 <input
@@ -69,7 +68,7 @@ const Register = ({ actionLabel }) => {
 
               <br />
               <div className="flex items-center pr-4 ">
-                <label className="flex font-poppins w-32 text-gray-700 text-sm font-medium">
+                <label className="flex font-poppins w-32 text-gray-700 text-sm font-bold">
                   Website
                 </label>
 
@@ -85,7 +84,7 @@ const Register = ({ actionLabel }) => {
 
               <br />
               <div className="flex items-center pr-4">
-                <label className="font-poppins w-32 text-gray-700 text-sm font-medium ">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-bold ">
                   Category
                 </label>
                 <input
@@ -101,7 +100,7 @@ const Register = ({ actionLabel }) => {
                 Personnel Details
               </p>
               <div className="flex items-center pr-4">
-                <label className="flex font-poppins w-32 text-gray-700 text-sm font-medium ">
+                <label className="flex font-poppins w-32 text-gray-700 text-sm font-bold ">
                   Name
                 </label>
                 <input
@@ -113,7 +112,7 @@ const Register = ({ actionLabel }) => {
                 />
               </div>
               <div className="flex items-center pr-4 mb-5">
-                <label className="flex font-poppins w-32 text-gray-700 text-sm font-medium">
+                <label className="flex font-poppins w-32 text-gray-700 text-sm font-bold">
                   Designation
                 </label>
                 <input
@@ -125,7 +124,7 @@ const Register = ({ actionLabel }) => {
                 />
               </div>
               <div className="flex items-center pr-4 mb-5">
-                <label className="font-poppins w-32 text-gray-700 text-sm font-medium">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
                   Registered Email
                 </label>
                 <input
@@ -137,7 +136,7 @@ const Register = ({ actionLabel }) => {
                 />
               </div>
               <div className="flex items-center pr-4 mb-3">
-                <label className="font-poppins w-32 text-gray-700 text-sm font-medium">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
                   Mobile Number
                 </label>
                 <input
