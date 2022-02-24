@@ -31,7 +31,7 @@ const InfUpdate = () => {
           ...infData,
         }
       );
-      //   navigate(`/dashboard/${companyId}`);
+      navigate(`/dashboard/${companyId}`);
     } catch (e) {
       console.log(e.message);
     }
