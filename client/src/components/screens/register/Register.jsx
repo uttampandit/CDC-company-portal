@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Logo from "../assets/ISM Logo.png";
-import AccountIcon from "../../../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import GeneralHeader from "./ResusableComponents/GeneralHeader";
-import GeneralInputField from "./ResusableComponents/GeneralInputField";
 import axios from "axios";
-import JnfForm from "./ResusableComponents/JnfForm";
+import JnfForm from "../ResusableComponents/JnfForm";
 
 const Jnf = () => {
   const navigate = useNavigate();
