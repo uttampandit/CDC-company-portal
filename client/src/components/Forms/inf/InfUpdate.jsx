@@ -25,8 +25,8 @@ const InfUpdate = () => {
     e.preventDefault();
     console.log(infData);
     try {
-      const res = axios.post(
-        `http://localhost:8000/company/${companyId}/${infId}/update`,
+      const res = await axios.post(
+        `http://localhost:8000/company/${companyId}/${infId}/updateinf`,
         {
           ...infData,
         }

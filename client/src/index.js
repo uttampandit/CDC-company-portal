@@ -8,6 +8,7 @@ import DashBoard from "./components/dashboard/DashBoard";
 import Jnf from "./components/forms/jnf/Jnf";
 import Inf from "./components/forms/inf/Inf";
 import InfUpdate from "./components/forms/inf/InfUpdate";
+import JnfUpdate from "./components/forms/jnf/jnfUpdate";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -23,6 +24,10 @@ ReactDOM.render(
         <Route
           path="dashboard/:companyId/updateinf/:infId"
           element={<InfUpdate />}
+        />
+        <Route
+          path="dashboard/:companyId/updatejnf/:jnfId"
+          element={<JnfUpdate />}
         />
         <Route
           path="dashboard/:companyId/updateCompany"
