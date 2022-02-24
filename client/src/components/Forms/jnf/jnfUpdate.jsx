@@ -1,29 +1,29 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import InfForm from "../resusablecomponents/InfForm";
+import JnfForm from "../../reusablecomponents/JnfForm";
 
-const InfUpdate = () => {
+const JnfUpdate = () => {
   const navigate = useNavigate();
-  const { companyId, infId } = useParams();
-  const [infdata, setInfData] = useState({});
+  const { companyId, jnfId } = useParams();
+  const [jnfdata, setjnfData] = useState({});
   useEffect(async () => {
     try {
       const req = await axios.get(
         `http://localhost:8000/company/${companyId}/inf/${infId}`
       );
       console.log(req.data);
-      setInfData({ ...req.data });
+      setjnfData({ ...req.data });
     } catch (e) {
       console.log(e.message);
     }
-  }, [infId, companyId]);
-  const infData = {
-    infdata,
+  }, [jnfId, companyId]);
+  const jnfData = {
+    jnfdata,
   };
-  const registerInfHandler = async (e, infData) => {
+  const registerJnfHandler = async (e, jnfData) => {
     e.preventDefault();
-    console.log(infData);
+    console.log(jnfData);
     try {
       const res = axios.post(
         `http://localhost:8000/company/${companyId}/${infId}/update`,
@@ -38,12 +38,12 @@ const InfUpdate = () => {
   };
 
   return (
-    <InfForm
-      infdata={infdata}
-      handleinfdata={registerInfHandler}
+    <JnfForm
+      jnfdata={jnfdata}
+      handlejnfdata={registerJnfHandler}
       actionLabel={"Update"}
     />
   );
 };
 
-export default InfUpdate;
+export default JnfUpdate;

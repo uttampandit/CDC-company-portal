@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DropDownMenu from "../resusablecomponents/DropDownMenu";
-import GeneralHeader from "../resusablecomponents/GeneralHeader";
+import DropDownMenu from "../reusablecomponents/DropDownMenu";
+import GeneralHeader from "../reusablecomponents/GeneralHeader";
 import axios from "axios";
-import Posting from "../resusablecomponents/Posting";
-import Card from "../resusablecomponents/Card";
+import Posting from "../reusablecomponents/Posting";
+import Card from "../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
 
@@ -14,15 +14,14 @@ const DashBoard = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(async () => {
     const res = await axios.get(`http://localhost:8000/company/${companyId}`);
     setCompanyData({ ...res.data });
     setIsLoading(false);
   }, []);
 
-  const numberOfInfPostings = (isLoading ? " " : companyData.INF.length)
-  const numberOfJnfPostings = (isLoading ? " " : companyData.JNF.length)
+  const numberOfInfPostings = isLoading ? " " : companyData.INF.length;
+  const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-200">
@@ -51,7 +50,10 @@ const DashBoard = () => {
           </div>
           <div className="w-2/3 flex">
             <Card value={`${numberOfJnfPostings}`} label="Job Postings" />
-            <Card value={`${numberOfInfPostings}`} label="Internship Postings" />
+            <Card
+              value={`${numberOfInfPostings}`}
+              label="Internship Postings"
+            />
           </div>
         </div>
 
