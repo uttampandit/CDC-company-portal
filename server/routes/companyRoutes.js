@@ -9,11 +9,13 @@ const {
   jnfHandler,
   newJnf,
   updatejnf,
+  deletejnf,
 } = require("../controller/jnfController");
 const {
   infHandler,
   newinf,
   updateinf,
+  deleteinf,
 } = require("../controller/infController");
 const registerValidate = require("../middleWare/registerValidation");
 
@@ -24,11 +26,13 @@ router.post("/create", setCompanies);
 router.get("/:companyId/inf/:infId", infHandler);
 router.post("/:companyId/inf", newinf);
 router.post("/:companyId/:infId/updateinf", updateinf);
+router.delete("/:companyId/:infId/deleteinf", deleteinf);
 
 // //jnf handling route
 router.get("/:companyId/jnf/:jnfId", jnfHandler);
 router.post("/:companyId/jnf", newJnf);
 router.post("/:companyId/:jnfId/updatejnf", updatejnf);
+router.delete("/:companyId/:jnfId/deletejnf", deletejnf);
 
 router.put("/:companyId", updateCompanies);
 

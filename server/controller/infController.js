@@ -59,4 +59,14 @@ const updateinf = asyncHandler(async (req, res, next) => {
   const result = await company.save();
   res.send(JSON.stringify(result));
 });
-module.exports = { infHandler, newinf, getallinf, updateinf };
+
+const deleteinf = asyncHandler(async (req, res, next) => {
+  const companyId = req.params.companyId;
+  const infId = req.params.infId;
+  const company = await Company.findById(companyId);
+  console.log("delete");
+  company.INF.pull({ _id: infId });
+  const result = await company.save();
+  res.send(JSON.stringify(result));
+});
+module.exports = { infHandler, newinf, getallinf, updateinf, deleteinf };
