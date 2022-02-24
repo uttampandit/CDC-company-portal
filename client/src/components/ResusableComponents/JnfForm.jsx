@@ -20,9 +20,9 @@ const Jnf = (props) => {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-gradient-to-t from-blue-200">
+    <div className="flex flex-col h-full justify-center items-center w-full bg-gradient-to-t from-blue-200">
       <GeneralHeader />
-      <div className="flex flex-col grow justify-center w-1/2 p-5">
+      <div className="flex flex-col mb-10 grow justify-center w-2/3 p-5 bg-white/60 rounded-md">
         <h1 className="font-poppins text-gray-700 text-1xl font-bold">
           Job Notification Form
         </h1>
@@ -65,12 +65,14 @@ const Jnf = (props) => {
             onChange={handleJnfChange}
           />
 
-          <button
-            onClick={handleJnfSubmit}
-            className="mt-4 font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            {actionLabel}
-          </button>
+          <div className="flex w-full justify-center">
+            <button
+              onClick={handleJnfSubmit}
+              className="font-poppins w-1/2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              {actionLabel}
+            </button>
+          </div>
         </form>
       </div>
     </div>

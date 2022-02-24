@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, PlusIcon } from "@heroicons/react/solid";
 import { useNavigate } from "react-router-dom";
 
 export const DropDownMenu = () => {
@@ -12,10 +12,9 @@ export const DropDownMenu = () => {
     <div>
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="font-poppins inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600/75 rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            Create
-            <ChevronDownIcon
-              className="w-5 h-5 ml-2 -mr-1 text-white"
+          <Menu.Button className="font-poppins inline-flex justify-center w-full px-[2px] py-[2px] text-sm font-medium text-white bg-blue-600/75 rounded-full hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            <PlusIcon
+              className="w-5 h-5 text-white"
               aria-hidden="true"
             />
           </Menu.Button>

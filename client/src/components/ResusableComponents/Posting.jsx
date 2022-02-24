@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import More_Icon from "../../assets/More_Icon";
 
-
 const Posting = ({ posting }) => {
   const [open, setopen] = useState(false);
 
@@ -13,9 +12,8 @@ const Posting = ({ posting }) => {
 
   const handleChange = () => setopen(!open);
   return (
-    <div className="flex flex-col w-full ">
+    <div className="flex flex-col w-full bg-white rounded-lg mb-3">
       <div className="flex p-5">
-        {/* <p className="font-poppins pr-5 text-portal-blue">{posting.serialNo}</p> */}
         <div className="flex grow">
           <p className="font-poppins text-portal-blue">{posting.designation}</p>
         </div>
@@ -38,8 +36,6 @@ const Posting = ({ posting }) => {
           </button>
         </div>
       )}
-
-      <hr className="divider"></hr>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const Inf = () => {
 
   return (
     <InfForm
-      infData={infData}
+      infdata={infData}
       handleinfdata={registerInfHandler}
       actionLabel={"Submit"}
     />
