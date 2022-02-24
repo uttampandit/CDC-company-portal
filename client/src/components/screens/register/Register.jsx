@@ -47,8 +47,8 @@ const Register = ({ actionLabel }) => {
     <div className="min-h-screen bg-gradient-to-t from-blue-200">
       <div className="flex flex-col">
         <GeneralHeader />
-        <div className="flex">
-          <div className="flex flex-col grow justify-center ml-10">
+        <div className="flex w-full justify-center pl-10 pr-10">
+          <div className="flex flex-col grow w-1/2 bg-white/60 p-5 rounded-md justify-center ml-10">
             <h1 className="font-poppins text-portal-blue text-1xl font-bold">
               Register
             </h1>
@@ -157,10 +157,7 @@ const Register = ({ actionLabel }) => {
                 </button>
               </div>
             </form>
-          </div>
-          <div className="flex grow items-center justify-center">
-            <UndrawIdeas />
-          </div>
+        </div>
         </div>
       </div>
     </div>
