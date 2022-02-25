@@ -19,7 +19,7 @@ const DashBoard = () => {
     const res = await axios.get(`http://localhost:8000/company/${companyId}`);
     setCompanyData({ ...res.data });
     setIsLoading(false);
-  }, []);
+  }, [companyData]);
 
   const numberOfInfPostings = isLoading ? " " : companyData.INF.length;
   const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;

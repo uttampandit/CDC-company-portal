@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Posting = ({ posting, route }) => {
   const [open, setopen] = useState(false);
-
+  const { companyId } = useParams();
   const navigate = useNavigate();
 
   const handleChange = () => setopen(!open);
@@ -32,16 +32,16 @@ const Posting = ({ posting, route }) => {
               onClick={() => navigate(`${route}/${posting._id}`)}
             />
           </button>
-          <DeleteButton />
+          <DeleteButton id={posting._id} routes={route} />
         </div>
       )}
     </div>
   );
 };
 
-const DeleteButton = () => {
+const DeleteButton = ({ id, routes, deleteHandler }) => {
   let [isOpen, setIsOpen] = useState(false);
-
+  const { companyId } = useParams();
   const closeDialogState = () => {
     setIsOpen(false);
   };
@@ -50,8 +50,8 @@ const DeleteButton = () => {
   };
 
   const deletePosting = async () => {
-    await axios.delete("")
-  }
+    await axios.delete("");
+  };
 
   return (
     <>
@@ -115,9 +115,22 @@ const DeleteButton = () => {
                   <button
                     type="button"
                     className="flex w-full font-poppins justify-center items-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-red-500 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => {
+                    onClick={async () => {
                       closeDialogState();
-
+                      try {
+                        let url = "delete";
+                        console.log(routes);
+                        if (routes.indexOf("jnf") != -1) {
+                          url = url + "jnf";
+                        } else {
+                          url = url + "inf";
+                        }
+                        const res = await axios.delete(
+                          `http://localhost:8000/company/${companyId}/${id}/${url}`
+                        );
+                      } catch (e) {
+                        console.log(e.message);
+                      }
                     }}
                   >
                     Yes delete this posting.
