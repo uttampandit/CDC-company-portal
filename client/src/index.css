@@ -14,8 +14,8 @@
 .blue-glassmorphism {
   background: rgba(255, 255, 255, 0.4);
   border-radius: 16px;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .fadeInDown {

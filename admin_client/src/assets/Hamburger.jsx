@@ -10,27 +10,27 @@ const Hamburger = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_115_7)">
+        <g clipPath="url(#clip0_115_7)">
           <path
             d="M33.3333 20H16.6666"
             stroke="#302C5C"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M33.3333 10L6.66663 10"
             stroke="#302C5C"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M33.3333 30H26.6666"
             stroke="#302C5C"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
         <defs>

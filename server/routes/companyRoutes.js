@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {
+  getCompany,
   getCompanies,
   setCompanies,
   updateCompanies,
@@ -19,7 +20,10 @@ const {
 } = require("../controller/infController");
 const registerValidate = require("../middleWare/registerValidation");
 
-router.get("/:companyId", getCompanies);
+//get all companies
+router.get("/companies", getCompanies)
+
+router.get("/:companyId", getCompany);
 router.post("/create", setCompanies);
 
 // //inf handling route

@@ -1,12 +1,17 @@
 const asyncHandler = require("express-async-handler");
 const Company = require("../models/companyModel");
 
-const getCompanies = asyncHandler(async (req, res) => {
+const getCompany = asyncHandler(async (req, res) => {
   const id = req.params.companyId;
   const company = await Company.findById(id);
   res.status(200).send(company);
   console.log(company);
 });
+
+const getCompanies = asyncHandler(async (req, res) => {
+    const companies = await Company.find({})
+    res.status(200).send(companies)
+})
 
 const setCompanies = asyncHandler(async (req, res) => {
   const reqBody = req.body.companyData;
@@ -35,6 +40,7 @@ const updateCompanies = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  getCompany,
   getCompanies,
   setCompanies,
   updateCompanies,

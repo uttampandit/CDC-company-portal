@@ -7,6 +7,7 @@ import Posting from "../reusablecomponents/Posting";
 import Card from "../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
+import Loader from "../reusablecomponents/Loader";
 
 const DashBoard = () => {
   const { companyId } = useParams();
@@ -49,10 +50,19 @@ const DashBoard = () => {
             </div>
           </div>
           <div className="w-2/3 flex">
-            <Card value={`${numberOfJnfPostings}`} label={`${numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"}` } />
+            <Card
+              value={`${numberOfJnfPostings}`}
+              label={`${
+                numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"
+              }`}
+            />
             <Card
               value={`${numberOfInfPostings}`}
-              label={`${numberOfInfPostings > 1 ? "Internship Postings" : "Internship Posting"}` }
+              label={`${
+                numberOfInfPostings > 1
+                  ? "Internship Postings"
+                  : "Internship Posting"
+              }`}
             />
           </div>
         </div>
@@ -137,10 +147,10 @@ const DashBoard = () => {
                       <div className="flex flex-col grow pr-5 pt-5 pb-5 rounded-lg ">
                         <div className="overflow-y-auto flex flex-col w-full h-96">
                           {isLoading ? (
-                            <h1>Loading</h1>
+                            <Loader />
                           ) : (
                             companyData.JNF.map((posting) => (
-                              <Posting posting={posting} route={"updatejnf"} />
+                              <Posting key={posting._id} posting={posting} route={"updatejnf"} />
                             ))
                           )}
                         </div>
@@ -150,10 +160,10 @@ const DashBoard = () => {
                       <div className="flex flex-col grow pr-5 pt-5 pb-5 rounded-lg ">
                         <div className="overflow-y-auto flex flex-col w-full h-96">
                           {isLoading ? (
-                            <h1>Loading</h1>
+                            <Loader />
                           ) : (
                             companyData.INF.map((posting) => (
-                              <Posting posting={posting} route={"updateinf"} />
+                              <Posting key={posting} posting={posting} route={"updateinf"} />
                             ))
                           )}
                         </div>

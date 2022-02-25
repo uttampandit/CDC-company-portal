@@ -1,5 +1,5 @@
-import Body from "./components/Body";
-import Header from "./components/Header";
+import Body from "./components/dashboard/Body";
+import Header from "./components/dashboard/Header";
 
 function App() {
   return (
