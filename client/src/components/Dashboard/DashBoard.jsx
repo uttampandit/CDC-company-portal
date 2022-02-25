@@ -18,7 +18,7 @@ const DashBoard = () => {
     const res = await axios.get(`http://localhost:8000/company/${companyId}`);
     setCompanyData({ ...res.data });
     setIsLoading(false);
-  }, []);
+  }, [companyData]);
 
   const numberOfInfPostings = isLoading ? " " : companyData.INF.length;
   const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;
@@ -49,10 +49,19 @@ const DashBoard = () => {
             </div>
           </div>
           <div className="w-2/3 flex">
-            <Card value={`${numberOfJnfPostings}`} label={`${numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"}` } />
+            <Card
+              value={`${numberOfJnfPostings}`}
+              label={`${
+                numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"
+              }`}
+            />
             <Card
               value={`${numberOfInfPostings}`}
-              label={`${numberOfInfPostings > 1 ? "Internship Postings" : "Internship Posting"}` }
+              label={`${
+                numberOfInfPostings > 1
+                  ? "Internship Postings"
+                  : "Internship Posting"
+              }`}
             />
           </div>
         </div>
