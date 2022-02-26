@@ -11,11 +11,9 @@ const Header = (props) => {
         <h1 className="grow text-center md:font-medium   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
           Admin
         </h1>
-        <button className="m-5">
           <div >
           <HamburgerMenu />
           </div>
-        </button>
       </div>
     </div>
   );

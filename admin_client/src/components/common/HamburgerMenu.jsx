@@ -10,11 +10,9 @@ export const HamburgerMenu = () => {
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left ">
-        <div>
           <Menu.Button className="font-poppins inline-flex justify-center w-full px-[2px] py-[2px] text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Hamburger />
           </Menu.Button>
-        </div>
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"

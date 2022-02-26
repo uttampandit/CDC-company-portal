@@ -5,7 +5,6 @@ const getCompany = asyncHandler(async (req, res) => {
   const id = req.params.companyId;
   const company = await Company.findById(id);
   res.status(200).send(company);
-  console.log(company);
 });
 
 const getCompanies = asyncHandler(async (req, res) => {

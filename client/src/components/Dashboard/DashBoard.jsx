@@ -102,18 +102,16 @@ const DashBoard = () => {
                     <div className="flex justify-center w-full">
                       <Tab as={Fragment}>
                         {({ selected }) => (
-                          <div
+                          <p
                             className={`${
                               selected
-                                ? "bg-blue-500 text-white rounded-md"
-                                : "bg-transparent text-portal-blue"
+                                ? "text-portal-blue rounded-md underline-offset-1"
+                                : "bg-transparent text-portal-blue hover:bg-blue-300/20"
                             }
-                                  p-2 mr-10`}
+                                  p-2 mr-10 font-poppins font-bold`}
                           >
-                            <button className="font-poppins font-bold">
                               Job postings
-                            </button>
-                          </div>
+                          </p>
                         )}
                       </Tab>
                       <Tab as={Fragment}>

@@ -29,7 +29,7 @@ const JnfForm = (props) => {
         <h1 className="font-poppins text-gray-700 text-1xl font-bold">
           Job Notification Form
         </h1>
-        <p className="divider font-extralight mb-5 mt-2"></p>
+        <p className="divider font-light mb-5">Job Details</p>
         <form className="w-full">
           <GeneralInputField
             label="Designation"
@@ -49,6 +49,9 @@ const JnfForm = (props) => {
             value={jnfData.description}
             onChange={handleJnfChange}
           />
+
+          <p className="divider font-light mb-5 ">Salary Details</p>
+
           <GeneralInputField
             label="CTC in LPA"
             name="ctcInLpa"
@@ -67,6 +70,14 @@ const JnfForm = (props) => {
             value={jnfData.bondDetails}
             onChange={handleJnfChange}
           />
+
+          <p className="divider font-light mb-5">
+            Eligible Courses and Disciplines
+          </p>
+
+          <label className="w-32 underline font-poppins text-gray-700 text-sm font-bold">
+            4-Year B. Tech Programs
+          </label>
 
           <div className="flex w-full justify-center">
             <button

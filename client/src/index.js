@@ -9,6 +9,7 @@ import Jnf from "./components/forms/jnf/Jnf";
 import Inf from "./components/forms/inf/Inf";
 import InfUpdate from "./components/forms/inf/InfUpdate";
 import JnfUpdate from "./components/forms/jnf/jnfUpdate";
+import Login from "./components/forms/login/Login"
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -18,6 +19,9 @@ ReactDOM.render(
           path="register"
           element={<Register actionLabel={`Register`} />}
         />
+        <Route
+        path="login"
+        element={<Login />} />
         <Route path="dashboard/:companyId" element={<DashBoard />} />
         <Route path="dashboard/:companyId/jnf" element={<Jnf />} />
         <Route path="dashboard/:companyId/inf" element={<Inf />} />
