@@ -1,8 +1,14 @@
 import React from "react";
 import GeneralInputField from "../../reusablecomponents/GeneralInputField";
 import GeneralHeader from "../../reusablecomponents/GeneralHeader";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const registerButtonHandler = (e) => {
+    navigate("/register");
+  };
+
   return (
     <div className="flex flex-col min-h-screen justify-center items-center w-full bg-gradient-to-t from-blue-200">
       <GeneralHeader />
@@ -22,8 +28,15 @@ const Login = () => {
           onChange={{}}
         />
         <div className="flex w-full justify-evenly pl-10 pr-10">
-          <button className="bg-blue-400 p-2 font-poppins text-white rounded-md">Login</button>
-          <button className="bg-blue-400 p-2 font-poppins text-white rounded-md">Sign Up</button>
+          <button className="bg-blue-400 p-2 font-poppins text-white rounded-md">
+            Login
+          </button>
+          <button
+            className="bg-blue-400 p-2 font-poppins text-white rounded-md"
+            onClick={registerButtonHandler}
+          >
+            Register Company
+          </button>
         </div>
       </div>
     </div>
