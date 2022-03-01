@@ -6,11 +6,8 @@ import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import axios from "axios";
 
 const Posting = ({ posting, route }) => {
-  const [open, setopen] = useState(false);
   const { companyId } = useParams();
   const navigate = useNavigate();
-
-  const handleChange = () => setopen(!open);
 
   return (
     <div className="p-5 mb-3 rounded-md w-full bg-white">
