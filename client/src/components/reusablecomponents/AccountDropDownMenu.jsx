@@ -1,14 +1,18 @@
-import React, { Fragment, useRef } from "react";
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useRef,useContext } from "react";
+
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, UsersIcon } from "@heroicons/react/solid";
 import Account_Icon from "../../assets/Account_Icon";
 import { useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 //import { render } from "@headlessui/react/dist/utils/render";
 
 const AccountDropDownMenu = () => {       
     const refa = useRef();
+    const navigate = useNavigate();
+    const ctx = useContext(AuthContext);
+    
     const { companyId } = useParams();
     const fn = async () => {
     const res = await axios.get(`http://localhost:8000/company/${companyId}`);
@@ -48,12 +52,6 @@ const AccountDropDownMenu = () => {
       const blob = new Blob(x);
       refa.current.href =  URL.createObjectURL(blob);
   }
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
-const AccountDropDownMenu = () => {
-const ctx = useContext(AuthContext)
-  const navigate = useNavigate();
-
   return(
     <div>
       <Menu as="div" className="relative inline-block text-left">
@@ -129,6 +127,6 @@ const ctx = useContext(AuthContext)
       </Menu>
     </div>
   )
-  };
+}
 
 export default AccountDropDownMenu;
