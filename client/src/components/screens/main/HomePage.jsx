@@ -1,6 +1,7 @@
 import Welcome from "./Welcome";
 import Header from "./Header";
 import VisionMission from "./VisionMission";
+import ContactUs from "./ContactUs";
 
 function HomePage() {
   return (
@@ -11,6 +12,7 @@ function HomePage() {
       </div>
       <div className="h-screen">
         <VisionMission />
+        <ContactUs />
       </div>
     </div>
   );
