@@ -1,21 +1,92 @@
-import Welcome from "./components/screens/main/Welcome";
-import Header from "./components/screens/main/Header";
-import VisionMission from "./components/screens/main/VisionMission";
-import ContactUs from "./components/screens/main/ContactUs";
+import React, { useCallback, useEffect, useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import Register from "./components/screens/register/Register";
+import DashBoard from "./components/screens/dashboard/DashBoard";
+import Jnf from "./components/forms/jnf/Jnf";
+import Inf from "./components/forms/inf/Inf";
+import InfUpdate from "./components/forms/inf/InfUpdate";
+import JnfUpdate from "./components/forms/jnf/jnfUpdate";
+import Login from "./components/forms/login/Login";
+import AuthContext from "./context/AuthContext";
+import HomePage from "./components/screens/main/HomePage";
+import RegisterUpdate from "./components/forms/register/RegisterUpdate";
 
-function App() {
+const App = () => {
+  const [token, setToken] = useState(""); 
+  console.log('run...')
+
+  const login = useCallback((token, expirationDate) => {
+    console.log("enter login fucntion");
+    const tokenExpirationDate =
+      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+      setToken(token);
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({
+        token: token,
+        expirationDate: tokenExpirationDate,
+      })
+    );
+    
+  }, []);
+
+  const logout = useCallback(() => {
+    setToken(null);
+    localStorage.removeItem('userData');
+
+  }, []);
+  console.log(token);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("userData"));
+    console.log("data from useEffect: ", data);
+    if (data && data.token ) {
+      login(data.token,new Date(data.expirationDate));
+    }
+  }, []);
   return (
-    <div className="flex flex-col min-h-screen ">
-      <div className="flex flex-col h-screen bg-[url('./assets/heritage_main_road.JPG')] bg-cover">
-        <Header />
-        <Welcome />
-      </div>
-      <div className="h-screen">
-        <VisionMission />
-        <ContactUs />
-      </div>
-    </div>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: !!token,
+        token: token,
+        Login: login,
+        LogOut: logout,
+      }}
+    >
+      <Routes>
+          {console.log('token from routes: ',token)}
+        {token ? (
+          <React.Fragment>
+            <Route path="dashboard/:companyId" element={<DashBoard />} />
+            <Route path="dashboard/:companyId/jnf" element={<Jnf />} />
+            <Route path="dashboard/:companyId/inf" element={<Inf />} />
+            <Route
+              path="dashboard/:companyId/updateinf/:infId"
+              element={<InfUpdate />}
+            />
+            <Route
+              path="dashboard/:companyId/updatejnf/:jnfId"
+              element={<JnfUpdate />}
+            />
+            <Route
+              path="dashboard/:companyId/updateCompany"
+              element={<RegisterUpdate/>}
+            />
+            {/* <Route path="*" element={<Navigate to="dashboard/:companyId" />} /> */}
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Route path="/" element={<HomePage />} />
+            <Route path="login" element={<Login />} />
+            <Route
+              path="/register"
+              element={<Register actionLabel={`Register`} />}
+            />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
+          </React.Fragment>
+        )}
+      </Routes>
+    </AuthContext.Provider>
   );
-}
+};
 
 export default App;

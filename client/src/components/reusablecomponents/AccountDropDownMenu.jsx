@@ -1,4 +1,5 @@
 import React, { Fragment, useRef } from "react";
+import React, { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, UsersIcon } from "@heroicons/react/solid";
 import Account_Icon from "../../assets/Account_Icon";
@@ -47,6 +48,11 @@ const AccountDropDownMenu = () => {
       const blob = new Blob(x);
       refa.current.href =  URL.createObjectURL(blob);
   }
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+const AccountDropDownMenu = () => {
+const ctx = useContext(AuthContext)
+  const navigate = useNavigate();
 
   return(
     <div>
@@ -98,6 +104,22 @@ const AccountDropDownMenu = () => {
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     Contact Us
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-blue-600/75 text-white" : "text-gray-900"
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    onClick={()=>{
+                      ctx.LogOut();
+                      navigate('/'
+                      )
+                    }}
+                  >
+                    LogOut
                   </button>
                 )}
               </Menu.Item>

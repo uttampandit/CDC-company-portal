@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import JnfForm from "../../reusablecomponents/JnfForm";
+import AuthContext from "../../../context/AuthContext";
 
 const Jnf = () => {
   const navigate = useNavigate();
   const { companyId } = useParams();
-
+const ctx = useContext(AuthContext);
   const jnfdata = {
     designation: "",
     placeOfPosting: "",
@@ -22,7 +23,10 @@ const Jnf = () => {
     try {
       const req = await axios.post(
         `http://localhost:8000/company/${companyId}/jnf`,
-        jnfdata
+        jnfdata,
+        {headers:{
+          authorization:"Bearer "+ctx.token
+        }}
       );
 
       navigate(`/dashboard/${companyId}`);

@@ -19,6 +19,7 @@ const RegisterForm = (props) => {
     setCompanyData((prevState) => ({ ...prevState, [name]: value }));
   };
   const handleCompanySubmit = async (e) => {
+    e.preventDefault();
       console.log(companyData);
     await handleCompanyData(e, companyData);
   };
