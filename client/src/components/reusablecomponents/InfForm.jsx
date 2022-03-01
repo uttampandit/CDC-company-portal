@@ -9,9 +9,11 @@ const InfForm = (props) => {
   const [infData, setInfData] = useState({
     ...infdata,
   });
+  
   useEffect(() => {
     setInfData(infdata);
   }, [infdata]);
+
   const handleInfChange = (e) => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;

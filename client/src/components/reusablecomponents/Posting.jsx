@@ -12,8 +12,6 @@ const Posting = ({ posting, route , deleteCallback }) => {
   const { companyId } = useParams();
   const navigate = useNavigate();
 
-  const handleChange = () => setopen(!open);
-
   return (
     <div className="p-5 mb-3 rounded-md w-full bg-white">
       <Disclosure>

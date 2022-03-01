@@ -21,7 +21,7 @@ const JnfUpdate = () => {
     } catch (e) {
       console.log(e.message);
     }
-  }, [jnfId, companyId,ctx.token]);
+  }, []);
   const jnfData = {
     jnfdata,
   };

@@ -36,7 +36,7 @@ const RegisterUpdate = () => {
     } catch (e) {
       console.log(e.message);
     }
-  }, [companyId]);
+  }, []);
 
   console.log(companyData);
 

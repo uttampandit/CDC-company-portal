@@ -15,7 +15,6 @@ const ctx = useContext(AuthContext);
     ctcInLpa: "",
     ctcBreakup: "",
     bondDetails: "",
-    
   };
 
   const registerJnfHandler = async (e, jnfdata) => {
