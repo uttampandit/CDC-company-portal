@@ -22,6 +22,10 @@ const newinf = asyncHandler(async (req, res, next) => {
   console.log(data);
   console.log(company);
   //simple pushing the inf
+  if(companyId !== req.userData.userId){
+    //backend check
+    throw Error('compnay id from request and jwt doesnt match')
+  }
   company.INF.push(data);
   try {
     const result = await company.save();
@@ -52,7 +56,10 @@ const updateinf = asyncHandler(async (req, res, next) => {
   const companyId = req.params.companyId;
   const infId = req.params.infId;
   const company = await Company.findById(companyId);
-
+  if(companyId !== req.userData.userId){
+    //backend check
+    throw Error('compnay id from request and jwt doesnt match')
+  }
   // console.log(company);
   company.INF.pull({ _id: infId });
   company.INF.push(updatedInf);
@@ -65,6 +72,10 @@ const deleteinf = asyncHandler(async (req, res, next) => {
   const infId = req.params.infId;
   const company = await Company.findById(companyId);
   console.log("delete");
+  if(companyId !== req.userData.userId){
+    //backend check
+    throw Error('compnay id from request and jwt doesnt match')
+  }
   company.INF.pull({ _id: infId });
   const result = await company.save();
   res.send(JSON.stringify(result));

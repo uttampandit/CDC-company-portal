@@ -33,6 +33,10 @@ const companySchema = mongoose.Schema(
         type: String,
         required: [true, "Please add a number"],
       },
+      password: {
+        type: String,
+        required: [true, "Please type password"],
+      },
     },
     JNF: {
       type: [JNF],

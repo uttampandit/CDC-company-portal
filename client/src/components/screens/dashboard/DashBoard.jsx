@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DropDownMenu from "../../reusablecomponents/DropDownMenu";
 import GeneralHeader from "../../reusablecomponents/GeneralHeader";
@@ -8,21 +8,35 @@ import Card from "../../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
 import Loader from "../../reusablecomponents/Loader";
-import List from "@mui/material/List";
-import { TransitionGroup } from "react-transition-group";
-import Collapse from "@mui/material/Collapse";
+import AuthContext from "../../../context/AuthContext";
 
 const DashBoard = () => {
+  console.log("dashboard ran");
+  const ctx = useContext(AuthContext);
+  console.log(ctx);
   const { companyId } = useParams();
   const [companyData, setCompanyData] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    const res = await axios.get(`http://localhost:8000/company/${companyId}`);
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`, {
+      headers: {
+        authorization: "Bearer " + ctx.token,
+      },
+    });
     setCompanyData({ ...res.data });
     setIsLoading(false);
-  }, [companyData]);
+  }, [ctx.token]);
+  const onDeleteFunc = async () => {
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`, {
+      headers: {
+        authorization: "Bearer " + ctx.token,
+      },
+    });
+    setCompanyData({ ...res.data });
+    setIsLoading(false);
+  };
 
   const numberOfInfPostings = isLoading ? " " : companyData.INF.length;
   const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;
@@ -35,7 +49,6 @@ const DashBoard = () => {
 
       <div className="flex flex-col">
         <div className="flex w-full pr-10 mb-10">
-           
           <div className="w-full flex">
             <Card
               value={`${numberOfJnfPostings}`}
@@ -43,10 +56,7 @@ const DashBoard = () => {
                 numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"
               }`}
             />
-            <Card
-              value={`1.5 Cr`}
-              label={`offered`}
-            />
+            <Card value={`1.5 Cr`} label={`offered`} />
             <Card
               value={`${numberOfInfPostings}`}
               label={`${
@@ -139,12 +149,18 @@ const DashBoard = () => {
                           ) : (
                             companyData.JNF.map((posting) => (
                               <>
-                                {numberOfJnfPostings ? <Posting
-                                  key={posting._id}
-                                  posting={posting}
-                                  route={"updatejnf"}
-                                /> : <div className="flex items-center justify-center"><p>No Job Postings Yet</p></div>}
-                                
+                                {numberOfJnfPostings ? (
+                                  <Posting
+                                    key={posting._id}
+                                    posting={posting}
+                                    route={"updatejnf"}
+                                    deleteCallback={onDeleteFunc}
+                                  />
+                                ) : (
+                                  <div className="flex items-center justify-center">
+                                    <p>No Job Postings Yet</p>
+                                  </div>
+                                )}
                               </>
                             ))
                           )}
@@ -158,15 +174,22 @@ const DashBoard = () => {
                             <Loader />
                           ) : (
                             companyData.INF.map((posting) => {
-                              return <>
-                                {numberOfInfPostings ? <Posting
-                                  key={posting._id}
-                                  posting={posting}
-                                  route={"updateinf"}
-                                /> : <div className="flex items-center justify-center"><p>No Internship Postings Yet</p></div>
-                                }
-                                
-                              </>
+                              return (
+                                <>
+                                  {numberOfInfPostings ? (
+                                    <Posting
+                                      key={posting._id}
+                                      posting={posting}
+                                      route={"updateinf"}
+                                      deleteCallback={onDeleteFunc}
+                                    />
+                                  ) : (
+                                    <div className="flex items-center justify-center">
+                                      <p>No Internship Postings Yet</p>
+                                    </div>
+                                  )}
+                                </>
+                              );
                             })
                           )}
                         </div>

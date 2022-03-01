@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InfForm from "../../reusablecomponents/InfForm";
-
+import AuthContext from "../../../context/AuthContext";
 const Inf = () => {
+  const ctx = useContext(AuthContext);
   const navigate = useNavigate();
   const { companyId } = useParams();
   console.log(companyId);
@@ -24,7 +25,9 @@ const Inf = () => {
     try {
       const req = await axios.post(
         `http://localhost:8000/company/${companyId}/inf`,
-        infData
+        infData,{headers:{
+          authorization:"Bearer "+ctx.token
+        }}
       );
 
       navigate(`/dashboard/${companyId}`);

@@ -1,11 +1,13 @@
-import { ChevronDownIcon, PencilIcon, TrashIcon } from "@heroicons/react/solid";
-import React, { Fragment, useState } from "react";
+import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
+import React, { Fragment, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import More_Icon from "../../assets/More_Icon";
+
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import axios from "axios";
+import AuthContext from "../../context/AuthContext";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
-const Posting = ({ posting, route }) => {
+const Posting = ({ posting, route , deleteCallback }) => {
   const [open, setopen] = useState(false);
   const { companyId } = useParams();
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const Posting = ({ posting, route }) => {
                       onClick={() => navigate(`${route}/${posting._id}`)}
                     />
                   </button>
-                  <DeleteButton id={posting._id} routes={route} />
+                  <DeleteButton id={posting._id} routes={route} deleteCallback={deleteCallback}/>
                 </div>
               </Disclosure.Panel>
             </Transition>
@@ -60,7 +62,8 @@ const Posting = ({ posting, route }) => {
   );
 };
 
-const DeleteButton = ({ id, routes, deleteHandler }) => {
+const DeleteButton = ({ id, routes,deleteCallback }) => {
+  const ctx = useContext(AuthContext);
   let [isOpen, setIsOpen] = useState(false);
   const { companyId } = useParams();
   const closeDialogState = () => {
@@ -70,9 +73,7 @@ const DeleteButton = ({ id, routes, deleteHandler }) => {
     setIsOpen(true);
   };
 
-  const deletePosting = async () => {
-    await axios.delete("");
-  };
+ 
 
   return (
     <>
@@ -147,8 +148,12 @@ const DeleteButton = ({ id, routes, deleteHandler }) => {
                           url = url + "inf";
                         }
                         const res = await axios.delete(
-                          `http://localhost:8000/company/${companyId}/${id}/${url}`
+                          `http://localhost:8000/company/${companyId}/${id}/${url}`,{headers:{
+                            authorization:"Bearer "+ctx.token
+                          }}
+                         
                         );
+                        deleteCallback()
                       } catch (e) {
                         console.log(e.message);
                       }

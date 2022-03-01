@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import Account_Icon from "../../assets/Account_Icon";
 import { useNavigate } from "react-router-dom";
-
+import AuthContext from "../../context/AuthContext";
 const AccountDropDownMenu = () => {
-
+const ctx = useContext(AuthContext)
   const navigate = useNavigate();
 
   return (
@@ -58,6 +58,22 @@ const AccountDropDownMenu = () => {
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     Contact Us
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-blue-600/75 text-white" : "text-gray-900"
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    onClick={()=>{
+                      ctx.LogOut();
+                      navigate('/'
+                      )
+                    }}
+                  >
+                    LogOut
                   </button>
                 )}
               </Menu.Item>
