@@ -14,7 +14,6 @@ const Jnf = () => {
     ctcInLpa: "",
     ctcBreakup: "",
     bondDetails: "",
-    
   };
 
   const registerJnfHandler = async (e, jnfdata) => {
