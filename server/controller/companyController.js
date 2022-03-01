@@ -27,7 +27,7 @@ const setCompanies = asyncHandler(async (req, res) => {
   console.log(company.id);
 });
 
-const updateCompanies = asyncHandler(async (req, res) => {
+const updateCompany = asyncHandler(async (req, res) => {
   const updatedInfo = req.body.companyData;
   const companyId = req.params.companyId;
   const company = await Company.findById(companyId);
@@ -42,5 +42,5 @@ module.exports = {
   getCompany,
   getCompanies,
   setCompanies,
-  updateCompanies,
+  updateCompany,
 };

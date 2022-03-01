@@ -18,7 +18,7 @@ const Nav = () => {
   return (
     <div className="flex grow justify-end items-center p-5">
         <h1 className="p-5 text-white font-bold font-poppins">Home</h1>
-        <h1 className="p-5 text-white font-bold font-poppins">About us</h1>
+        <h1 className="p-5 text-white font-bold font-poppins">Student Skillset</h1>
         <h1 className="p-5 text-white font-bold font-poppins">Placement Info</h1>
         <h1 className="p-5 relative -top-[3px] text-black bg-white font-bold font-poppins rounded-lg">Contact us</h1>
       </div>

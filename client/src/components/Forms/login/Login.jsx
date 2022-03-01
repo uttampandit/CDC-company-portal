@@ -4,10 +4,12 @@ import GeneralHeader from "../../reusablecomponents/GeneralHeader";
 
 const Login = () => {
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center w-full bg-gradient-to-t from-blue-200">
+    <div className="flex flex-col min-h-screen justify-start items-center bg-gradient-to-t from-blue-200">
       <GeneralHeader />
-      <div className="flex flex-col mb-10 grow justify-start w-2/3 p-5 bg-white/60 rounded-md">
-        <h1 className="font-poppins text-gray-700 text-1xl font-bold">Login</h1>
+      <div className="flex w-full grow flex-col mb-10 justify-center items-center">
+
+      <div className="flex flex-col w-1/3 p-5 bg-white/60 rounded-md">
+        <h1 className="font-poppins text-gray-700 text-1xl font-bold text-center">Login</h1>
         <p className="divider font-light mb-5"></p>
         <GeneralInputField
           label={`Email`}
@@ -21,10 +23,11 @@ const Login = () => {
           value={{}}
           onChange={{}}
         />
-        <div className="flex w-full justify-evenly pl-10 pr-10">
-          <button className="bg-blue-400 p-2 font-poppins text-white rounded-md">Login</button>
+        <div className="flex justify-evenly pl-10 pr-10">
           <button className="bg-blue-400 p-2 font-poppins text-white rounded-md">Sign Up</button>
+          <button className="bg-blue-400 p-2 font-poppins text-white rounded-md">Login</button>
         </div>
+      </div>
       </div>
     </div>
   );

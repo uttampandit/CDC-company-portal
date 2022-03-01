@@ -13,8 +13,8 @@ const BorderDesign = () => {
         <path
           d="M265.985 7.69991C248.134 23.4849 200.755 -12.4195 162.21 7.55069M120.7 7.491C80.8505 -12.955 18.626 28.0094 1.99592 7.42018"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeLinecap="round"
         />
         <circle
           cx="144.226"

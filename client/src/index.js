@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "./components/screens/register/Register";
-import DashBoard from "./components/dashboard/DashBoard";
+import Register from "./components/forms/register/Register";
+import DashBoard from "./components/screens/dashboard/DashBoard";
 import Jnf from "./components/forms/jnf/Jnf";
 import Inf from "./components/forms/inf/Inf";
 import InfUpdate from "./components/forms/inf/InfUpdate";
 import JnfUpdate from "./components/forms/jnf/jnfUpdate";
 import Login from "./components/forms/login/Login"
+import RegisterUpdate from "./components/forms/register/RegisterUpdate";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -17,7 +18,7 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route
           path="register"
-          element={<Register actionLabel={`Register`} />}
+          element={<Register />}
         />
         <Route
         path="login"
@@ -35,7 +36,7 @@ ReactDOM.render(
         />
         <Route
           path="dashboard/:companyId/updateCompany"
-          element={<Register actionLabel={`Update`} />}
+          element={<RegisterUpdate />}
         />
       </Routes>
     </BrowserRouter>

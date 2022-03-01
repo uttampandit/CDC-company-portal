@@ -1,6 +1,7 @@
 import Welcome from "./components/screens/main/Welcome";
 import Header from "./components/screens/main/Header";
 import VisionMission from "./components/screens/main/VisionMission";
+import ContactUs from "./components/screens/main/ContactUs";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       </div>
       <div className="h-screen">
         <VisionMission />
+        <ContactUs />
       </div>
     </div>
   );

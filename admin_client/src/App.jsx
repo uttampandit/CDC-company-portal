@@ -3,7 +3,7 @@ import Header from "./components/dashboard/Header";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-200">
+    <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-400">
     <Header />
     <Body />
     </div>

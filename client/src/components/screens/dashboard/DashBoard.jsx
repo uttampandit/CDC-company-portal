@@ -1,13 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DropDownMenu from "../reusablecomponents/DropDownMenu";
-import GeneralHeader from "../reusablecomponents/GeneralHeader";
+import DropDownMenu from "../../reusablecomponents/DropDownMenu";
+import GeneralHeader from "../../reusablecomponents/GeneralHeader";
 import axios from "axios";
-import Posting from "../reusablecomponents/Posting";
-import Card from "../reusablecomponents/Card";
+import Posting from "../../reusablecomponents/Posting";
+import Card from "../../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
-import Loader from "../reusablecomponents/Loader";
+import Loader from "../../reusablecomponents/Loader";
+import List from "@mui/material/List";
+import { TransitionGroup } from "react-transition-group";
+import Collapse from "@mui/material/Collapse";
 
 const DashBoard = () => {
   const { companyId } = useParams();
@@ -25,36 +28,24 @@ const DashBoard = () => {
   const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-200">
+    <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-400">
       <div className="flex w-full items-center">
         <GeneralHeader heading="Dashboard" />
       </div>
 
       <div className="flex flex-col">
-        <div className="flex w-full pr-10 pl-10 mb-10">
-          <div className="flex flex-col w-1/3 bg-white/60 p-5 rounded-md ">
-            <h1 className="font-poppins text-portal-blue font-bold">
-              Quick Toolbar
-            </h1>
-            <p className="divider font-extralight mb-2"></p>
-            <div className="flex justify-between w-full">
-              <div className="bg-blue-600/75 rounded-full m-2 hover:bg-blue-600 text-white inline-flex justify-center px-[4px] py-[4px] text-sm">
-                <UploadIcon className="w-5 h-5 " aria-hidden="true" />
-              </div>
-              <div className="bg-blue-600/75 rounded-full m-2 hover:bg-blue-600 text-white inline-flex justify-center px-[4px] py-[4px] text-sm">
-                <ShareIcon className="w-5 h-5 " aria-hidden="true" />
-              </div>
-              <div className="bg-blue-600/75 rounded-full m-2 hover:bg-blue-600 text-white inline-flex justify-center px-[4px] py-[4px] text-sm">
-                <UploadIcon className="w-5 h-5 " aria-hidden="true" />
-              </div>
-            </div>
-          </div>
-          <div className="w-2/3 flex">
+        <div className="flex w-full pr-10 mb-10">
+           
+          <div className="w-full flex">
             <Card
               value={`${numberOfJnfPostings}`}
               label={`${
                 numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"
               }`}
+            />
+            <Card
+              value={`1.5 Cr`}
+              label={`offered`}
             />
             <Card
               value={`${numberOfInfPostings}`}
@@ -77,6 +68,7 @@ const DashBoard = () => {
               behaiviour="sliding"
               direction="up"
               scrollamount="2"
+              scrolldelay="10"
               className="flex flex-col justify-center items-center h-full"
             >
               <p className="font-poppins p-2 text-blue-500 underline font-medium">
@@ -95,9 +87,9 @@ const DashBoard = () => {
           </div>
 
           <div className="flex flex-col w-2/3 bg-white/50 pt-4 pr-5 pl-10 ml-12 rounded-md">
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col">
               <Tab.Group>
-                <div className="flex w-full items-end">
+                <div className="flex w-full items-center">
                   <Tab.List className={`w-full justify-start items-start`}>
                     <div className="flex justify-center w-full">
                       <Tab as={Fragment}>
@@ -105,29 +97,27 @@ const DashBoard = () => {
                           <p
                             className={`${
                               selected
-                                ? "text-portal-blue rounded-md underline-offset-1"
-                                : "bg-transparent text-portal-blue hover:bg-blue-300/20"
+                                ? "text-portal-blue border-b-2 border-blue-400"
+                                : "bg-transparent text-portal-blue "
                             }
-                                  p-2 mr-10 font-poppins font-bold`}
+                                  p-2 mr-10  pl-10 pr-10 pt-2 pb-2 font-poppins font-bold hover:bg-blue-300/20`}
                           >
-                              Job postings
+                            Job postings
                           </p>
                         )}
                       </Tab>
                       <Tab as={Fragment}>
                         {({ selected }) => (
-                          <div
+                          <p
                             className={`${
                               selected
-                                ? "bg-blue-500 text-white rounded-md"
-                                : "bg-transparent text-portal-blue"
+                                ? "border-b-2 border-blue-400"
+                                : "bg-transparent"
                             }
-                                  p-2 ml-10`}
+                                  pl-10 pr-10 pt-2 pb-2 ml-16 hover:bg-blue-300/20 text-portal-blue font-poppins font-bold`}
                           >
-                            <button className="font-poppins font-bold">
-                              Internship postings
-                            </button>
-                          </div>
+                            Internship postings
+                          </p>
                         )}
                       </Tab>
                     </div>
@@ -148,7 +138,14 @@ const DashBoard = () => {
                             <Loader />
                           ) : (
                             companyData.JNF.map((posting) => (
-                              <Posting key={posting._id} posting={posting} route={"updatejnf"} />
+                              <>
+                                {numberOfJnfPostings ? <Posting
+                                  key={posting._id}
+                                  posting={posting}
+                                  route={"updatejnf"}
+                                /> : <div className="flex items-center justify-center"><p>No Job Postings Yet</p></div>}
+                                
+                              </>
                             ))
                           )}
                         </div>
@@ -160,9 +157,17 @@ const DashBoard = () => {
                           {isLoading ? (
                             <Loader />
                           ) : (
-                            companyData.INF.map((posting) => (
-                              <Posting key={posting} posting={posting} route={"updateinf"} />
-                            ))
+                            companyData.INF.map((posting) => {
+                              return <>
+                                {numberOfInfPostings ? <Posting
+                                  key={posting._id}
+                                  posting={posting}
+                                  route={"updateinf"}
+                                /> : <div className="flex items-center justify-center"><p>No Internship Postings Yet</p></div>
+                                }
+                                
+                              </>
+                            })
                           )}
                         </div>
                       </div>

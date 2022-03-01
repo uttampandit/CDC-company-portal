@@ -11,7 +11,7 @@ const Header = (props) => {
         <h1 className="grow text-center md:font-medium   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
           Admin
         </h1>
-          <div >
+          <div className="pr-8">
           <HamburgerMenu />
           </div>
       </div>

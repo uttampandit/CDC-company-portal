@@ -1,8 +1,8 @@
-import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, PencilIcon, TrashIcon } from "@heroicons/react/solid";
 import React, { Fragment, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import More_Icon from "../../assets/More_Icon";
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import axios from "axios";
 
 const Posting = ({ posting, route }) => {
@@ -13,28 +13,49 @@ const Posting = ({ posting, route }) => {
   const handleChange = () => setopen(!open);
 
   return (
-    <div className="flex flex-col w-full bg-white rounded-lg mb-3">
-      <div className="flex p-5">
-        <div className="flex grow">
-          <p className="font-poppins text-portal-blue">{posting.designation}</p>
-        </div>
-        <More_Icon open={open} onChange={handleChange} />
-      </div>
-      {open && (
-        <div className="flex pr-5 pl-5 justify-start items-start">
-          <p className="grow font-poppins text-sm font-light">
-            {posting.description}
-          </p>
-          <button className="font-poppins rounded mt-5 mb-5 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 focus:outline-none focus:shadow-outline">
-            <PencilIcon
-              className="w-4 h-4 text-white"
-              aria-hidden="true"
-              onClick={() => navigate(`${route}/${posting._id}`)}
-            />
-          </button>
-          <DeleteButton id={posting._id} routes={route} />
-        </div>
-      )}
+    <div className="p-5 mb-3 rounded-md w-full bg-white">
+      <Disclosure>
+        {({ open }) => (
+          <div className="flex flex-col">
+            <div className="flex">
+              <p className="flex w-full">{posting.designation}</p>
+              <Disclosure.Button>
+                <ChevronDownIcon
+                  className={`${
+                    open ? "transform rotate-180" : ""
+                  } w-5 h-5 text-blue-400`}
+                  aria-hidden="true"
+                />
+              </Disclosure.Button>
+            </div>
+
+            <Transition
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-85 opacity-0"
+            >
+              <Disclosure.Panel>
+                <div className="flex pt-5 justify-start items-start bg-white">
+                  <p className="grow font-poppins text-sm font-light">
+                    {posting.description}
+                  </p>
+                  <button className="font-poppins rounded mt-5 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 focus:outline-none focus:shadow-outline">
+                    <PencilIcon
+                      className="w-4 h-4 text-white"
+                      aria-hidden="true"
+                      onClick={() => navigate(`${route}/${posting._id}`)}
+                    />
+                  </button>
+                  <DeleteButton id={posting._id} routes={route} />
+                </div>
+              </Disclosure.Panel>
+            </Transition>
+          </div>
+        )}
+      </Disclosure>
     </div>
   );
 };
@@ -58,7 +79,7 @@ const DeleteButton = ({ id, routes, deleteHandler }) => {
       <div className="flex items-center justify-center">
         <button
           onClick={openDialogState}
-          className="font-poppins mt-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="font-poppins mt-5 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           <TrashIcon className="w-4 h-4 text-white" aria-hidden="true" />
         </button>
