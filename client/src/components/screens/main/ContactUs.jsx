@@ -7,7 +7,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import NewLogo from "../../../assets/New Logo.png"
 
-const Contact = () => {
+const ContactUs = () => {
   return (
     <div className="flex flex-col h-3/4 w-full items-center bg-portal-blue">
       <div className="flex h-full pt-20 items-start">
@@ -73,4 +73,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactUs;
