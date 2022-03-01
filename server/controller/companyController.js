@@ -66,6 +66,7 @@ const setCompanies = asyncHandler(async (req, res) => {
 
 const updateCompany = asyncHandler(async (req, res) => {
   const updatedInfo = req.body.companyData;
+  console.log("udatedinfo",updatedInfo)
   const companyId = req.params.companyId;
   const company = await Company.findById(companyId);
   if(companyId !== req.userData.userId){

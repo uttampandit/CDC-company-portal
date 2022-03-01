@@ -27,10 +27,11 @@ const registerValidate = require("../middleWare/registerValidation");
 router.get("/companies", getCompanies)
 router.post("/login",authCompany);
 router.post("/create", setCompanies);
-router.post("/:companyId/updateCompany", updateCompany);
+
 
 router.use(authCheck);
 router.get('/:companyId',getCompany);
+router.post("/:companyId/updateCompany", updateCompany);
 
 
 // //inf handling route
