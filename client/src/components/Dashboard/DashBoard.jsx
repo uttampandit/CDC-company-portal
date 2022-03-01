@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {  Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DropDownMenu from "../reusablecomponents/DropDownMenu";
 import GeneralHeader from "../reusablecomponents/GeneralHeader";
@@ -8,18 +8,32 @@ import Card from "../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
 import Loader from "../reusablecomponents/Loader";
+import AuthContext from "../../context/AuthContext";
+
 
 const DashBoard = () => {
+  console.log('dashboard ran');
+  const ctx = useContext(AuthContext);
+  console.log(ctx)
   const { companyId } = useParams();
   const [companyData, setCompanyData] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    const res = await axios.get(`http://localhost:8000/company/${companyId}`);
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`,{headers:{
+      authorization:"Bearer "+ctx.token
+    }});
     setCompanyData({ ...res.data });
     setIsLoading(false);
-  }, [companyData]);
+  }, [ctx.token]);
+  const onDeleteFunc = async()=>{
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`,{headers:{
+      authorization:"Bearer "+ctx.token
+    }});
+    setCompanyData({ ...res.data });
+    setIsLoading(false);
+  }
 
   const numberOfInfPostings = isLoading ? " " : companyData.INF.length;
   const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;
@@ -148,7 +162,7 @@ const DashBoard = () => {
                             <Loader />
                           ) : (
                             companyData.JNF.map((posting) => (
-                              <Posting key={posting._id} posting={posting} route={"updatejnf"} />
+                              <Posting key={posting._id} posting={posting} route={"updatejnf"} deleteCallback={onDeleteFunc} />
                             ))
                           )}
                         </div>
@@ -161,7 +175,7 @@ const DashBoard = () => {
                             <Loader />
                           ) : (
                             companyData.INF.map((posting) => (
-                              <Posting key={posting} posting={posting} route={"updateinf"} />
+                              <Posting key={posting} posting={posting} route={"updateinf"} deleteCallback={onDeleteFunc} />
                             ))
                           )}
                         </div>

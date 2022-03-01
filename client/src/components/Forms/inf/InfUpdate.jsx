@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InfForm from "../../reusablecomponents/InfForm";
+import AuthContext from "../../../context/AuthContext";
 
 const InfUpdate = () => {
+  const ctx = useContext(AuthContext);
   const navigate = useNavigate();
   const { companyId, infId } = useParams();
   const [infdata, setInfData] = useState({});
@@ -11,7 +13,9 @@ const InfUpdate = () => {
     try {
       const req = await axios.get(
         `http://localhost:8000/company/${companyId}/inf/${infId}`
-      );
+      ,{headers:{
+        authorization:"Bearer "+ctx.token
+      }});
       console.log(req.data);
       setInfData({ ...req.data });
     } catch (e) {
@@ -29,7 +33,9 @@ const InfUpdate = () => {
         `http://localhost:8000/company/${companyId}/${infId}/updateinf`,
         {
           ...infData,
-        }
+        },{headers:{
+          authorization:"Bearer "+ctx.token
+        }}
       );
       navigate(`/dashboard/${companyId}`);
     } catch (e) {

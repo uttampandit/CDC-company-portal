@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import AuthContext from "../../../context/AuthContext";
 import axios from "axios";
 import GeneralHeader from "../../reusablecomponents/GeneralHeader";
 
 const Register = ({ actionLabel }) => {
+  const ctx = useContext(AuthContext);
   const [companyData, setCompanyData] = useState({
     name: "",
     category: "",
@@ -13,6 +14,7 @@ const Register = ({ actionLabel }) => {
     designation: "",
     registeredEmail: "",
     mobileNumber: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const Register = ({ actionLabel }) => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(e);
     e.preventDefault();
 
     console.log(companyData);
@@ -33,9 +36,10 @@ const Register = ({ actionLabel }) => {
         companyData,
       });
       console.log(req);
-      const companyId = req.data;
-
-      console.log("This is registered company Id" + companyId);
+      const {companyId,token} = req.data;
+      console.log("This is registered company Id : " + companyId);
+      console.log("token :",token);
+      ctx.Login(token);
       navigate(`/dashboard/${companyId}`);
     } catch (e) {
       console.log(e);
@@ -147,6 +151,18 @@ const Register = ({ actionLabel }) => {
                   className="font-poppins text-sm shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                 />
               </div>
+              <div className="flex items-center pr-4 mb-3">
+                <label className="font-poppins w-32 text-gray-700 text-sm font-bold">
+                  Password
+                </label>
+                <input
+                  name="password"
+                  value={companyData.password}
+                  type="tel"
+                  onChange={handleChange}
+                  className="font-poppins text-sm shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                />
+              </div>
               <div className="flex w-full justify-center">
                 <button
                   onClick={handleSubmit}
@@ -156,7 +172,7 @@ const Register = ({ actionLabel }) => {
                 </button>
               </div>
             </form>
-        </div>
+          </div>
         </div>
       </div>
     </div>
