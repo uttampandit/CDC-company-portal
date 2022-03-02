@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const { any } = require("joi");
 
 const Company = require("../models/companyModel");
 
@@ -19,14 +20,23 @@ const newinf = asyncHandler(async (req, res, next) => {
   // getting data from post request
   const data = req.body;
   console.log(data);
+  console.log(company);
   //simple pushing the inf
+  if(companyId !== req.userData.userId){
+    //backend check
+    throw Error('compnay id from request and jwt doesnt match')
+  }
   company.INF.push(data);
-  await company.save();
-  res.send(
-    JSON.stringify({
-      data
-    })
-  );
+  try {
+    const result = await company.save();
+    res.send(
+      JSON.stringify({
+        data,
+      })
+    );
+  } catch (e) {
+    console.log(e.message);
+  }
 });
 
 const getallinf = asyncHandler(async (req, res, next) => {
@@ -36,10 +46,38 @@ const getallinf = asyncHandler(async (req, res, next) => {
 
   console.log(companyId ? companyId : "Nothing");
 
-  const allinfs = await Company.findById(companyId)
-
+  const allinfs = await Company.findById(companyId);
 
   res.send(JSON.stringify(allinfs));
 });
 
-module.exports = { infHandler, newinf, getallinf };
+const updateinf = asyncHandler(async (req, res, next) => {
+  const updatedInf = req.body;
+  const companyId = req.params.companyId;
+  const infId = req.params.infId;
+  const company = await Company.findById(companyId);
+  if(companyId !== req.userData.userId){
+    //backend check
+    throw Error('compnay id from request and jwt doesnt match')
+  }
+  // console.log(company);
+  company.INF.pull({ _id: infId });
+  company.INF.push(updatedInf);
+  const result = await company.save();
+  res.send(JSON.stringify(result));
+});
+
+const deleteinf = asyncHandler(async (req, res, next) => {
+  const companyId = req.params.companyId;
+  const infId = req.params.infId;
+  const company = await Company.findById(companyId);
+  console.log("delete");
+  if(companyId !== req.userData.userId){
+    //backend check
+    throw Error('compnay id from request and jwt doesnt match')
+  }
+  company.INF.pull({ _id: infId });
+  const result = await company.save();
+  res.send(JSON.stringify(result));
+});
+module.exports = { infHandler, newinf, getallinf, updateinf, deleteinf };
