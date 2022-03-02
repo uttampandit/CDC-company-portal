@@ -19,13 +19,16 @@ const ctx = useContext(AuthContext);
     setIsLoading(false);
   }, []);
 
-  const companies = Object.keys(companyDatabase).map((company) => {return companyDatabase[company].INFO})
+  const companies = Object.keys(companyDatabase).map((company) => {return companyDatabase[company]})
+
+  console.log(companies);
+
   let allInf = 0;
   Object.keys(companyDatabase).map((company) => {companyDatabase[company].INF.forEach(element => {
     allInf++;
   });})
   let allJnf = 0;
-  Object.keys(companyDatabase).map((company) => {companyDatabase[company].INF.forEach(element => {
+  Object.keys(companyDatabase).map((company) => {companyDatabase[company].JNF.forEach(element => {
     allJnf++;
   });})
 

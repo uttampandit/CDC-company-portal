@@ -89,6 +89,37 @@
   .divider:not(:empty)::after {
     margin-left: 0.5em;
   }
+.divider-with-font {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* To show the lines on right 
+  and left sides of the text */
+  .divider-with-font::after,
+  .divider-with-font::before {
+    content: "";
+    border: 1px solid rgb(222, 218, 255);
+    flex: 1;
+  }
+
+  .dark-divider-with-font {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 0.5px solid rgb(146, 127, 255);
+    flex: 1;
+
+  }
+  
+  /* Space on left and right sides of text */
+  .divider-with-font:not(:empty)::before {
+    margin-right: 0.5em;
+  }
+  
+  .divider-with-font:not(:empty)::after {
+    margin-left: 0.5em;
+  }
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;

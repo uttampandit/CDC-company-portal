@@ -4,7 +4,7 @@ import Logo from "../../assets/ISM Logo.png";
 import AccountDropDownMenu from "./AccountDropDownMenu";
 import AuthContext from "../../context/AuthContext";
 const GeneralHeader = (props) => {
-  const {companyId} = useParams();
+  const { companyId } = useParams();
   const ctx = useContext(AuthContext);
   const navigate = useNavigate();
   return (
@@ -14,20 +14,18 @@ const GeneralHeader = (props) => {
           src={Logo}
           alt="Logo IIT ISM"
           className="h-20 w-20 m-5"
-          onClick={() =>{
-            if(ctx.isLoggedIn){
+          onClick={() => {
+            if (ctx.isLoggedIn) {
               navigate(`/dashboard/${companyId}`);
-            }else{
-              navigate('/');
+            } else {
+              navigate("/");
             }
           }}
         />
-        <h1 className="grow text-center md:font-medium   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
-          Company Registration Portal
+        <h1 className="grow text-center md:font-semibold   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
+          Company Portal
         </h1>
-        <div className="m-5">
-          <AccountDropDownMenu />
-        </div>
+        <div className="m-5">{ctx.isLoggedIn && <AccountDropDownMenu />}</div>
       </div>
     </div>
   );
