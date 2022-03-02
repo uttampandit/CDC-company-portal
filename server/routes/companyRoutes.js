@@ -24,12 +24,13 @@ const registerValidate = require("../middleWare/registerValidation");
 
 
 //get all companies
-router.get("/companies", getCompanies)
+
 router.post("/login",authCompany);
 router.post("/create", setCompanies);
 
 
 router.use(authCheck);
+router.get("/companies", getCompanies)
 router.get('/:companyId',getCompany);
 router.post("/:companyId/updateCompany", updateCompany);
 

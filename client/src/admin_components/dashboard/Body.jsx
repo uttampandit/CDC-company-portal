@@ -2,14 +2,19 @@ import React, { useEffect, useState } from "react";
 import DataCard from "../common/DataCard";
 import Submissions from "./Submissions";
 import axios from "axios";
-
+import AuthContext from "../../context/AuthContext";
+import { useContext } from "react";
 const Body = () => {
-
+const ctx = useContext(AuthContext);
   const [companyDatabase, setCompanyDatabase] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(async () => {
-    const res = await axios.get(`http://localhost:8000/companies`);
+    const res = await axios.get(`http://localhost:8000/company/companies`,
+      {headers:{
+        authorization:"Bearer "+ctx.token
+      }}
+    );
     setCompanyDatabase({ ...res.data });
     setIsLoading(false);
   }, []);

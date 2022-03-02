@@ -4,14 +4,78 @@ import { ChevronDownIcon, PlusIcon } from "@heroicons/react/solid";
 import { useNavigate } from "react-router-dom";
 import Hamburger from "../../admin_assets/Hamburger";
 import AuthContext from "../../context/AuthContext";
+import { useRef } from "react";
+import axios from "axios";
 export const HamburgerMenu = () => {
-  
+  const refA = useRef();
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
   const onClickHandler = ()=>{
       ctx.LogOut();
       navigate('/');
   }
+  const fn = async () => {
+    const res = await axios.get(`http://localhost:8000/company/companies`,{headers:{
+      authorization:"Bearer "+ctx.token
+    }});
+    console.log(res);
+    const datas = res.data;
+    let x = ["Company Details\n\n"];
+    function makeCsv(rows) {
+      return rows.map((r) => r.join(",")).join("\n");
+    }
+    datas.forEach((data,ind)=>{
+      delete data.INFO.password;
+      delete data.INFO.pocName;
+      delete data.INFO.designation;
+      delete data.INFO.registeredEmail;
+      delete data.INFO.mobileNumber;
+      delete data.createdAt;
+      delete data.updatedAt;
+      delete data.__v;
+      data.JNF.forEach((jnf)=>{
+        delete jnf._id;
+      })
+      data.INF.forEach((inf)=>{
+        delete inf._id;
+      })
+      let entries = [`Company ${ind+1}\n`];
+      let infoEntries = Object.entries(data.INFO);
+      entries = entries.concat([...infoEntries]);
+      console.log(entries);
+      // x.concat(makeCsv(entries));
+      // x.push("\n\n","JNF\n\n");
+
+      // //going for jnf and inf
+      // const y = [];
+      // var sz = data.JNF.length;
+      // for(let i = 0;i<data.JNF.length;i++){
+      //     const arr = data.JNF[i];
+      //     const arr2 = Object.entries(arr);
+      //     const arr3 = makeCsv(arr2);
+      //     x.push(`JNF:${i+1}\n`)
+      //     x.push(arr3);
+      //     x.push("\n\n");
+      // }
+      
+      x.push("INF\n\n");
+      var sz1 = data.INF.length;
+      for(let i=0;i<sz1;i++)
+      {
+          const arr = data.INF[i];
+          const arr2 = Object.entries(arr);
+          const arr3 = makeCsv(arr2);
+          x.push(`INF:${i+1}\n`)
+          x.push(arr3);
+      }
+    })  
+    console.log(x);
+    const blob = new Blob(x);
+      console.log(refA);
+      refA.current.href =  URL.createObjectURL(blob);
+  }
+
+
   return (
     <div className="w-16">
       <Menu as="div" className="relative inline-block text-left">
@@ -35,7 +99,7 @@ export const HamburgerMenu = () => {
                     active ? "bg-blue-600/75 text-white" : "text-gray-900"
                   } group flex rounded-md items-center w-full justify-center px-2 py-2 text-md font-normal `}
                 >
-                  Export data for students
+                  <a download="student.csv" ref={refA}  id="a" onClick={fn()}>Export data for students</a>
                 </button>
               )}
             </Menu.Item>
