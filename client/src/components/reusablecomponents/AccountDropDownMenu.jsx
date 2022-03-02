@@ -32,7 +32,7 @@ const AccountDropDownMenu = () => {
           x.push(`JNF:${i+1}\n`)
           x.push(arr3);
           x.push("\n\n");
-      }
+      
       
       x.push("INF\n\n");
       var sz1 = data.INF.length;
