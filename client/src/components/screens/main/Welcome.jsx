@@ -21,14 +21,12 @@ const Body = () => {
 
           <div className="fadeInUp flex w-full justify-center items-center">
             <button
-              className="bg-blue-500 text-white font-poppins mr-2 p-2 pl-10 pr-10 rounded-lg"
+              className="bg-blue-500 text-white w-1/2 font-poppins mr-2 p-2 pl-10 pr-10 rounded-lg"
               onClick={() => navigate("/login")}
             >
               Get Started
             </button>
-            <button className="bg-blue-500 text-white font-poppins ml-2 p-2 pl-12 pr-12 rounded-lg">
-              Explore
-            </button>
+             
           </div>
         </div>
         <div></div>

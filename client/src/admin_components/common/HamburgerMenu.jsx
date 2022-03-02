@@ -181,18 +181,6 @@ export const HamburgerMenu = () => {
                   className={`${
                     active ? "bg-blue-600/75 text-white" : "text-gray-900"
                   } group flex rounded-md justify-center items-center w-full px-2 py-2 text-md font-normal`}
-                  onClick={() => navigate("inf")}
-                >
-                  Set graduation year 
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-blue-600/75 text-white" : "text-gray-900"
-                  } group flex rounded-md justify-center items-center w-full px-2 py-2 text-md font-normal`}
                   onClick={onClickHandler}
                 >
                   Log Out 

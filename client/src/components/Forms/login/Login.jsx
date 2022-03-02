@@ -48,7 +48,7 @@ const Login = () => {
   return (
     <div className="flex flex-col overflow-hidden h-screen justify-start items-center bg-gradient-to-t from-blue-200">
       <GeneralHeader />
-      <div className="flex grow w-full pl-10 mb-10 pr-20 justify-center items-center">
+      <div className="flex grow w-full pl-32 mb-10 pr-32 justify-center items-center">
         <div className="flex flex-col w-full p-10 bg-white/60 rounded-md">
           <h1 className="font-poppins text-gray-700 text-1xl font-bold text-center">
             Login
