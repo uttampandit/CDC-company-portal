@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-
+const dotenv = require("dotenv").config();
 const secretString = process.env.TOKEN_SECRET_AUTH
 
 module.exports = function (creater, isAdmin)
