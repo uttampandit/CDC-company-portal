@@ -7,7 +7,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-const Posting = ({ posting, route , deleteCallback }) => {
+const JnfPosting = ({ posting, route, deleteCallback }) => {
   const navigate = useNavigate();
   return (
     <div className="p-5 mb-3 rounded-md w-full bg-white">
@@ -35,10 +35,37 @@ const Posting = ({ posting, route , deleteCallback }) => {
               leaveTo="transform scale-85 opacity-0"
             >
               <Disclosure.Panel>
-                <div className="flex pt-5 justify-start items-start bg-white">
-                  <p className="grow font-poppins text-sm font-light">
-                    {posting.description}
-                  </p>
+                <div className="flex flex-col pt-5 bg-white">
+                  <div className="flex justify-start items-start ">
+                    <p className="grow font-poppins text-sm font-light w-1/2 p-2">
+                      <p className="font-poppins text-sm font-medium">
+                        Place of Posting
+                      </p>{" "}
+                      {posting.placeOfPosting}
+                    </p>
+                    <p className="grow font-poppins text-sm font-light w-1/2 p-2">
+                      <p className="font-poppins text-sm font-medium">
+                        Description
+                      </p>{" "}
+                      {posting.description}
+                    </p>
+                  </div>
+                  <div className="flex justify-start items-start ">
+                    <p className="grow font-poppins text-sm font-light w-1/2 p-2">
+                      <p className="font-poppins text-sm font-medium">
+                        CTC in LPA
+                      </p>{" "}
+                      {posting.ctcInLpa}
+                    </p>
+                    <p className="grow font-poppins text-sm font-light w-1/2 p-2">
+                      <p className="font-poppins text-sm font-medium">
+                        CTC breakup
+                      </p>{" "}
+                      {posting.ctcBreakup}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-end items-start p-2">
                   <button className="font-poppins rounded mt-5 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 focus:outline-none focus:shadow-outline">
                     <PencilIcon
                       className="w-4 h-4 text-white"
@@ -46,7 +73,11 @@ const Posting = ({ posting, route , deleteCallback }) => {
                       onClick={() => navigate(`${route}/${posting._id}`)}
                     />
                   </button>
-                  <DeleteButton id={posting._id} routes={route} deleteCallback={deleteCallback}/>
+                  <DeleteButton
+                    id={posting._id}
+                    routes={route}
+                    deleteCallback={deleteCallback}
+                  />
                 </div>
               </Disclosure.Panel>
             </Transition>
@@ -57,7 +88,7 @@ const Posting = ({ posting, route , deleteCallback }) => {
   );
 };
 
-const DeleteButton = ({ id, routes,deleteCallback }) => {
+const DeleteButton = ({ id, routes, deleteCallback }) => {
   const ctx = useContext(AuthContext);
   let [isOpen, setIsOpen] = useState(false);
   const { companyId } = useParams();
@@ -67,8 +98,6 @@ const DeleteButton = ({ id, routes,deleteCallback }) => {
   const openDialogState = () => {
     setIsOpen(true);
   };
-
- 
 
   return (
     <>
@@ -143,12 +172,14 @@ const DeleteButton = ({ id, routes,deleteCallback }) => {
                           url = url + "inf";
                         }
                         const res = await axios.delete(
-                          `http://localhost:8000/company/${companyId}/${id}/${url}`,{headers:{
-                            authorization:"Bearer "+ctx.token
-                          }}
-                         
+                          `http://localhost:8000/company/${companyId}/${id}/${url}`,
+                          {
+                            headers: {
+                              authorization: "Bearer " + ctx.token,
+                            },
+                          }
                         );
-                        deleteCallback()
+                        deleteCallback();
                       } catch (e) {
                         console.log(e.message);
                       }
@@ -166,4 +197,4 @@ const DeleteButton = ({ id, routes,deleteCallback }) => {
   );
 };
 
-export default Posting;
+export default JnfPosting;

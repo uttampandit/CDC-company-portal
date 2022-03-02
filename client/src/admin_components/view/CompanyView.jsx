@@ -4,6 +4,8 @@ import Header from "../dashboard/Header";
 import { Tab } from "@headlessui/react";
 import Loader from "../common/Loader";
 import Posting from "../common/Posting";
+import JnfPosting from "../common/JnfPosting";
+import InfPosting from "../common/InfPosting";
 
 const CompanyView = () => {
   const { state } = useLocation();
@@ -120,11 +122,11 @@ const PostingDiv = ({ company }) => {
                               className="flex bg-blue-400 text-white font-poppins rounded-md items-center px-2 py-2 text-sm"
                               onClick={() => navigate("jnf")}
                             >
-                              Create Job Posting +
+                              No posting
                             </button>
                           </div>
                         ) : (
-                          <Posting
+                          <JnfPosting
                             key={posting._id}
                             posting={posting}
                           />
@@ -146,11 +148,11 @@ const PostingDiv = ({ company }) => {
                                 className="flex bg-blue-400 text-white font-poppins rounded-md items-center px-2 py-2 text-sm"
                                 onClick={() => navigate("inf")}
                               >
-                                Create Internship Posting +
+                                No posting
                               </button>
                             </div>
                           ) : (
-                            <Posting
+                            <InfPosting
                               key={posting._id}
                               posting={posting}
                             />

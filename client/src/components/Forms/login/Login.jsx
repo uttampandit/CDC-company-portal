@@ -45,11 +45,12 @@ const Login = () => {
     // navigate('/dashboard/companyId');
   };
   return (
-    <div className="flex flex-col min-h-screen justify-start items-center bg-gradient-to-t from-blue-200">
+    <div className="flex flex-col overflow-hidden h-screen justify-start items-center bg-gradient-to-t from-blue-200">
       <GeneralHeader />
-      <div className="flex w-full grow flex-col mb-10 justify-center items-center">
+      <p className="absolute transform-rotate-90 top-80 font-poppins font-extrabold text-blue-400/20 text-[400px] ">CDC</p>
+      <div className="flex w-full grow h-full flex-col mb-10 justify-center items-center">
 
-      <div className="flex flex-col w-1/3 p-5 bg-white/60 rounded-md">
+      <div className="relative -top-20 flex flex-col w-2/3 p-10 bg-white/60 rounded-md">
         <h1 className="font-poppins text-gray-700 text-1xl font-bold text-center">Login</h1>
         <p className="divider font-light mb-5"></p>
         <GeneralInputField
@@ -64,15 +65,15 @@ const Login = () => {
           value={loginCredentials.password}
           onChange={onChangeHandler}
         />
-        <div className="flex w-full justify-evenly pl-10 pr-10">
+        <div className="flex w-full justify-around pl-10 pr-10">
           <button
-            className="bg-blue-400 p-2 font-poppins text-white rounded-md"
+            className="bg-blue-400 w-full mr-5 placeholder:p-2 font-poppins text-white rounded-md"
             onClick={submitHandler}
           >
             Login
           </button>
           <button
-            className="bg-blue-400 p-2 font-poppins text-white rounded-md"
+            className="bg-blue-400 p-2 w-full ml-5 font-poppins text-white rounded-md"
             onClick={registerButtonHandler}
           >
             Register Company

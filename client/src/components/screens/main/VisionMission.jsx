@@ -9,9 +9,6 @@ const VisionMission = () => {
         <p className="font-poppins z-20 text-portal-blue pt-10 text-5xl">
           Vision
         </p>
-        <h1 className="absolute top-[520px] z-10 font-poppins text-[200px] text-blue-200/40">
-          Vision
-        </h1>
         <div className="flex pt-20 w-full justify-end items-center">
           <div className="pl-10 pr-10">
             <p className="text-gray-500 text-2xl p-10 rounded-md font-extralight bg-white/60 shadow-2xl">

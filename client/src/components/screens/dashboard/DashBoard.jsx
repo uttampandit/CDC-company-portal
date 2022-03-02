@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import DropDownMenu from "../../reusablecomponents/DropDownMenu";
 import GeneralHeader from "../../reusablecomponents/GeneralHeader";
 import axios from "axios";
-import Posting from "../../../admin_components/common/Posting";
 import Card from "../../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
 import Loader from "../../reusablecomponents/Loader";
 import AuthContext from "../../../context/AuthContext";
+import Posting from "../../reusablecomponents/Posting";
+import InfPosting from "../../reusablecomponents/InfPosting";
+import JnfPosting from "../../reusablecomponents/JnfPosting";
 
 const DashBoard = () => {
   console.log("dashboard ran");
@@ -161,7 +163,7 @@ const DashBoard = () => {
                                     </button>
                                   </div>
                                 ) : (
-                                  <Posting
+                                  <JnfPosting
                                     key={posting._id}
                                     posting={posting}
                                     route={"updatejnf"}
@@ -193,7 +195,7 @@ const DashBoard = () => {
                                       </button>
                                     </div>
                                   ) : (
-                                    <Posting
+                                    <InfPosting
                                       key={posting._id}
                                       posting={posting}
                                       route={"updateinf"}
