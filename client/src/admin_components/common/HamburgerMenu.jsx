@@ -8,71 +8,128 @@ import { useRef } from "react";
 import axios from "axios";
 export const HamburgerMenu = () => {
   const refA = useRef();
+  const refa = useRef();
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
   const onClickHandler = ()=>{
       ctx.LogOut();
       navigate('/');
   }
+  //company csv
+  const fnCompany = async () => {
+    const res = await axios.get(`http://localhost:8000/company/companies`,{headers:{
+      authorization:"Bearer "+ctx.token
+    }});
+    const datas = res.data;
+    const x = ["All Company Refistered\n\n"];
+    function makeCsv(rows) {
+      return rows.map((r) => r.join(",")).join("\n");
+    }
+    var sz = datas.length;
+    for(let i=0;i<sz;i++)
+    {
+      x.push(`Company ${i+1}\n\n`);
+      const data = datas[i];
+      delete data.INFO.password;
+      data.JNF.forEach((jnf)=>{
+        delete jnf._id;
+      })
+      data.INF.forEach((inf)=>{
+      delete inf._id;
+      })
+      const entries = Object.entries(data.INFO);
+      x.push("Company datails\n\n");
+      x.push(makeCsv(entries));
+      x.push("\n\n");
+      x.push("JNF\n\n");
+      const y = [];
+      for(let j = 0;j<data.JNF.length;j++){
+          const arr = data.JNF[j];
+          const arr2 = Object.entries(arr);
+          const arr3 = makeCsv(arr2);
+          x.push(`JNF:${j+1}\n`)
+          x.push(arr3);
+          x.push("\n\n");
+      }
+      x.push("INF\n\n");
+      for(let j=0;j<data.INF.length;j++)
+      {
+          const arr = data.INF[j];
+          const arr2 = Object.entries(arr);
+          const arr3 = makeCsv(arr2);
+          x.push(`INF:${j+1}\n`)
+          x.push(arr3);
+          x.push("\n\n");
+      }
+      
+    }
+    
+    const blob = new Blob(x);
+    //console.log(refa);
+    refa.current.href =  URL.createObjectURL(blob);
+  }
+
+
+
+
+
+
+  //fn 
   const fn = async () => {
     const res = await axios.get(`http://localhost:8000/company/companies`,{headers:{
       authorization:"Bearer "+ctx.token
     }});
-    console.log(res);
     const datas = res.data;
-    let x = ["Company Details\n\n"];
+    const x = ["All Company Refistered\n\n"];
     function makeCsv(rows) {
       return rows.map((r) => r.join(",")).join("\n");
     }
-    datas.forEach((data,ind)=>{
+    var sz = datas.length;
+    for(let i=0;i<sz;i++)
+    {
+      x.push(`Company ${i+1}\n\n`);
+      const data = datas[i];
       delete data.INFO.password;
       delete data.INFO.pocName;
       delete data.INFO.designation;
       delete data.INFO.registeredEmail;
       delete data.INFO.mobileNumber;
-      delete data.createdAt;
-      delete data.updatedAt;
-      delete data.__v;
       data.JNF.forEach((jnf)=>{
         delete jnf._id;
       })
       data.INF.forEach((inf)=>{
-        delete inf._id;
+      delete inf._id;
       })
-      let entries = [`Company ${ind+1}\n`];
-      let infoEntries = Object.entries(data.INFO);
-      entries = entries.concat([...infoEntries]);
-      console.log(entries);
-      // x.concat(makeCsv(entries));
-      // x.push("\n\n","JNF\n\n");
-
-      // //going for jnf and inf
-      // const y = [];
-      // var sz = data.JNF.length;
-      // for(let i = 0;i<data.JNF.length;i++){
-      //     const arr = data.JNF[i];
-      //     const arr2 = Object.entries(arr);
-      //     const arr3 = makeCsv(arr2);
-      //     x.push(`JNF:${i+1}\n`)
-      //     x.push(arr3);
-      //     x.push("\n\n");
-      // }
-      
-      x.push("INF\n\n");
-      var sz1 = data.INF.length;
-      for(let i=0;i<sz1;i++)
-      {
-          const arr = data.INF[i];
+      const entries = Object.entries(data.INFO);
+      x.push("Company datails\n\n");
+      x.push(makeCsv(entries));
+      x.push("\n\n");
+      x.push("JNF\n\n");
+      const y = [];
+      for(let j = 0;j<data.JNF.length;j++){
+          const arr = data.JNF[j];
           const arr2 = Object.entries(arr);
           const arr3 = makeCsv(arr2);
-          x.push(`INF:${i+1}\n`)
+          x.push(`JNF:${j+1}\n`)
           x.push(arr3);
+          x.push("\n\n");
       }
-    })  
-    console.log(x);
+      x.push("INF\n\n");
+      for(let j=0;j<data.INF.length;j++)
+      {
+          const arr = data.INF[j];
+          const arr2 = Object.entries(arr);
+          const arr3 = makeCsv(arr2);
+          x.push(`INF:${j+1}\n`)
+          x.push(arr3);
+          x.push("\n\n");
+      }
+      
+    }
+    
     const blob = new Blob(x);
-      console.log(refA);
-      refA.current.href =  URL.createObjectURL(blob);
+    //console.log(refa);
+    refA.current.href =  URL.createObjectURL(blob);
   }
 
 
@@ -110,8 +167,9 @@ export const HamburgerMenu = () => {
                   className={`${
                     active ? "bg-blue-600/75 text-white" : "text-gray-900"
                   } group flex rounded-md justify-center items-center w-full px-2 py-2 text-md font-normal `}
+                  
                 >
-                  Export data(.csv File)
+                  <a download="company.csv" ref={refa}  id="a" onClick={fnCompany()}>Export data(.csv File)</a>
                 </button>
               )}
             </Menu.Item>
