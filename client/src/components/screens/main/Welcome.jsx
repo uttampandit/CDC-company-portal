@@ -13,7 +13,7 @@ const Body = () => {
                 Company
                 Portal
               </p>
-              <p className="flex font-light pb-4 font-poppins text-center leading-snug text-3xl text-portal-blue   tracking-wide">
+              <p className="flex font-medium pb-4 font-poppins text-center leading-snug text-3xl text-portal-blue   tracking-wide">
                 Career Development Center <br /> IIT(ISM) Dhanbad
               </p>
             </div>

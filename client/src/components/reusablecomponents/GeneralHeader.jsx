@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Logo from "../../assets/ISM Logo.png";
 import AccountDropDownMenu from "./AccountDropDownMenu";
 import AuthContext from "../../context/AuthContext";
-const GeneralHeader = (props) => {
+const GeneralHeader = ({ companyName }) => {
   const { companyId } = useParams();
   const ctx = useContext(AuthContext);
   const navigate = useNavigate();
@@ -25,7 +25,14 @@ const GeneralHeader = (props) => {
         <h1 className="grow text-center md:font-semibold   sm:font-medium sm:text-2xl font-poppins md:text-4xl text-portal-blue">
           Company Portal
         </h1>
-        <div className="m-5">{ctx.isLoggedIn && <AccountDropDownMenu />}</div>
+        <div className="m-5">
+          {ctx.isLoggedIn && (
+            <div className="flex justify-center items-center">
+              <p className="font-medium"> {companyName}</p>
+              <AccountDropDownMenu />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

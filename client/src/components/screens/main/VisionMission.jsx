@@ -1,6 +1,7 @@
 import React from "react";
 import BorderDesign from "../../../assets/BorderDesign";
 import DirectorLogo from "../../../assets/director_image_circle.png";
+import MissionCard from "../../reusablecomponents/MissionCard";
 
 const VisionMission = () => {
   return (
@@ -32,7 +33,22 @@ const VisionMission = () => {
         </h1>
       </div>
       <div className="h-screen bg-gradient-to-t">
-        <p className="relative font-poppins z-20 text-portal-blue w-full pl-20 pt-5 text-5xl">Mission</p>
+        <p className="font-poppins z-20 text-portal-blue w-full pl-20 pt-5 text-5xl">
+          Mission
+        </p>
+        <div className="flex justify-evenly pt-32 pl-10">
+          <MissionCard
+            mission={`To educate and train manpower in various disciplines of engineering and technology, management
+        , applied sciences and applied arts at the graduate, postgraduate and research levels`}
+          />
+          <MissionCard
+            mission={`To participate directly in the planning and solving of engineering and managerial problems of relevance to 
+            Indian industry and to society at large.`}
+          />
+          <MissionCard
+            mission={`To develop and conduct continuing education programmes for practicing engineers and managers.`}
+          />
+        </div>
       </div>
     </div>
   );

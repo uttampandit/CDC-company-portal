@@ -45,10 +45,12 @@ const DashBoard = () => {
   const numberOfInfPostings = isLoading ? " " : companyData.INF.length;
   const numberOfJnfPostings = isLoading ? " " : companyData.JNF.length;
 
+  console.log();
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-400">
       <div className="flex w-full items-center">
-        <GeneralHeader heading="Dashboard" />
+        <GeneralHeader companyName={companyData.INFO.name}/>
       </div>
 
       <div className="flex flex-col">
@@ -60,7 +62,14 @@ const DashBoard = () => {
                 numberOfJnfPostings > 1 ? "Job Postings" : "Job Posting"
               }`}
             />
-            <Card value={`1.5 Cr`} label={`offered`} />
+            <Card
+              value={`${numberOfJnfPostings + numberOfInfPostings}`}
+              label={`${
+                numberOfInfPostings + numberOfJnfPostings > 1
+                  ? "Total Postings"
+                  : "Total Posting"
+              }`}
+            />
             <Card
               value={`${numberOfInfPostings}`}
               label={`${
