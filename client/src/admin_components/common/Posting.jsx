@@ -7,9 +7,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-const Posting = ({ posting, route , deleteCallback }) => {
-  const [open, setopen] = useState(false);
-  const { companyId } = useParams();
+const Posting = ({ posting }) => {
   const navigate = useNavigate();
   return (
     <div className="p-5 mb-3 rounded-md w-full bg-white">
@@ -41,14 +39,6 @@ const Posting = ({ posting, route , deleteCallback }) => {
                   <p className="grow font-poppins text-sm font-light">
                     {posting.description}
                   </p>
-                  <button className="font-poppins rounded mt-5 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 focus:outline-none focus:shadow-outline">
-                    <PencilIcon
-                      className="w-4 h-4 text-white"
-                      aria-hidden="true"
-                      onClick={() => navigate(`${route}/${posting._id}`)}
-                    />
-                  </button>
-                  <DeleteButton id={posting._id} routes={route} deleteCallback={deleteCallback}/>
                 </div>
               </Disclosure.Panel>
             </Transition>

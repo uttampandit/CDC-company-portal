@@ -4,6 +4,9 @@ import Loader from "../common/Loader";
 import Submission from "../common/Submission";
 
 const Submissions = ({ isLoading, companies }) => {
+
+
+
   return (
     <div className="flex grow flex-col p-5 rounded-md bg-white/60 m-10">
       <h1 className="font-poppins font-bold text-portal-blue">Submissions</h1>
@@ -13,7 +16,7 @@ const Submissions = ({ isLoading, companies }) => {
       ) : (
         <div>
           {companies.map((company) => (
-            <Submission company={company} />
+            <Submission key={company._id} company={company} />
           ))}
         </div>
       )}

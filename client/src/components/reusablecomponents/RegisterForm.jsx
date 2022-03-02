@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GeneralHeader from "./GeneralHeader";
 import GeneralInputField from "./GeneralInputField";
 
-const RegisterForm = (props) => {
+const   RegisterForm = (props) => {
   const { companydata, handleCompanyData, actionLabel } = props;
 
   const [companyData, setCompanyData] = useState({

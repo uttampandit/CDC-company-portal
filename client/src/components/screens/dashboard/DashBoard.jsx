@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DropDownMenu from "../../reusablecomponents/DropDownMenu";
 import GeneralHeader from "../../reusablecomponents/GeneralHeader";
 import axios from "axios";
-import Posting from "../../reusablecomponents/Posting";
+import Posting from "../../../admin_components/common/Posting";
 import Card from "../../reusablecomponents/Card";
 import { ShareIcon, UploadIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
