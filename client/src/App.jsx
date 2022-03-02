@@ -10,6 +10,7 @@ import Login from "./components/forms/login/Login";
 import AuthContext from "./context/AuthContext";
 import HomePage from "./components/screens/main/HomePage";
 import RegisterUpdate from "./components/forms/register/RegisterUpdate";
+import Admin from "./components/screens/admin/Admin";
 
 const App = () => {
   const [token, setToken] = useState(""); 
@@ -71,6 +72,9 @@ const App = () => {
               path="dashboard/:companyId/updateCompany"
               element={<RegisterUpdate/>}
             />
+            <Route 
+            path="admin"
+            element={<Admin/>} />
             {/* <Route path="*" element={<Navigate to="dashboard/:companyId" />} /> */}
           </React.Fragment>
         ) : (
