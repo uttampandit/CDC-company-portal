@@ -7,7 +7,7 @@ const VisionMission = () => {
   return (
     <div>
       <div className="flex flex-col h-screen items-center bg-gradient-to-b from-blue-300">
-        <p className="font-poppins z-20 text-portal-blue pt-10 text-5xl">
+        <p className="fadeInDown font-poppins z-20 text-portal-blue pt-10 text-5xl">
           Vision
         </p>
         <div className="flex pt-20 w-full justify-end items-center">
