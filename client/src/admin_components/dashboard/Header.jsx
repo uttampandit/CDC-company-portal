@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../assets/ISM Logo.png";
-import Hamburger from "../../assets/Hamburger";
+import Hamburger from "../../admin_assets/Hamburger";
 import HamburgerMenu from "../common/HamburgerMenu";
 
 const Header = (props) => {

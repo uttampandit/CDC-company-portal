@@ -1,9 +1,6 @@
-import { Disclosure } from "@headlessui/react";
-import { ChevronDoubleDownIcon, ChevronDownIcon } from "@heroicons/react/solid";
-import { Checkbox } from "@mui/material";
+
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import CoursesCheckbox from "./CoursesCheckbox";
+
 import GeneralHeader from "./GeneralHeader";
 import GeneralInputField from "./GeneralInputField";
 

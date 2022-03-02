@@ -1,12 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/solid";
 import { useNavigate } from "react-router-dom";
-import Hamburger from "../../assets/Hamburger";
-
+import Hamburger from "../../admin_assets/Hamburger";
+import AuthContext from "../../context/AuthContext";
 export const HamburgerMenu = () => {
+  
   const navigate = useNavigate();
-
+  const ctx = useContext(AuthContext);
+  const onClickHandler = ()=>{
+      ctx.LogOut();
+      navigate('/');
+  }
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left ">
@@ -57,6 +62,18 @@ export const HamburgerMenu = () => {
                   onClick={() => navigate("inf")}
                 >
                   Set graduation year 
+                </button>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  className={`${
+                    active ? "bg-blue-600/75 text-white" : "text-gray-900"
+                  } group flex rounded-md justify-center items-center w-full px-2 py-2 text-md font-normal`}
+                  onClick={onClickHandler}
+                >
+                  Log Out 
                 </button>
               )}
             </Menu.Item>

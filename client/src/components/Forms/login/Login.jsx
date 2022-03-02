@@ -29,10 +29,11 @@ const Login = () => {
       const res = await axios.post(`http://localhost:8000/company/login`,{...loginCredentials});
       console.log(res.data);
      if(res.data){
-      const {companyId,token} = res.data;
+      const {id,token,isAdmin} = res.data;
       console.log("token :",token);
       ctx.Login(token);
-    navigate(`/dashboard/${companyId}`);
+      if(isAdmin) navigate('/admin');
+      else navigate(`/dashboard/${id}`);
      }else{
        console.log('wrong credentials')
        navigate('/');

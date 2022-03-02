@@ -14,6 +14,7 @@ import PreviewInf from "./components/forms/inf/PreviewInf";
 import InfEdit from "./components/forms/inf/InfEdit";
 import PreviewJnf from "./components/forms/jnf/PreviewJnf";
 import JnfEdit from "./components/forms/jnf/JnfEdit";
+import Admin from "./components/screens/admin/Admin";
 
 const App = () => {
   const [token, setToken] = useState(""); 
@@ -91,6 +92,9 @@ const App = () => {
               path="dashboard/:companyId/JnfEdit"
               element={<JnfEdit />}
             />
+            <Route 
+            path="admin"
+            element={<Admin/>} />
             {/* <Route path="*" element={<Navigate to="dashboard/:companyId" />} /> */}
           </React.Fragment>
         ) : (
