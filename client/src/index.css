@@ -12,12 +12,10 @@
 }
 
 .blue-glassmorphism {
-  background: rgba(180, 198, 255, 0.4);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(165, 18, 250, 0.3);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .fadeInDown {
@@ -63,7 +61,6 @@
 .divider {
     display: flex;
     align-items: center;
-    text-align: center;
   }
   
   /* To show the lines on right 
@@ -71,8 +68,17 @@
   .divider::after,
   .divider::before {
     content: "";
-    border: 0.5px solid rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
     flex: 1;
+  }
+
+  .dark-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 0.5px solid rgb(146, 127, 255);
+    flex: 1;
+
   }
   
   /* Space on left and right sides of text */
