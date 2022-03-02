@@ -14,6 +14,7 @@ const getCompany = asyncHandler(async (req, res) => {
 
 const authCompany = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  console.log('run');
   try {
     const companyExist = await Company.findOne({
       "INFO.registeredEmail": email,
