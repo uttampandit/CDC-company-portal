@@ -13,8 +13,8 @@ export const HamburgerMenu = () => {
       navigate('/');
   }
   return (
-    <div>
-      <Menu as="div" className="relative inline-block text-left ">
+    <div className="w-16">
+      <Menu as="div" className="relative inline-block text-left">
           <Menu.Button className="font-poppins inline-flex justify-center w-full px-[2px] py-[2px] text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Hamburger />
           </Menu.Button>
@@ -47,7 +47,7 @@ export const HamburgerMenu = () => {
                     active ? "bg-blue-600/75 text-white" : "text-gray-900"
                   } group flex rounded-md justify-center items-center w-full px-2 py-2 text-md font-normal `}
                 >
-                  Export data
+                  Export data(.csv File)
                 </button>
               )}
             </Menu.Item>

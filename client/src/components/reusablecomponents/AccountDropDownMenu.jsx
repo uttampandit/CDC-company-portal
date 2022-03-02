@@ -21,18 +21,28 @@ const AccountDropDownMenu = () => {
     }});
     console.log(res);
     const data = res.data;
+    delete data.INFO.password;
+    data.JNF.forEach((jnf)=>{
+      delete jnf._id;
+    })
+    data.INF.forEach((inf)=>{
+      delete inf._id;
+    })
     const entries = Object.entries(data.INFO);
     function makeCsv(rows) {
       return rows.map((r) => r.join(",")).join("\n");
     }
-
+    const x = ["Company Details\n\n" ,makeCsv(entries),"\n\n","JNF\n\n"];
+      const y = [];
+      var sz = data.JNF.length;
+      for(let i = 0;i<data.JNF.length;i++){
           const arr = data.JNF[i];
           const arr2 = Object.entries(arr);
           const arr3 = makeCsv(arr2);
           x.push(`JNF:${i+1}\n`)
           x.push(arr3);
           x.push("\n\n");
-      
+      }
       
       x.push("INF\n\n");
       var sz1 = data.INF.length;
@@ -96,7 +106,7 @@ const AccountDropDownMenu = () => {
                     }
                      group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    <a download="export.csv" ref={refa} id="al" onClick={fn()}>Export Data</a>
+                    <a download="export.csv" ref={refa}  id="al" onClick={fn()}>Export  Data(.csv format)</a>
                   </button>
                 )}
               </Menu.Item>
