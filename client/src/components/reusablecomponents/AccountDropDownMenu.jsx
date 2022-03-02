@@ -1,4 +1,4 @@
-import React, { Fragment, useRef,useContext } from "react";
+import React, { Fragment, useRef,useContext ,useEffect } from "react";
 
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, UsersIcon } from "@heroicons/react/solid";
@@ -8,14 +8,18 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 //import { render } from "@headlessui/react/dist/utils/render";
 
-const AccountDropDownMenu = () => {       
+const AccountDropDownMenu = () => {     
+  const navigate = useNavigate();
+  const ctx = useContext(AuthContext);  
     const refa = useRef();
-    const navigate = useNavigate();
-    const ctx = useContext(AuthContext);
     
+
     const { companyId } = useParams();
     const fn = async () => {
-    const res = await axios.get(`http://localhost:8000/company/${companyId}`);
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`,{headers:{
+      authorization:"Bearer "+ctx.token
+    }});
+    console.log(res);
     const data = res.data;
     const entries = Object.entries(data.INFO);
     function makeCsv(rows) {
@@ -50,8 +54,15 @@ const AccountDropDownMenu = () => {
       // const el = document.getElementById('al');
       // console.log(el);
       const blob = new Blob(x);
+      console.log(refa);
       refa.current.href =  URL.createObjectURL(blob);
   }
+  
+  useEffect(()=>{
+    console.log(refa.current);
+    
+  },[])
+
   return(
     <div>
       <Menu as="div" className="relative inline-block text-left">
@@ -90,7 +101,7 @@ const AccountDropDownMenu = () => {
                   }
                      group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    <a download="export.csv" ref={refa} id="al" onClick = {fn()} >Export Data</a>
+                    <a download="export.csv" ref={refa} id="al" onClick={fn()}>Export Data</a>
                   </button>
                 )}
               </Menu.Item>
