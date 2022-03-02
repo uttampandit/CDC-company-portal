@@ -1,58 +1,61 @@
-import React, { Fragment, useRef,useContext } from "react";
+import React, { Fragment, useRef, useContext } from "react";
 
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, UsersIcon } from "@heroicons/react/solid";
 import Account_Icon from "../../assets/Account_Icon";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 //import { render } from "@headlessui/react/dist/utils/render";
 
-const AccountDropDownMenu = () => {       
-    const refa = useRef();
-    const navigate = useNavigate();
-    const ctx = useContext(AuthContext);
-    
-    const { companyId } = useParams();
-    const fn = async () => {
-    const res = await axios.get(`http://localhost:8000/company/${companyId}`);
+const AccountDropDownMenu = () => {
+  const refa = useRef();
+  console.log(refa);
+  const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
+
+  const { companyId } = useParams();
+  const fn = async () => {
+    const res = await axios.get(`http://localhost:8000/company/${companyId}`, {
+      headers: {
+        authorization: "Bearer " + ctx.token,
+      },
+    });
     const data = res.data;
     const entries = Object.entries(data.INFO);
     function makeCsv(rows) {
       return rows.map((r) => r.join(",")).join("\n");
     }
-      
-      const x = ["Company Details\n\n" ,makeCsv(entries),"\n\n","JNF\n\n"];
-      const y = [];
-      var sz = data.JNF.length;   
-      for(let i=0;i<sz;i++)
-      {
 
-          const arr = data.JNF[i];
-          const arr2 = Object.entries(arr);
-          const arr3 = makeCsv(arr2);
-          x.push(`JNF:${i+1}\n`)
-          x.push(arr3);
-          x.push("\n\n");
-      }
-      
-      x.push("INF\n\n");
-      var sz1 = data.INF.length;
-      for(let i=0;i<sz1;i++)
-      {
-          const arr = data.INF[i];
-          const arr2 = Object.entries(arr);
-          const arr3 = makeCsv(arr2);
-          x.push(`INF:${i+1}\n`)
-          x.push(arr3);
-      }
-      console.log(x);
-      // const el = document.getElementById('al');
-      // console.log(el);
-      const blob = new Blob(x);
-      refa.current.href =  URL.createObjectURL(blob);
-  }
-  return(
+    const x = ["Company Details\n\n", makeCsv(entries), "\n\n", "JNF\n\n"];
+    const y = [];
+    var sz = data.JNF.length;
+    for (let i = 0; i < sz; i++) {
+      const arr = data.JNF[i];
+      const arr2 = Object.entries(arr);
+      const arr3 = makeCsv(arr2);
+      x.push(`JNF:${i + 1}\n`);
+      x.push(arr3);
+      x.push("\n\n");
+    }
+
+    x.push("INF\n\n");
+    var sz1 = data.INF.length;
+    for (let i = 0; i < sz1; i++) {
+      const arr = data.INF[i];
+      const arr2 = Object.entries(arr);
+      const arr3 = makeCsv(arr2);
+      x.push(`INF:${i + 1}\n`);
+      x.push(arr3);
+    }
+    console.log(x);
+    // const el = document.getElementById('al');
+    // console.log(el);
+    const blob = new Blob(x);
+    refa.current.href = URL.createObjectURL(blob);
+  };
+
+  return (
     <div>
       <Menu as="div" className="relative inline-block text-left">
         <div>
@@ -85,12 +88,20 @@ const AccountDropDownMenu = () => {
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <button className={`${
-                    active ? "bg-blue-600/75 text-white" : "text-gray-900"
-                  }
+                  <button
+                    className={`${
+                      active ? "bg-blue-600/75 text-white" : "text-gray-900"
+                    }
                      group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    <a download="export.csv" ref={refa} id="al" onClick = {fn()} >Export Data</a>
+                    <a
+                      download="export.csv"
+                      ref={refa}
+                      id="al"
+                      onClick={() => fn}
+                    >
+                      Export Data
+                    </a>
                   </button>
                 )}
               </Menu.Item>
@@ -111,10 +122,9 @@ const AccountDropDownMenu = () => {
                     className={`${
                       active ? "bg-blue-600/75 text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                    onClick={()=>{
+                    onClick={() => {
                       ctx.LogOut();
-                      navigate('/'
-                      )
+                      navigate("/");
                     }}
                   >
                     LogOut
@@ -126,7 +136,7 @@ const AccountDropDownMenu = () => {
         </Transition>
       </Menu>
     </div>
-  )
-}
+  );
+};
 
 export default AccountDropDownMenu;

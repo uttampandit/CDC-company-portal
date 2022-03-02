@@ -10,6 +10,10 @@ import Login from "./components/forms/login/Login";
 import AuthContext from "./context/AuthContext";
 import HomePage from "./components/screens/main/HomePage";
 import RegisterUpdate from "./components/forms/register/RegisterUpdate";
+import PreviewInf from "./components/forms/inf/PreviewInf";
+import InfEdit from "./components/forms/inf/InfEdit";
+import PreviewJnf from "./components/forms/jnf/PreviewJnf";
+import JnfEdit from "./components/forms/jnf/JnfEdit";
 
 const App = () => {
   const [token, setToken] = useState(""); 
@@ -70,6 +74,22 @@ const App = () => {
             <Route
               path="dashboard/:companyId/updateCompany"
               element={<RegisterUpdate/>}
+            />
+            <Route
+              path="dashboard/:companyId/previewInf"
+              element={<PreviewInf />}
+            />
+            <Route
+              path="dashboard/:companyId/infEdit"
+              element={<InfEdit />}
+            />
+            <Route
+              path="dashboard/:companyId/previewJnf"
+              element={<PreviewJnf />}
+            />
+            <Route
+              path="dashboard/:companyId/JnfEdit"
+              element={<JnfEdit />}
             />
             {/* <Route path="*" element={<Navigate to="dashboard/:companyId" />} /> */}
           </React.Fragment>

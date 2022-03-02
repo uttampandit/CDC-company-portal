@@ -7,11 +7,9 @@ const Inf = () => {
   const ctx = useContext(AuthContext);
   const navigate = useNavigate();
   const { companyId } = useParams();
-  console.log(companyId);
   const infData = {
     designation: "",
-    typeOfInternship:
-      "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only (2022 batch)",
+    typeOfInternship: "Jan-June 2022 Dual Degree/ Integrated M. Tech courses only(2022 batch)",
     description: "",
     modeOfInternship: "Virtual",
     placeOfPosting: "",
@@ -19,28 +17,28 @@ const Inf = () => {
     isPPO: false,
     ctcIfPpo: "",
   };
-  const registerInfHandler = async (e, infData) => {
+  const registerInfHandler = (e, infData) => {
     e.preventDefault();
+    console.log({...infData });
+    console.log(companyId);
+    navigate(
+      `/dashboard/${companyId}/previewInf`,
+      { state : { ...infData }},
+      {
+        headers: {
+          authorization: "Bearer " + ctx.token,
+        },
+      }
+    );
 
-    try {
-      const req = await axios.post(
-        `http://localhost:8000/company/${companyId}/inf`,
-        infData,{headers:{
-          authorization:"Bearer "+ctx.token
-        }}
-      );
-
-      navigate(`/dashboard/${companyId}`);
-    } catch (e) {
-      console.log(e.message);
-    }
+     
   };
 
   return (
     <InfForm
       infdata={infData}
       handleinfdata={registerInfHandler}
-      actionLabel={"Submit"}
+      actionLabel={"Preview"}
     />
   );
 };

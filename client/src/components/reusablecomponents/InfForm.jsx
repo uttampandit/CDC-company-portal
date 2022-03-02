@@ -53,16 +53,13 @@ const InfForm = (props) => {
                 className="ml-3 mr-10 mb-3 block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
                 <option>
-                  Jan-June 2022 Dual Degree/ Integrated M. Tech courses only
-                  (2022 batch)
+                Jan-June 2022 Dual Degree/ Integrated M. Tech courses only(2022 batch)
                 </option>
                 <option>
-                  May-July 2022 Pre-final year students of ALL courses (2023
-                  batch)
+                  May-July 2022 Pre-final year students of ALL courses (2023 batch)
                 </option>
                 <option>
-                  July-Dec 2022 M. Tech/ MBA-Business Analytics courses only
-                  (2023 batch)
+                  July-Dec 2022 M. Tech/ MBA-Business Analytics courses only (2023 batch)
                 </option>
               </select>
             </div>

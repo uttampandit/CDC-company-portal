@@ -21,10 +21,8 @@ const JnfUpdate = () => {
     } catch (e) {
       console.log(e.message);
     }
-  }, []);
-  const jnfData = {
-    jnfdata,
-  };
+  }, [jnfId, companyId]);
+
   const registerJnfHandler = async (e, jnfData) => {
     e.preventDefault();
     console.log(jnfData);

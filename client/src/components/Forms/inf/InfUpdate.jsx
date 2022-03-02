@@ -22,9 +22,7 @@ const InfUpdate = () => {
       console.log(e.message);
     }
   }, [infId, companyId]);
-  const infData = {
-    infdata,
-  };
+   
   const registerInfHandler = async (e, infData) => {
     e.preventDefault();
     console.log(infData);

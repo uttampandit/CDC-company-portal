@@ -17,29 +17,39 @@ const ctx = useContext(AuthContext);
     bondDetails: "",
   };
 
-  const registerJnfHandler = async (e, jnfdata) => {
+  const registerJnfHandler = async (e, jnfData) => {
     e.preventDefault();
 
-    try {
-      const req = await axios.post(
-        `http://localhost:8000/company/${companyId}/jnf`,
-        jnfdata,
-        {headers:{
-          authorization:"Bearer "+ctx.token
-        }}
-      );
+    navigate(
+      `/dashboard/${companyId}/previewJnf`,
+      { state : { ...jnfData }},
+      {
+        headers: {
+          authorization: "Bearer " + ctx.token,
+        },
+      }
+    );
 
-      navigate(`/dashboard/${companyId}`);
-    } catch (e) {
-      console.log(e.message);
-    }
+    // try {
+    //   const req = await axios.post(
+    //     `http://localhost:8000/company/${companyId}/jnf`,
+    //     jnfdata,
+    //     {headers:{
+    //       authorization:"Bearer "+ctx.token
+    //     }}
+    //   );
+
+    //   navigate(`/dashboard/${companyId}`);
+    // } catch (e) {
+    //   console.log(e.message);
+    // }
   };
 
   return (
     <JnfForm
       jnfdata={jnfdata}
       handlejnfdata={registerJnfHandler}
-      actionLabel={"Submit"}
+      actionLabel={"Preview"}
     />
   );
 };

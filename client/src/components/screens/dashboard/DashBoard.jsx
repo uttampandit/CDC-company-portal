@@ -17,6 +17,8 @@ const DashBoard = () => {
   const { companyId } = useParams();
   const [companyData, setCompanyData] = useState({});
 
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
@@ -149,17 +151,22 @@ const DashBoard = () => {
                           ) : (
                             companyData.JNF.map((posting) => (
                               <>
-                                {numberOfJnfPostings ? (
+                                {numberOfJnfPostings == 0 ? (
+                                  <div className="flex h-full w-full items-center justify-center">
+                                    <button
+                                      className="flex bg-blue-400 text-white font-poppins rounded-md items-center px-2 py-2 text-sm"
+                                      onClick={() => navigate("jnf")}
+                                    >
+                                      Create Job Posting +
+                                    </button>
+                                  </div>
+                                ) : (
                                   <Posting
                                     key={posting._id}
                                     posting={posting}
                                     route={"updatejnf"}
                                     deleteCallback={onDeleteFunc}
                                   />
-                                ) : (
-                                  <div className="flex items-center justify-center">
-                                    <p>No Job Postings Yet</p>
-                                  </div>
                                 )}
                               </>
                             ))
@@ -176,17 +183,22 @@ const DashBoard = () => {
                             companyData.INF.map((posting) => {
                               return (
                                 <>
-                                  {numberOfInfPostings ? (
+                                  {numberOfInfPostings == 0 ? (
+                                    <div className="flex h-full w-full items-center justify-center">
+                                      <button
+                                        className="flex bg-blue-400 text-white font-poppins rounded-md items-center px-2 py-2 text-sm"
+                                        onClick={() => navigate("inf")}
+                                      >
+                                        Create Internship Posting +
+                                      </button>
+                                    </div>
+                                  ) : (
                                     <Posting
                                       key={posting._id}
                                       posting={posting}
                                       route={"updateinf"}
                                       deleteCallback={onDeleteFunc}
                                     />
-                                  ) : (
-                                    <div className="flex items-center justify-center">
-                                      <p>No Internship Postings Yet</p>
-                                    </div>
                                   )}
                                 </>
                               );

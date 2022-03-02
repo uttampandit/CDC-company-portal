@@ -16,7 +16,7 @@ const JnfForm = (props) => {
 
   useEffect(() => {
     setJnfData(jnfdata);
-  }, []);
+  }, [jnfdata]);
 
   const handleJnfChange = (e) => {
     const target = e.target;
@@ -28,7 +28,6 @@ const JnfForm = (props) => {
   console.log(jnfData);
   const handleJnfSubmit = async (e) => {
     await handlejnfdata(e, jnfData);
-    console.log(jnfdata);
   };
 
   return (
