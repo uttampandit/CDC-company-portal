@@ -50,7 +50,7 @@ const DashBoard = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-t from-blue-400">
       <div className="flex w-full items-center">
-        <GeneralHeader companyName={companyData.INFO.name}/>
+        <GeneralHeader companyName={(companyData.INFO)?companyData.INFO.name:'loading...'}/>
       </div>
 
       <div className="flex flex-col">
