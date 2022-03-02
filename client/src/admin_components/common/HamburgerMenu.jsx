@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/solid";
 import { useNavigate } from "react-router-dom";
-import Hamburger from "../../assets/Hamburger";
+import Hamburger from "../../admin_assets/Hamburger";
 
 export const HamburgerMenu = () => {
   const navigate = useNavigate();
