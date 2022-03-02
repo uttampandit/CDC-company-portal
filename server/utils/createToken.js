@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+const secretString = proecess.env.TOKEN_SECRET_AUTH
+
 module.exports = function (creater, isAdmin)
 {
   const token = jwt.sign(
@@ -8,7 +10,7 @@ module.exports = function (creater, isAdmin)
       email: (creater.INFO)?creater.INFO.registeredEmail:creater.email,
       isAdmin: isAdmin,
     },
-    "toBeKeptSecret",
+    secretString,
     { expiresIn: "1h" }
   );
   return token;
