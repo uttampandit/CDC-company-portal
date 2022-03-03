@@ -2,7 +2,7 @@
 
 This is a full-stack mern app made for company registration with admin support.
 
-# Tech stack used.
+# Tech stack used
 
 Front End - HTML5, Tailwind css, React.js
 Back End - Node.js, MongoDB database, Mongoose ORM
