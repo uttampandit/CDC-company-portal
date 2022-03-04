@@ -1,6 +1,8 @@
 # Company Registration Portal for Indulge 1.0
 
 This is a full-stack mern app made for company registration with admin support.
+This web app is our submission for Indulge 1.0, a college level hackathon organised by career development centre of IIT(ISM) Dhanbad.
+
 
 # Tech stack used
 
