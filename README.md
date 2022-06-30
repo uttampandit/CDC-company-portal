@@ -20,10 +20,3 @@ Back End - Node.js, MongoDB database, Mongoose ORM
 7. Database of all companies is maintained at the backend using no-sql database i.e MongoDB.
 8. Latest tech stack like tailwindCss for frontend designing.
 9. Functional components are used in frontend to make code reusable and modular.
-
-# Future plans
-
-1. Whenever company updates job or internship postings automated email is sent to all admins and company HR.
-2. Graduation year could be set by the admin to update job and internship fields.
-3. Expand the fields for all postings.
-4. Automated upload to google drive for all exports.
